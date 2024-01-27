@@ -1,49 +1,47 @@
-"use client";
-import React, { Component, useState } from "react";
-import { SocialIcon } from "react-social-icons";
-import Image from "next/image";
-import WaveGradient from "@/components/Navbar/WaveGradient";
-import Link from "next/link";
-import "./Gradient.css";
-import { Tabs, Tab, Box, Container, Typography } from "@mui/material";
-import { styled } from "@mui/material/styles";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import IconButton from "@mui/material/IconButton";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+'use client'
+import React, { Component, useState, useEffect } from 'react'
+import { SocialIcon } from 'react-social-icons'
+import Image from 'next/image'
+import WaveGradient from '@/components/Navbar/WaveGradient'
+import Link from 'next/link'
+import './Gradient.css'
+import { Tabs, Tab, Box, Container, Typography } from '@mui/material'
+import { styled } from '@mui/material/styles'
+import Clock from 'react-clock'
+import 'react-clock/dist/Clock.css'
 
 const ParagraphTab = ({ text }) => {
-  return <p className="text-lg">{text}</p>;
-};
+  return <p className="text-lg">{text}</p>
+}
 const LocationsTabs = () => {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(0)
 
   const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+    setValue(newValue)
+  }
 
   const paragraphs = [
-    "Exclusive Lacquer Glass Wardrobe Designs Wardrobe – Wardrobe Dealers & Manufacturers in Ghitorni Wardrobe Designs – Wardrobe Dealers & Manufacturers in Golf Links Wardrobe Designs – Wardrobe Dealers & Manufacturers in Greater Kailash Wardrobe Designs – Wardrobe Dealers & Manufacturers in Greater Noida Wardrobe Designs – Wardrobe Dealers & Manufacturers in Green Park Wardrobe Designs – Wardrobe Dealers & Manufacturers in Gulmohar Park Wardrobe Designs – Wardrobe Dealers & Manufacturers in Gurgaon Wardrobe Designs – Wardrobe Dealers & Manufacturers in Hauz Khas Wardrobe Designs – Wardrobe Dealers & Manufacturers in Jaipur Wardrobe Designs – Wardrobe Dealers & Manufacturers in Janak Puri – Delhi Wardrobe Designs – Wardrobe Dealers & Manufacturers in Kalkaji Wardrobe Designs – Wardrobe Dealers & Manufacturers in Karol Bagh Wardrobe Designs – Wardrobe Dealers & Manufacturers in Mayur Vihar Wardrobe Designs – Wardrobe Dealers & Manufacturers in Meena Bagh Wardrobe Designs – Wardrobe Dealers & Manufacturers in Mehrauli Wardrobe Designs – Wardrobe Dealers & Manufacturers in Neeti Bagh Wardrobe Designs – Wardrobe Dealers & Manufacturers in Noida Wardrobe Designs – Wardrobe Dealers & Manufacturers in Panchsheel Wardrobe Designs – Wardrobe Dealers & Manufacturers in Punjabi Bagh Wardrobe Designs – Wardrobe Dealers & Manufacturers in Rajinder Nagar Wardrobe Designs – Wardrobe Dealers & Manufacturers in Rajouri Garden Wardrobe Designs – Wardrobe Dealers & Manufacturers in Rishikesh Wardrobe Designs – Wardrobe Dealers & Manufacturers in Sainik Farms Wardrobe Designs – Wardrobe Dealers & Manufacturers in Sarita Vihar Wardrobe Designs – Wardrobe Dealers & Manufacturers in Shanti Niketan Wardrobe Designs – Wardrobe Dealers & Manufacturers in Vaishali Wardrobe Designs – Wardrobe Dealers & Manufacturers in Vasant Kunj Wardrobe Designs – Wardrobe Dealers & Manufacturers in Vasant Vihar wardrobe-dealers-delhi-gurgaon-india wardrobe-designs-gallery-delhi-gurgaon-noida Wardrobe Dealers & Manufacturers in Safdarjung Enclave, Delhi Wardrobe Designs – Dealers & Manufacturers in New Friends Colony Wardrobe Designs – Dealers & Manufacturers in Pamposh Enclave Wardrobe Designs – Wardrobe Dealers & Manufacturers in Alaknanda – Delhi Wardrobe Designs – Wardrobe Dealers & Manufacturers in Anand Lok – Delhi Wardrobe Designs – Wardrobe Dealers & Manufacturers in Anand Niketan – Delhi Wardrobe Designs – Wardrobe Dealers & Manufacturers in Asiad Village – Delhi Wardrobe Designs – Wardrobe Dealers & Manufacturers in Chanakyapuri Wardrobe Designs – Wardrobe Dealers & Manufacturers in Chirag Delhi Wardrobe Designs – Wardrobe Dealers & Manufacturers in CR Park Wardrobe Designs – Wardrobe Dealers & Manufacturers in Defence Colony Wardrobe Designs – Wardrobe Dealers & Manufacturers in Delhi Wardrobe Designs – Wardrobe Dealers & Manufacturers in East of Kailash Wardrobe Designs – Wardrobe Dealers & Manufacturers in Faridabad",
-    "Mandir-manufacturers-delhi-gurgaon Modular Kitchen Dealers & Manufacturers in Alaknanda – New Delhi Modular Kitchen Dealers & Manufacturers in Anand Lok – New Delhi Modular Kitchen Dealers & Manufacturers in Anand Niketan – New Delhi Modular Kitchen Dealers & Manufacturers in Ashok Vihar – New Delhi Modular Kitchen Dealers & Manufacturers in Asiad Village – New Delhi Modular Kitchen Dealers & Manufacturers in Chanakyapuri – New Delhi Modular Kitchen Dealers & Manufacturers in Chirag Delhi – New Delhi Modular Kitchen Dealers & Manufacturers in Civil Lines Modular Kitchen Dealers & Manufacturers in CR Park – New Delhi Modular Kitchen Dealers & Manufacturers in Defence Colony Modular Kitchen Dealers & Manufacturers in Dehradun Modular Kitchen Dealers & Manufacturers in Dwarka – New Delhi Modular Kitchen Dealers & Manufacturers in East of Kailash – New Delhi Modular Kitchen Dealers & Manufacturers in Faridabad Modular Kitchen Dealers & Manufacturers in Greater Kailash – New Delhi Modular Kitchen Dealers & Manufacturers in Greater Noida Modular Kitchen Dealers & Manufacturers in Green Park – New Delhi Modular Kitchen Dealers & Manufacturers in Gulmohar Park – Delhi Modular Kitchen Dealers & Manufacturers in Gurgaon – Gurugram Modular Kitchen Dealers & Manufacturers in Haridwar Modular Kitchen Dealers & Manufacturers in Hauz Khas – New Delhi Modular Kitchen Dealers & Manufacturers in Jaipur Modular Kitchen Dealers & Manufacturers in Janak Puri – Delhi Modular Kitchen Dealers & Manufacturers in Kalindi Kunj – New Delhi Modular Kitchen Dealers & Manufacturers in Kalkaji – New Delhi Modular Kitchen Dealers & Manufacturers in Karol Bagh – Delhi Modular Kitchen Dealers & Manufacturers in Khan Market – New Delhi Modular Kitchen Dealers & Manufacturers in Mayur Vihar – New Delhi Modular Kitchen Dealers & Manufacturers in Meena Bagh Modular Kitchen Dealers & Manufacturers in Mehrauli – Delhi Modular Kitchen Dealers & Manufacturers in Model Town – New Delhi Modular Kitchen Dealers & Manufacturers in Neeti Bagh Modular Kitchen Dealers & Manufacturers in New Delhi Modular Kitchen Dealers & Manufacturers in New Friends Colony Modular Kitchen Dealers & Manufacturers in Noida Modular Kitchen Dealers & Manufacturers in Pamposh Enclave – Delhi Modular Kitchen Dealers & Manufacturers in Panchsheel – New Delhi Modular Kitchen Dealers & Manufacturers in Patel Nagar Modular Kitchen Dealers & Manufacturers in Pitam Pura – Delhi Modular Kitchen Dealers & Manufacturers in Preet Vihar – New Delhi Modular Kitchen Dealers & Manufacturers in Punjabi Bagh Modular Kitchen Dealers & Manufacturers in Rajinder Nagar Modular Kitchen Dealers & Manufacturers in Rajokri – New Delhi Modular Kitchen Dealers & Manufacturers in Rajouri Garden – New Delhi Modular Kitchen Dealers & Manufacturers in Rishikesh Modular Kitchen Dealers & Manufacturers in Safdarjung Enclave – New Delhi Modular Kitchen Dealers & Manufacturers in Sainik Farms – New Delhi Modular Kitchen Dealers & Manufacturers in Saket – New Delhi Modular Kitchen Dealers & Manufacturers in Sarita Vihar – New Delhi Modular Kitchen Dealers & Manufacturers in Shanti Niketan – New Delhi Modular Kitchen Dealers & Manufacturers in Vaishali – New Delhi Modular Kitchen Dealers & Manufacturers in Vasant Vihar – New Delhi",
-    "White Colour Modular Kitchen Designs Yellow Colour Modular Kitchen Designs in Delhi Gurgaon Noida India Silver Colour Modular Kitchen Designs Sky Blue Modular Kitchens Designs in Delhi Gurgaon Noida India Orange Modular Kitchen Designs in Delhi Gurgaon Noida India Pink Modular Kitchen Designs in Delhi Gurgaon Noida India Purple Modular Kitchen Design collection in Delhi and India Red Colour Modular Kitchen Designs Beige Colour Modular Kitchen designs in Delhi Gurgaon Noida India Black Modular Kitchen Designs in Delhi & India Blue Colour Modular Kitchens in Delhi Gurgaon Noida India Brown Colour Modular Kitchens in Delhi Gurgaon Noida India Cappuccino Cream colour modular kitchen designs in delhi india Charcoal Modular Kitchen Designs Colourful Modular Kitchen in Delhi gurgaon Noida India Green Colour Modular Kitchen Designs Grey Colour Modular Kitchen Designs in Delhi Maroon Modular Kitchen Designs in Delhi Gurgaon Noida India",
-  ];
+    'Exclusive Lacquer Glass Wardrobe Designs Wardrobe – Wardrobe Dealers & Manufacturers in Ghitorni Wardrobe Designs – Wardrobe Dealers & Manufacturers in Golf Links Wardrobe Designs – Wardrobe Dealers & Manufacturers in Greater Kailash Wardrobe Designs – Wardrobe Dealers & Manufacturers in Greater Noida Wardrobe Designs – Wardrobe Dealers & Manufacturers in Green Park Wardrobe Designs – Wardrobe Dealers & Manufacturers in Gulmohar Park Wardrobe Designs – Wardrobe Dealers & Manufacturers in Gurgaon Wardrobe Designs – Wardrobe Dealers & Manufacturers in Hauz Khas Wardrobe Designs – Wardrobe Dealers & Manufacturers in Jaipur Wardrobe Designs – Wardrobe Dealers & Manufacturers in Janak Puri – Delhi Wardrobe Designs – Wardrobe Dealers & Manufacturers in Kalkaji Wardrobe Designs – Wardrobe Dealers & Manufacturers in Karol Bagh Wardrobe Designs – Wardrobe Dealers & Manufacturers in Mayur Vihar Wardrobe Designs – Wardrobe Dealers & Manufacturers in Meena Bagh Wardrobe Designs – Wardrobe Dealers & Manufacturers in Mehrauli Wardrobe Designs – Wardrobe Dealers & Manufacturers in Neeti Bagh Wardrobe Designs – Wardrobe Dealers & Manufacturers in Noida Wardrobe Designs – Wardrobe Dealers & Manufacturers in Panchsheel Wardrobe Designs – Wardrobe Dealers & Manufacturers in Punjabi Bagh Wardrobe Designs – Wardrobe Dealers & Manufacturers in Rajinder Nagar Wardrobe Designs – Wardrobe Dealers & Manufacturers in Rajouri Garden Wardrobe Designs – Wardrobe Dealers & Manufacturers in Rishikesh Wardrobe Designs – Wardrobe Dealers & Manufacturers in Sainik Farms Wardrobe Designs – Wardrobe Dealers & Manufacturers in Sarita Vihar Wardrobe Designs – Wardrobe Dealers & Manufacturers in Shanti Niketan Wardrobe Designs – Wardrobe Dealers & Manufacturers in Vaishali Wardrobe Designs – Wardrobe Dealers & Manufacturers in Vasant Kunj Wardrobe Designs – Wardrobe Dealers & Manufacturers in Vasant Vihar wardrobe-dealers-delhi-gurgaon-india wardrobe-designs-gallery-delhi-gurgaon-noida Wardrobe Dealers & Manufacturers in Safdarjung Enclave, Delhi Wardrobe Designs – Dealers & Manufacturers in New Friends Colony Wardrobe Designs – Dealers & Manufacturers in Pamposh Enclave Wardrobe Designs – Wardrobe Dealers & Manufacturers in Alaknanda – Delhi Wardrobe Designs – Wardrobe Dealers & Manufacturers in Anand Lok – Delhi Wardrobe Designs – Wardrobe Dealers & Manufacturers in Anand Niketan – Delhi Wardrobe Designs – Wardrobe Dealers & Manufacturers in Asiad Village – Delhi Wardrobe Designs – Wardrobe Dealers & Manufacturers in Chanakyapuri Wardrobe Designs – Wardrobe Dealers & Manufacturers in Chirag Delhi Wardrobe Designs – Wardrobe Dealers & Manufacturers in CR Park Wardrobe Designs – Wardrobe Dealers & Manufacturers in Defence Colony Wardrobe Designs – Wardrobe Dealers & Manufacturers in Delhi Wardrobe Designs – Wardrobe Dealers & Manufacturers in East of Kailash Wardrobe Designs – Wardrobe Dealers & Manufacturers in Faridabad',
+    'Mandir-manufacturers-delhi-gurgaon Modular Kitchen Dealers & Manufacturers in Alaknanda – New Delhi Modular Kitchen Dealers & Manufacturers in Anand Lok – New Delhi Modular Kitchen Dealers & Manufacturers in Anand Niketan – New Delhi Modular Kitchen Dealers & Manufacturers in Ashok Vihar – New Delhi Modular Kitchen Dealers & Manufacturers in Asiad Village – New Delhi Modular Kitchen Dealers & Manufacturers in Chanakyapuri – New Delhi Modular Kitchen Dealers & Manufacturers in Chirag Delhi – New Delhi Modular Kitchen Dealers & Manufacturers in Civil Lines Modular Kitchen Dealers & Manufacturers in CR Park – New Delhi Modular Kitchen Dealers & Manufacturers in Defence Colony Modular Kitchen Dealers & Manufacturers in Dehradun Modular Kitchen Dealers & Manufacturers in Dwarka – New Delhi Modular Kitchen Dealers & Manufacturers in East of Kailash – New Delhi Modular Kitchen Dealers & Manufacturers in Faridabad Modular Kitchen Dealers & Manufacturers in Greater Kailash – New Delhi Modular Kitchen Dealers & Manufacturers in Greater Noida Modular Kitchen Dealers & Manufacturers in Green Park – New Delhi Modular Kitchen Dealers & Manufacturers in Gulmohar Park – Delhi Modular Kitchen Dealers & Manufacturers in Gurgaon – Gurugram Modular Kitchen Dealers & Manufacturers in Haridwar Modular Kitchen Dealers & Manufacturers in Hauz Khas – New Delhi Modular Kitchen Dealers & Manufacturers in Jaipur Modular Kitchen Dealers & Manufacturers in Janak Puri – Delhi Modular Kitchen Dealers & Manufacturers in Kalindi Kunj – New Delhi Modular Kitchen Dealers & Manufacturers in Kalkaji – New Delhi Modular Kitchen Dealers & Manufacturers in Karol Bagh – Delhi Modular Kitchen Dealers & Manufacturers in Khan Market – New Delhi Modular Kitchen Dealers & Manufacturers in Mayur Vihar – New Delhi Modular Kitchen Dealers & Manufacturers in Meena Bagh Modular Kitchen Dealers & Manufacturers in Mehrauli – Delhi Modular Kitchen Dealers & Manufacturers in Model Town – New Delhi Modular Kitchen Dealers & Manufacturers in Neeti Bagh Modular Kitchen Dealers & Manufacturers in New Delhi Modular Kitchen Dealers & Manufacturers in New Friends Colony Modular Kitchen Dealers & Manufacturers in Noida Modular Kitchen Dealers & Manufacturers in Pamposh Enclave – Delhi Modular Kitchen Dealers & Manufacturers in Panchsheel – New Delhi Modular Kitchen Dealers & Manufacturers in Patel Nagar Modular Kitchen Dealers & Manufacturers in Pitam Pura – Delhi Modular Kitchen Dealers & Manufacturers in Preet Vihar – New Delhi Modular Kitchen Dealers & Manufacturers in Punjabi Bagh Modular Kitchen Dealers & Manufacturers in Rajinder Nagar Modular Kitchen Dealers & Manufacturers in Rajokri – New Delhi Modular Kitchen Dealers & Manufacturers in Rajouri Garden – New Delhi Modular Kitchen Dealers & Manufacturers in Rishikesh Modular Kitchen Dealers & Manufacturers in Safdarjung Enclave – New Delhi Modular Kitchen Dealers & Manufacturers in Sainik Farms – New Delhi Modular Kitchen Dealers & Manufacturers in Saket – New Delhi Modular Kitchen Dealers & Manufacturers in Sarita Vihar – New Delhi Modular Kitchen Dealers & Manufacturers in Shanti Niketan – New Delhi Modular Kitchen Dealers & Manufacturers in Vaishali – New Delhi Modular Kitchen Dealers & Manufacturers in Vasant Vihar – New Delhi',
+    'White Colour Modular Kitchen Designs Yellow Colour Modular Kitchen Designs in Delhi Gurgaon Noida India Silver Colour Modular Kitchen Designs Sky Blue Modular Kitchens Designs in Delhi Gurgaon Noida India Orange Modular Kitchen Designs in Delhi Gurgaon Noida India Pink Modular Kitchen Designs in Delhi Gurgaon Noida India Purple Modular Kitchen Design collection in Delhi and India Red Colour Modular Kitchen Designs Beige Colour Modular Kitchen designs in Delhi Gurgaon Noida India Black Modular Kitchen Designs in Delhi & India Blue Colour Modular Kitchens in Delhi Gurgaon Noida India Brown Colour Modular Kitchens in Delhi Gurgaon Noida India Cappuccino Cream colour modular kitchen designs in delhi india Charcoal Modular Kitchen Designs Colourful Modular Kitchen in Delhi gurgaon Noida India Green Colour Modular Kitchen Designs Grey Colour Modular Kitchen Designs in Delhi Maroon Modular Kitchen Designs in Delhi Gurgaon Noida India',
+  ]
 
   const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
     ({ theme }) => ({
-      textTransform: "none",
+      textTransform: 'none',
 
       marginRight: theme.spacing(1),
-      color: "#99adc9",
-      fontFamily: "BioRhyme",
+      color: '#99adc9',
+      fontFamily: 'BioRhyme',
 
-      "&.Mui-selected": {
-        color: "#ffffff",
+      '&.Mui-selected': {
+        color: '#ffffff',
       },
-      "&.Mui-focusVisible": {
-        backgroundColor: "rgba(100, 95, 228, 0.32)",
+      '&.Mui-focusVisible': {
+        backgroundColor: 'rgba(100, 95, 228, 0.32)',
       },
     })
-  );
+  )
 
   return (
     <div className="container mx-auto mt-8 p-0">
@@ -73,8 +71,8 @@ const LocationsTabs = () => {
         {value === 2 && <ParagraphTab text={paragraphs[2]} />}
       </Box>
     </div>
-  );
-};
+  )
+}
 
 const DesignDropdown = ({
   id,
@@ -83,11 +81,11 @@ const DesignDropdown = ({
   openDropdown,
   setOpenDropdown,
 }) => {
-  const isOpen = openDropdown === id;
+  const isOpen = openDropdown === id
 
   const toggleDropdown = () => {
-    setOpenDropdown(isOpen ? null : id);
-  };
+    setOpenDropdown(isOpen ? null : id)
+  }
 
   return (
     <div className="relative inline-block text-left">
@@ -96,8 +94,9 @@ const DesignDropdown = ({
           {heading}
         </span>
         <svg
-          className={`ml-2 h-4 w-4 inline-block transform ${isOpen ? "rotate-180" : ""
-            }`}
+          className={`ml-2 h-4 w-4 inline-block transform ${
+            isOpen ? 'rotate-180' : ''
+          }`}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -126,135 +125,136 @@ const DesignDropdown = ({
         </div>
       )}
     </div>
-  );
-};
+  )
+}
+
 const DesignIdeasDropdownContainer = () => {
-  const [openDropdown, setOpenDropdown] = useState(null);
+  const [openDropdown, setOpenDropdown] = useState(null)
   const dropdownData = [
     {
       id: 1,
-      heading: "Design Ideas",
+      heading: 'Design Ideas',
       links: [
-        { label: "Modular Kitchens", url: "/modular-kitchen-designs" },
-        { label: "Wardrobes", url: "/wardrobe-designs" },
-        { label: "Vanities", url: "/vanity-designs" },
-        { label: "Dressers", url: "/dressers-designs" },
-        { label: "TV Units", url: "/tv-unit-designs" },
-        { label: "Crockery Units", url: "/crockery-unit-designs" },
-        { label: "Glass Partitions", url: "/glass-partition-designs" },
+        { label: 'Modular Kitchens', url: '/modular-kitchen-designs' },
+        { label: 'Wardrobes', url: '/wardrobe-designs' },
+        { label: 'Vanities', url: '/vanity-designs' },
+        { label: 'Dressers', url: '/dressers-designs' },
+        { label: 'TV Units', url: '/tv-unit-designs' },
+        { label: 'Crockery Units', url: '/crockery-unit-designs' },
+        { label: 'Glass Partitions', url: '/glass-partition-designs' },
         // Add other links as needed
       ],
     },
     {
       id: 2,
-      heading: "Interior",
+      heading: 'Interior',
       links: [
         {
-          label: "1bhk residence interior designs",
-          url: "/1bhk-apartment-interior-designs",
+          label: '1bhk residence interior designs',
+          url: '/1bhk-apartment-interior-designs',
         },
         {
-          label: "2bhk residence interior designs",
-          url: "/2bhk-apartment-interior-designs",
+          label: '2bhk residence interior designs',
+          url: '/2bhk-apartment-interior-designs',
         },
         {
-          label: "3bhk residence interior designs",
-          url: "/3bhk-apartment-interior-designs",
+          label: '3bhk residence interior designs',
+          url: '/3bhk-apartment-interior-designs',
         },
         {
-          label: "4bhk residence interior designs",
-          url: "/4bhk-apartment-interior-designs",
+          label: '4bhk residence interior designs',
+          url: '/4bhk-apartment-interior-designs',
         },
-        { label: "Villa interior designs", url: "/villa-interior-designs" },
+        { label: 'Villa interior designs', url: '/villa-interior-designs' },
         {
-          label: "Farmhouse interior designs ",
-          url: "/farmhouse-interior-designs",
-        },
-        {
-          label: "Penthouse interior designs ",
-          url: "/penthouse-interior-designs",
+          label: 'Farmhouse interior designs ',
+          url: '/farmhouse-interior-designs',
         },
         {
-          label: "Studio apartment interior designs ",
-          url: "/studio-apartment-interior-designs",
+          label: 'Penthouse interior designs ',
+          url: '/penthouse-interior-designs',
         },
         {
-          label: "Bungalow interior designs ",
-          url: "/bungalow-interior-designs",
+          label: 'Studio apartment interior designs ',
+          url: '/studio-apartment-interior-designs',
         },
         {
-          label: "Duplex Residence interior Designs ",
-          url: "/duplex-interior-designs",
+          label: 'Bungalow interior designs ',
+          url: '/bungalow-interior-designs',
         },
-        { label: "Cottage Interior Designs", url: "/cottage-interior-designs" },
+        {
+          label: 'Duplex Residence interior Designs ',
+          url: '/duplex-interior-designs',
+        },
+        { label: 'Cottage Interior Designs', url: '/cottage-interior-designs' },
       ],
     },
     {
       id: 3,
-      heading: "Architecture",
+      heading: 'Architecture',
       links: [
-        { label: "Consultancy", url: "/architectural-consultancy" },
-        { label: "Designing & Planning", url: "/architectural-brand-in-india" },
+        { label: 'Consultancy', url: '/architectural-consultancy' },
+        { label: 'Designing & Planning', url: '/architectural-brand-in-india' },
         {
-          label: "End to End Structural Projects ",
-          url: "/top-architects-in-india",
+          label: 'End to End Structural Projects ',
+          url: '/top-architects-in-india',
         },
         {
-          label: "Luxury Residences ",
-          url: "/commercial-architectural-delhi-india",
+          label: 'Luxury Residences ',
+          url: '/commercial-architectural-delhi-india',
         },
-        { label: "Renovations", url: "/home-renovation-services" },
+        { label: 'Renovations', url: '/home-renovation-services' },
       ],
     },
     {
       id: 4,
-      heading: "Modular Kitchen",
+      heading: 'Modular Kitchen',
       links: [
-        { label: "Types of Modular Kitchen", url: "/modular-kitchen-types" },
-        { label: "Modular Kitchen Designs", url: "/modular-kitchen-designs" },
+        { label: 'Types of Modular Kitchen', url: '/modular-kitchen-types' },
+        { label: 'Modular Kitchen Designs', url: '/modular-kitchen-designs' },
         {
-          label: "Luxury Modular Kitchen ",
-          url: "/luxury-modular-kitchen-india",
+          label: 'Luxury Modular Kitchen ',
+          url: '/luxury-modular-kitchen-india',
         },
         {
-          label: "Kitchen Renovation ",
-          url: "/modular-kitchen-renovation-services",
+          label: 'Kitchen Renovation ',
+          url: '/modular-kitchen-renovation-services',
         },
-        { label: "Get Estimate ", url: "/modular-kitchen-price-estimator" },
+        { label: 'Get Estimate ', url: '/modular-kitchen-price-estimator' },
       ],
     },
     {
       id: 5,
-      heading: "Wardrobes",
+      heading: 'Wardrobes',
       links: [
-        { label: "Types of Wardrobes ", url: "/types-of-wardrobe-designs" },
-        { label: "Luxury Wardrobes", url: "/luxury-wardrobe-designs-india" },
-        { label: "Wardrobe Designs", url: "/wardrobe-designs" },
+        { label: 'Types of Wardrobes ', url: '/types-of-wardrobe-designs' },
+        { label: 'Luxury Wardrobes', url: '/luxury-wardrobe-designs-india' },
+        { label: 'Wardrobe Designs', url: '/wardrobe-designs' },
         {
-          label: "Lacquer Glass Wardrobe Designs",
-          url: "/lacquer-glass-wardrobe-designs",
+          label: 'Lacquer Glass Wardrobe Designs',
+          url: '/lacquer-glass-wardrobe-designs',
         },
         {
-          label: "Wardrobe Renovation Services ",
-          url: "/wardrobe-renovation-services",
+          label: 'Wardrobe Renovation Services ',
+          url: '/wardrobe-renovation-services',
         },
       ],
     },
     {
       id: 6,
-      heading: "Modular Interior",
+      heading: 'Modular Interior',
       links: [
-        { label: "Mandir", url: "/mandir-designs" },
-        { label: "Chest of Drawers", url: "/chest-of-drawer-designs" },
-        { label: "Bar Units", url: "/Bar-unit-designs" },
-        { label: "Side Tables", url: "/side-table-designs" },
-        { label: "Foldable Beds ", url: "/foldable-area-designs" },
-        { label: "Foyer Cabinets ", url: "/foyer-area-designs" },
-        { label: "Bathroom Vanities ", url: "/vanity-designs" },
+        { label: 'Mandir', url: '/mandir-designs' },
+        { label: 'Chest of Drawers', url: '/chest-of-drawer-designs' },
+        { label: 'Bar Units', url: '/Bar-unit-designs' },
+        { label: 'Side Tables', url: '/side-table-designs' },
+        { label: 'Foldable Beds ', url: '/foldable-area-designs' },
+        { label: 'Foyer Cabinets ', url: '/foyer-area-designs' },
+        { label: 'Bathroom Vanities ', url: '/vanity-designs' },
       ],
     },
     // Add data for other dropdowns
-  ];
+  ]
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-16 gap-y-8">
@@ -269,8 +269,61 @@ const DesignIdeasDropdownContainer = () => {
         />
       ))}
     </div>
-  );
-};
+  )
+}
+
+// clock time
+
+const AnalogClock = () => {
+  const [date, setDate] = useState(new Date())
+
+  useEffect(() => {
+    const intervalId = setInterval(() => setDate(new Date()), 1000)
+
+    // Cleanup the interval when the component is unmounted
+    return () => clearInterval(intervalId)
+  }, [])
+
+  return (
+    <div className="analog-clock">
+      <Clock value={date} renderNumbers={true} />
+    </div>
+  )
+}
+
+function Time() {
+  const [liveTime, setLiveTime] = useState('')
+
+  useEffect(() => {
+    const updateLiveTime = () => {
+      const currentTime = new Date().toLocaleTimeString()
+      setLiveTime(currentTime)
+    }
+
+    // Update the time every second
+    const intervalId = setInterval(updateLiveTime, 1000)
+
+    // Cleanup the interval when the component is unmounted
+    return () => clearInterval(intervalId)
+  }, [])
+
+  return (
+    <div>
+      <ul className="border-l-4 border-black pl-2">
+        <li className="mb-2 font-bold">ORGANIZATION & INDUSTRIAL BUSINESS</li>
+        <li className="mb-2 font-bold">OPERATED SINCE 2008.</li>
+        <li className="mb-2 font-bold">ALL RIGHTS RESERVED.</li>
+        <li className="mb-2 font-bold">ALL WRONGS REVERSED.</li>
+        <li className="mb-2 font-bold">DATA PRIVACY</li>
+        <li className="mb-2 mt-8">
+          <AnalogClock />
+        </li>
+        <li className="mb-2 text-sm mt-4 ml-6">{liveTime}</li>
+      </ul>
+    </div>
+  )
+}
+
 export class Footer extends Component {
   render() {
     return (
@@ -296,31 +349,31 @@ export class Footer extends Component {
 
           <div className="flex flex-col items-center md:flex-row justify-center gap-6 md:gap-32 w-full mt-5">
             {/* Brand 1 */}
-            <a href="https://www.designindiankitchen.com" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://www.designindiankitchen.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <div className="text-center flex flex-col items-center justify-center">
-
-                <Image
-                  src="/dkilogo.png"
-                  alt=""
-                  width={200}
-                  height={80}
-                />
+                <Image src="/dkilogo.png" alt="" width={200} height={80} />
                 <p className="text-green-500 text-2xl font-medium">
                   Design Indian Kitchen
                 </p>
-
               </div>
             </a>
 
             {/* Brand 2 */}
-            <a href="https://www.designindianhomes.com" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://www.designindianhomes.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <div className="text-center flex flex-col items-center justify-center">
                 <Image
                   src="/desig indian homes.gif"
                   alt=""
                   width={200}
                   height={80}
-
                 />
                 <p className="text-green-500 text-2xl font-medium">
                   Design Indian Home
@@ -329,14 +382,17 @@ export class Footer extends Component {
             </a>
 
             {/* Brand 3 */}
-            <a href="https://www.designindianwardrobes.com" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://www.designindianwardrobes.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <div className="text-center flex flex-col items-center justify-center">
                 <Image
                   src="/footer-logo-multi.png"
                   alt=""
                   width={300}
                   height={80}
-
                 />
                 <p className="text-green-500 text-2xl font-medium">
                   Design Indian Wardrobe
@@ -348,7 +404,7 @@ export class Footer extends Component {
           {/* Features Section */}
           <div
             className="flex flex-col items-center md:flex-row justify-center    p-10 gap-6 mt-10 text-black"
-            style={{ alignItems: "center" }}
+            style={{ alignItems: 'center' }}
           >
             {/* Feature 1 */}
             <div className="text-center">
@@ -426,7 +482,6 @@ export class Footer extends Component {
           {/* add hr */}
           <hr className="mb-12 border-t-2 border-black" />
           <div className="flex flex-col md:flex-row justify-center gap-8  text-black">
-
             {/* Social Media Icons */}
             <div className="text-left">
               <Image
@@ -439,35 +494,33 @@ export class Footer extends Component {
                 <SocialIcon
                   network="twitter"
                   url="www.vimeo.com"
-                  style={{ width: "2rem", height: "2rem" }}
+                  style={{ width: '2rem', height: '2rem' }}
                 />
                 <SocialIcon
                   network="facebook"
                   url="www.vimeo.com"
-                  style={{ width: "2rem", height: "2rem" }}
+                  style={{ width: '2rem', height: '2rem' }}
                 />
                 <SocialIcon
                   network="instagram"
                   url="www.vimeo.com"
-                  style={{ width: "2rem", height: "2rem" }}
+                  style={{ width: '2rem', height: '2rem' }}
                 />
                 <SocialIcon
                   network="linkedin"
                   url="www.vimeo.com"
-                  style={{ width: "2rem", height: "2rem" }}
+                  style={{ width: '2rem', height: '2rem' }}
                 />
               </div>
               <p className="mt-8">
-                © Copyright <strong>Design Indian Homes</strong> 2023. <br />{" "}
+                © Copyright <strong>Design Indian Homes</strong> 2023. <br />{' '}
                 All Rights Reserved
               </p>
             </div>
 
             <div className="px-0 mx-0">
-
               <DesignIdeasDropdownContainer />
             </div>
-
 
             <div>
               <Image
@@ -504,7 +557,7 @@ export class Footer extends Component {
                     <li>Collaborate with Us</li>
                   </Link>
                   <Link href="/customer-reviews-interior-designs">
-                    {" "}
+                    {' '}
                     <li className="mb-2">Reviews</li>
                   </Link>
                   <Link href="/interior-designing-plans-for-residences">
@@ -599,52 +652,43 @@ export class Footer extends Component {
 
             <div
               className="flex flex-col md:flex-row justify-center text-black"
-              style={{ gap: "110px", marginTop: "100px" }}
+              style={{ gap: '110px', marginTop: '100px' }}
             >
-              <div style={{ width: "300px" }}>
+              <div style={{ width: '300px' }}>
                 <h1 className="font-bold text-2xl uppercase">Contact Us</h1>
                 <div className="mt-8 text-sm">
-                  <p className="font-extrabold mb-2 underline">DESIGNING & OPERATIONS OFFICE -</p>
-                  <p className="mb-6">
-                    25/42, A BLOCK, MIDDLE CIRCLE,
-                    CONNAUGHT PLACE, NEW DELHI - 110001 NEAR RAJIV CHOWK METRO
-                    STN, GATE NO.8{" "}
+                  <p className="font-extrabold mb-2 underline">
+                    DESIGNING & OPERATIONS OFFICE -
                   </p>
-                  <p className="font-extrabold mb-2 underline">  CORPORATE INDUSTRIAL UNIT -</p>
                   <p className="mb-6">
-                    G - 984, NARELA DSIIDC INDUSTRIAL
-                    AREA, NEW DELHI - 110040
+                    25/42, A BLOCK, MIDDLE CIRCLE, CONNAUGHT PLACE, NEW DELHI -
+                    110001 NEAR RAJIV CHOWK METRO STN, GATE NO.8{' '}
                   </p>
-                  <p className="font-extrabold mb-2 underline">MOBILE PHONE NUMBER -</p>
+                  <p className="font-extrabold mb-2 underline">
+                    {' '}
+                    CORPORATE INDUSTRIAL UNIT -
+                  </p>
                   <p className="mb-6">
-                    0-9899264978 /
-                    0-9582827928/ 0-9899239097
-
+                    G - 984, NARELA DSIIDC INDUSTRIAL AREA, NEW DELHI - 110040
                   </p>
-                  <p className="font-extrabold mb-2 underline">LANDLINE NUMBER -</p>
+                  <p className="font-extrabold mb-2 underline">
+                    MOBILE PHONE NUMBER -
+                  </p>
                   <p className="mb-6">
-
-                    01144127897
-
-
+                    0-9899264978 / 0-9582827928/ 0-9899239097
                   </p>
+                  <p className="font-extrabold mb-2 underline">
+                    LANDLINE NUMBER -
+                  </p>
+                  <p className="mb-6">01144127897</p>
                   <p className="font-extrabold mb-2 underline">EMAIL -</p>
-                  <p className="mb-6">
-
-
-
-                    ENQUIRY@DESIGNINDIANKITCHEN.COM
-
-                  </p>
+                  <p className="mb-6">ENQUIRY@DESIGNINDIANKITCHEN.COM</p>
                   <p className="font-extrabold mb-2 underline">TIMING -</p>
                   <p className="mb-6">
-
-
-
-
-                    MONDAY - SATURDAY:<br />  10:30 AM - 7:30 PM <br />
-                    SUNDAY:<br /> 11:00 AM - 7:00 PM
-                    ONLY FOR SITE VISITS
+                    MONDAY - SATURDAY:
+                    <br /> 10:30 AM - 7:30 PM <br />
+                    SUNDAY:
+                    <br /> 11:00 AM - 7:00 PM ONLY FOR SITE VISITS
                   </p>
                 </div>
               </div>
@@ -705,16 +749,7 @@ export class Footer extends Component {
 
                 <div className="flex">
                   <div>
-                    <ul className="border-l-4 border-black pl-2">
-                      <li className="mb-2 font-bold">
-                        ORGANIZATION & INDUSTRIAL BUSINESS
-                      </li>
-                      <li className="mb-2 font-bold">OPERATED SINCE 2008.</li>
-                      <li className="mb-2 font-bold">ALL RIGHTS RESERVED.</li>
-                      <li className="mb-2 font-bold">ALL WRONGS REVERSED.</li>
-                      <li className="mb-2 font-bold">DATA PRIVACY</li>
-                      <li className="mb-2 font-bold">ND 9:16 AM</li>
-                    </ul>
+                    <Time />
                   </div>
                   <div>
                     <ul>
@@ -729,8 +764,6 @@ export class Footer extends Component {
           </div>
           <div className=" pt-1 md:p-4 text-black">
             <hr className="flex justify-center h-2 w-11/12 border-1 border-black ml-4 md:ml-14" />
-
-
           </div>
         </div>
 
@@ -741,19 +774,23 @@ export class Footer extends Component {
         <div className="text-center text-black text-sm  py-4 bg-white mb-16 sm:mb-0">
           <p>
             DESIGN INDIAN HOMES | ALL RIGHTS RESERVED 2024-25 CRAFTED WITH LOVE
-            BY IN HOUSE BRAND - <a
+            BY IN HOUSE BRAND -{' '}
+            <a
               href="https://www.designerlounge.com"
               target="_blank"
               rel="noopener noreferrer"
               className="text-yellow-400 font-bold underline"
             >
               THE DESIGNER LOUNGE
-            </a> <br /> <span className="text-blue-500 underline">PRIVACY</span> | <span className="text-blue-500 underline">LEGAL</span> | <span className="text-blue-500 underline">SITEMAP</span>
+            </a>{' '}
+            <br /> <span className="text-blue-500 underline">PRIVACY</span> |{' '}
+            <span className="text-blue-500 underline">LEGAL</span> |{' '}
+            <span className="text-blue-500 underline">SITEMAP</span>
           </p>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default Footer;
+export default Footer

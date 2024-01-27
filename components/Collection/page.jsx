@@ -1,16 +1,16 @@
-"use client";
-import Image from "next/image";
-import { TypeAnimation } from "react-type-animation";
-import Marquee from "react-fast-marquee";
+'use client'
+import Image from 'next/image'
+import { TypeAnimation } from 'react-type-animation'
+import Marquee from 'react-fast-marquee'
 
-import "react-before-after-slider-component/dist/build.css";
-import React, { useState, useEffect, useRef } from "react";
+import 'react-before-after-slider-component/dist/build.css'
+import React, { useState, useEffect, useRef } from 'react'
+import Link from 'next/link'
+import Carousel from 'react-multi-carousel'
+import 'react-multi-carousel/lib/styles.css'
 
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
-
-import { motion, useScroll, useSpring, useTransform } from "framer-motion";
-import useMedia from "use-media";
+import { motion, useScroll, useSpring, useTransform } from 'framer-motion'
+import useMedia from 'use-media'
 import CarouselBeforeAfter from './CarousalBefore'
 
 const falshResponsive = {
@@ -29,7 +29,7 @@ const falshResponsive = {
     items: 1,
     slidesToSlide: 1, // optional, default to 1.
   },
-};
+}
 
 const responsive = {
   desktop: {
@@ -47,220 +47,200 @@ const responsive = {
     items: 2,
     slidesToSlide: 1, // optional, default to 1.
   },
-};
+}
 const StructureImageUrl = [
   //First image url
   {
-    url: "https://source.unsplash.com/black-flat-screen-tv-mounted-on-white-wall-3hEGHI4b4gg",
+    url: '/images/structural/str1.jpg',
   },
   {
-    url: "https://source.unsplash.com/white-wooden-kitchen-island-and-cupboard-cabinets-near-glass-panel-door-AQl-J19ocWE",
+    url: '/images/structural/str2.jpg',
   },
-  //Second image url
   {
-    url: "https://source.unsplash.com/white-and-black-kitchen-cabinet-jylx7bVZMIk",
+    url: '/images/structural/str3.jpg',
   },
-  //Third image url
   {
-    url: "https://source.unsplash.com/black-round-bowl-on-brown-wooden-seat-NWG-vYPZDoM",
+    url: '/images/structural/str4.jpg',
   },
-
-  //Fourth image url
-
   {
-    url: "https://source.unsplash.com/two-brown-wooden-bar-stools-cc0Gg3BegjE",
+    url: '/images/structural/str5.jpg',
   },
-
   {
-    url: "https://source.unsplash.com/brown-and-white-wooden-kitchen-cabinet-DQpUeNzRj6s",
+    url: '/images/structural/str6.jpg',
   },
-];
+]
 
 const flasherslider = [
   {
     id: 0,
     firstImage:
-      "https://source.unsplash.com/a-kitchen-with-blue-cabinets-and-a-black-refrigerator-zFGBEikZoRg",
+      'https://source.unsplash.com/a-kitchen-with-blue-cabinets-and-a-black-refrigerator-zFGBEikZoRg',
     secondImage:
-      "https://source.unsplash.com/a-ladder-and-buckets-of-paint-in-a-room-under-construction-XXanshmt5so",
+      'https://source.unsplash.com/a-ladder-and-buckets-of-paint-in-a-room-under-construction-XXanshmt5so',
   },
   {
     id: 1,
     firstImage:
-      "https://source.unsplash.com/a-kitchen-with-blue-cabinets-and-a-black-refrigerator-zFGBEikZoRg",
+      'https://source.unsplash.com/a-kitchen-with-blue-cabinets-and-a-black-refrigerator-zFGBEikZoRg',
     secondImage:
-      "https://source.unsplash.com/a-ladder-and-buckets-of-paint-in-a-room-under-construction-XXanshmt5so",
+      'https://source.unsplash.com/a-ladder-and-buckets-of-paint-in-a-room-under-construction-XXanshmt5so',
   },
   {
     id: 2,
     firstImage:
-      "https://source.unsplash.com/a-kitchen-with-blue-cabinets-and-a-black-refrigerator-zFGBEikZoRg",
+      'https://source.unsplash.com/a-kitchen-with-blue-cabinets-and-a-black-refrigerator-zFGBEikZoRg',
     secondImage:
-      "https://source.unsplash.com/a-ladder-and-buckets-of-paint-in-a-room-under-construction-XXanshmt5so",
+      'https://source.unsplash.com/a-ladder-and-buckets-of-paint-in-a-room-under-construction-XXanshmt5so',
   },
   {
     id: 3,
     firstImage:
-      "https://source.unsplash.com/a-kitchen-with-blue-cabinets-and-a-black-refrigerator-zFGBEikZoRg",
+      'https://source.unsplash.com/a-kitchen-with-blue-cabinets-and-a-black-refrigerator-zFGBEikZoRg',
     secondImage:
-      "https://source.unsplash.com/a-ladder-and-buckets-of-paint-in-a-room-under-construction-XXanshmt5so",
+      'https://source.unsplash.com/a-ladder-and-buckets-of-paint-in-a-room-under-construction-XXanshmt5so',
   },
   {
     id: 4,
     firstImage:
-      "https://source.unsplash.com/a-kitchen-with-blue-cabinets-and-a-black-refrigerator-zFGBEikZoRg",
+      'https://source.unsplash.com/a-kitchen-with-blue-cabinets-and-a-black-refrigerator-zFGBEikZoRg',
     secondImage:
-      "https://source.unsplash.com/a-ladder-and-buckets-of-paint-in-a-room-under-construction-XXanshmt5so",
+      'https://source.unsplash.com/a-ladder-and-buckets-of-paint-in-a-room-under-construction-XXanshmt5so',
   },
   {
     id: 5,
     firstImage:
-      "https://source.unsplash.com/a-kitchen-with-blue-cabinets-and-a-black-refrigerator-zFGBEikZoRg",
+      'https://source.unsplash.com/a-kitchen-with-blue-cabinets-and-a-black-refrigerator-zFGBEikZoRg',
     secondImage:
-      "https://source.unsplash.com/a-ladder-and-buckets-of-paint-in-a-room-under-construction-XXanshmt5so",
+      'https://source.unsplash.com/a-ladder-and-buckets-of-paint-in-a-room-under-construction-XXanshmt5so',
   },
   {
     id: 6,
     firstImage:
-      "https://source.unsplash.com/a-kitchen-with-blue-cabinets-and-a-black-refrigerator-zFGBEikZoRg",
+      'https://source.unsplash.com/a-kitchen-with-blue-cabinets-and-a-black-refrigerator-zFGBEikZoRg',
     secondImage:
-      "https://source.unsplash.com/a-ladder-and-buckets-of-paint-in-a-room-under-construction-XXanshmt5so",
+      'https://source.unsplash.com/a-ladder-and-buckets-of-paint-in-a-room-under-construction-XXanshmt5so',
   },
-];
+]
 
 const KitchenImageUrl = [
   //First image url
   {
-    url: "https://source.unsplash.com/black-flat-screen-tv-mounted-on-white-wall-3hEGHI4b4gg",
+    url: '/images/kitchen/k1.avif',
   },
   {
-    url: "https://source.unsplash.com/white-wooden-kitchen-island-and-cupboard-cabinets-near-glass-panel-door-AQl-J19ocWE",
+    url: '/images/kitchen/k2.avif',
   },
-  //Second image url
   {
-    url: "https://source.unsplash.com/white-and-black-kitchen-cabinet-jylx7bVZMIk",
+    url: '/images/kitchen/k3.avif',
   },
-  //Third image url
   {
-    url: "https://source.unsplash.com/black-round-bowl-on-brown-wooden-seat-NWG-vYPZDoM",
+    url: '/images/kitchen/k4.avif',
   },
-
-  //Fourth image url
-
   {
-    url: "https://source.unsplash.com/two-brown-wooden-bar-stools-cc0Gg3BegjE",
+    url: '/images/kitchen/k5.avif',
   },
-
   {
-    url: "https://source.unsplash.com/brown-and-white-wooden-kitchen-cabinet-DQpUeNzRj6s",
+    url: '/images/kitchen/k6.avif',
   },
-];
+]
 
 const InteriorImageUrl = [
   //First image url
   {
-    url: "https://source.unsplash.com/black-flat-screen-tv-mounted-on-white-wall-3hEGHI4b4gg",
+    url: '/images/interior/int1.avif',
   },
   {
-    url: "https://source.unsplash.com/white-wooden-kitchen-island-and-cupboard-cabinets-near-glass-panel-door-AQl-J19ocWE",
+    url: '/images/interior/int2.avif',
   },
-  //Second image url
   {
-    url: "https://source.unsplash.com/white-and-black-kitchen-cabinet-jylx7bVZMIk",
+    url: '/images/interior/int3.avif',
   },
-  //Third image url
   {
-    url: "https://source.unsplash.com/black-round-bowl-on-brown-wooden-seat-NWG-vYPZDoM",
+    url: '/images/interior/int4.avif',
   },
-
-  //Fourth image url
-
   {
-    url: "https://source.unsplash.com/two-brown-wooden-bar-stools-cc0Gg3BegjE",
+    url: '/images/interior/int5.avif',
   },
-
   {
-    url: "https://source.unsplash.com/brown-and-white-wooden-kitchen-cabinet-DQpUeNzRj6s",
+    url: '/images/interior/int6.avif',
   },
-];
+]
 
 const WardrobeImageUrl = [
   //First image url
   {
-    url: "https://source.unsplash.com/black-flat-screen-tv-mounted-on-white-wall-3hEGHI4b4gg",
+    url: '/images/wardrobe/complete-modular-kitchens-wardrobe-renovation-services-in-delhi-gurgaon-noida-india (1).jpg',
   },
   {
-    url: "https://source.unsplash.com/white-wooden-kitchen-island-and-cupboard-cabinets-near-glass-panel-door-AQl-J19ocWE",
+    url: '/images/wardrobe/complete-modular-kitchens-wardrobe-renovation-services-in-delhi-gurgaon-noida-india (2).jpg',
   },
   //Second image url
   {
-    url: "https://source.unsplash.com/white-and-black-kitchen-cabinet-jylx7bVZMIk",
+    url: '/images/wardrobe/largest-collection-of-modular-kitchens-wardrobes-designs-in-delhi-gurgaon-noida-india (5).jpg',
   },
   //Third image url
   {
-    url: "https://source.unsplash.com/black-round-bowl-on-brown-wooden-seat-NWG-vYPZDoM",
+    url: '/images/wardrobe/modular-kitchen-wardrobe-largest-manufacturers-dealers-in-delhi-gurgaon-noida-faridabad-india (2).jpg',
   },
 
   //Fourth image url
 
   {
-    url: "https://source.unsplash.com/two-brown-wooden-bar-stools-cc0Gg3BegjE",
+    url: '/images/wardrobe/modular-kitchen-wardrobe-largest-manufacturers-dealers-in-delhi-gurgaon-noida-faridabad-india (6).jpg',
   },
 
   {
-    url: "https://source.unsplash.com/brown-and-white-wooden-kitchen-cabinet-DQpUeNzRj6s",
+    url: '/images/wardrobe/larg/complete-modular-kitchens-wardrobe-renovation-services-in-delhi-gurgaon-noida-india (3).jpg',
   },
-];
+]
 
 const containerStyle = {
-  position: "relative",
-  height: "fit-content", // Adjust as needed
-  width: "fit-content", // Adjust as needed
-  display: "inline-block", // Ensure the container only takes the size of its content
-};
+  position: 'relative',
+  height: 'fit-content', // Adjust as needed
+  width: 'fit-content', // Adjust as needed
+  display: 'inline-block', // Ensure the container only takes the size of its content
+}
 
 const textContainerStyle = {
-  zIndex: "1", // Ensure text is above the background image
-  textAlign: "center", // Center the text
-  position: "relative", // Position the text within the container
-};
+  zIndex: '1', // Ensure text is above the background image
+  textAlign: 'center', // Center the text
+  position: 'relative', // Position the text within the container
+}
 
 const backgroundImageStyle = {
-  position: "absolute", // Position the image behind the text
-  top: "0",
-  left: "0",
-  width: "100%", // Set the width to 100%
-  height: "100%", // Set the height to 100%
-  objectFit: "cover", // Ensure the image covers the container
-  opacity: "0.5", // Adjust the opacity as needed
-};
+  position: 'absolute', // Position the image behind the text
+  top: '0',
+  left: '0',
+  width: '100%', // Set the width to 100%
+  height: '100%', // Set the height to 100%
+  objectFit: 'cover', // Ensure the image covers the container
+  opacity: '1', // Adjust the opacity as needed
+}
 
 const TruncatedText = () => {
-
-
-  const [showFullText, setShowFullText] = useState(false);
+  const [showFullText, setShowFullText] = useState(false)
 
   const toggleFullText = () => {
-    setShowFullText(!showFullText);
-  };
+    setShowFullText(!showFullText)
+  }
 
   return (
     <div className=" text-center">
       <div className={` ${showFullText ? 'my-8' : 'my-2'}`}>
-        {showFullText ?
+        {showFullText ? (
           <p className=" mb-2">
             Design Indian Homes is India&#39;s top Interior, Architectural &
-            Modular Interior Brand serving across Delhi, Gurgaon, Noida & NCR. It
-            is the most sought out by Homemakers, Architects, Interior Designers,
-            Developers & just anyone who needs an Affordable Interior Makeover,
-            Renovation Services, Architectural Services, Modular Kitchen,
-            Wardrobe, Vanities, TV Units, Living works, Bathroom Or Just a
-            peaceful Turnkey Work by Our Team. We are serving End to End Interiors
-            & Modular Interiors across Delhi, Gurgaon, Noida, Faridabad & across
-            NCR.
-            <br /> Our Brand Design Indian Homes was established in 2007, we are a
-            professional team of certified architects, interior remodelers, and
-            also happen to be Largest manufacturers of Modular Kitchens,
+            Modular Interior Brand serving across Delhi, Gurgaon, Noida & NCR.
+            It is the most sought out by Homemakers, Architects, Interior
+            Designers, Developers & just anyone who needs an Affordable Interior
+            Makeover, Renovation Services, Architectural Services, Modular
+            Kitchen, Wardrobe, Vanities, TV Units, Living works, Bathroom Or
+            Just a peaceful Turnkey Work by Our Team. We are serving End to End
+            Interiors & Modular Interiors across Delhi, Gurgaon, Noida,
+            Faridabad & across NCR.
+            <br /> Our Brand Design Indian Homes was established in 2007, we are
+            a professional team of certified architects, interior remodelers,
+            and also happen to be Largest manufacturers of Modular Kitchens,
             Wardrobes, Tv units, Crockery units, Bookshelves, and just anything
             residential or commercial. We are delivering affordable top quality
             Interiors, Architectural Solutions, Modular Kitchens, Wardrobes, Tv
@@ -279,12 +259,12 @@ const TruncatedText = () => {
             Due to the Goodwill built by the brand and faith of our clients, we
             are the most referred to modular interior Brand in Delhi - Gurgaon -
             Noida and across India. All our interior designs, architectural
-            concepts, modular kitchen designs, wardrobe designs, tv units designs
-            or any modular kitchens are planned to perfection as per the design
-            requirements. We create smooth, crisp and meticulous designs for your
-            residence & also are top modular kitchen & modular wardrobe
-            manufacturers with a precision timing in delivery, extensive warranty
-            and a life long relation with our Brand.
+            concepts, modular kitchen designs, wardrobe designs, tv units
+            designs or any modular kitchens are planned to perfection as per the
+            design requirements. We create smooth, crisp and meticulous designs
+            for your residence & also are top modular kitchen & modular wardrobe
+            manufacturers with a precision timing in delivery, extensive
+            warranty and a life long relation with our Brand.
             <br />
             Our Modular Interior brand is also the top Modular brand in Delhi -
             NCR India, and we are honoured with the prestigious award of the Top
@@ -296,211 +276,214 @@ const TruncatedText = () => {
             modular kitchen designs to our clients across New Delhi - India.
             <br />
             We have the largest Modular Interior facilities and are serving
-            extensively with most affordable solutions for the following services
-            : -
+            extensively with most affordable solutions for the following
+            services : -
             <br /> <br />
             Modular Kitchens * Wardrobes * TV Units * Vanities <br />* Crockery
             Units * Shoe Racks * Bookshelves * Partitions <br />* Studies & Bar
-            Units * Mandir Units * End To End Interiors * Complete Structures{" "}
-            <br />* Luxury Interiors & Residences * Luxury Kitchens And Wardrobes
-            * Italian - German - Swedish - Danish - Spanish Modular Kitchens &
-            Wardrobes
+            Units * Mandir Units * End To End Interiors * Complete Structures{' '}
+            <br />* Luxury Interiors & Residences * Luxury Kitchens And
+            Wardrobes * Italian - German - Swedish - Danish - Spanish Modular
+            Kitchens & Wardrobes
             <br />
             <br />
             We assure you 100% Guaranteed Quotes across New Delhi - NCR for any
-            type of Interior Works, Architectural Works, renovation works, Modular
-            Kitchens, Wardrobes, TV units or just any Modular Works, custom
-            interior works or architectural consultancy works. We have the most
-            affordable modular interiors and serve all clients with perfect
-            understanding of the requirements. <br />
-            We also assure you to bring us any quotes and assure you flat 7% less
-            on any offerings by any vendor across New Delhi - NCR.
+            type of Interior Works, Architectural Works, renovation works,
+            Modular Kitchens, Wardrobes, TV units or just any Modular Works,
+            custom interior works or architectural consultancy works. We have
+            the most affordable modular interiors and serve all clients with
+            perfect understanding of the requirements. <br />
+            We also assure you to bring us any quotes and assure you flat 7%
+            less on any offerings by any vendor across New Delhi - NCR.
             <br />
             Connect with the Largest Interior, Architectural, Modular Kitchens &
             Wardrobes Brand Across New Delhi - NCR - India.
             <br />
             We are the Top Awarded Largest manufacturers for Modular Kitchens &
             Wardrobes across Delhi - NCR & have been rated as the TOP Interior &
-            Architectural Brand by The Architectural Congress India and Real Wood
-            Societies since 2016.
+            Architectural Brand by The Architectural Congress India and Real
+            Wood Societies since 2016.
             <br />
-          </p> : <p className=" mb-2">
+          </p>
+        ) : (
+          <p className=" mb-2">
             Design Indian Homes is India&#39;s top Interior, Architectural &
-            Modular Interior Brand serving across Delhi, Gurgaon, Noida & NCR. It
-            is the most sought out by Homemakers, Architects, Interior Designers,
-            Developers & just anyone who needs an Affordable Interior Makeover,
-            Renovation Services, Architectural Services, Modular Kitchen,
-            Wardrobe, Vanities, TV Units, Living works, Bathroom Or Just a
-            peaceful Turnkey Work by Our Team. We are serving End to End Interiors
-            & Modular Interiors across Delhi, Gurgaon, Noida, Faridabad & across
-            NCR.</p>}
+            Modular Interior Brand serving across Delhi, Gurgaon, Noida & NCR.
+            It is the most sought out by Homemakers, Architects, Interior
+            Designers, Developers & just anyone who needs an Affordable Interior
+            Makeover, Renovation Services, Architectural Services, Modular
+            Kitchen, Wardrobe, Vanities, TV Units, Living works, Bathroom Or
+            Just a peaceful Turnkey Work by Our Team. We are serving End to End
+            Interiors & Modular Interiors across Delhi, Gurgaon, Noida,
+            Faridabad & across NCR.
+          </p>
+        )}
       </div>
 
       {/* Read More / Read Less button */}
       <button
-        className="text-blue-500 underline cursor-pointer"
+        className={`border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white px-4 py-2 rounded-lg cursor-pointer transition duration-300 ${
+          showFullText ? 'text-blue-500 cursor-pointer' : ''
+        }`}
         onClick={toggleFullText}
       >
         {showFullText ? 'Read Less' : 'Read More'}
       </button>
     </div>
-  );
-};
-
-
+  )
+}
 
 const Collection = () => {
-  const isLargeScreen = useMedia({ minWidth: "768px" });
-  console.log(isLargeScreen);
+  const isLargeScreen = useMedia({ minWidth: '768px' })
+  console.log(isLargeScreen)
   const brand = [
     {
       id: 1,
-      img: "https://www.modularkitcheninnoida.com/assets/images/b1.png",
+      img: '/images/brands/b1.png',
     },
     {
       id: 2,
-      img: "https://www.modularkitcheninnoida.com/assets/images/b2.png",
+      img: '/images/brands/b2.png',
     },
     {
       id: 3,
-      img: "https://www.modularkitcheninnoida.com/assets/images/b3.png",
+      img: '/images/brands/b3.png',
     },
     {
       id: 4,
-      img: "https://www.modularkitcheninnoida.com/assets/images/b4.png",
+      img: '/images/brands/b4.png',
     },
     {
       id: 5,
-      img: "https://www.modularkitcheninnoida.com/assets/images/b5.png",
+      img: '/images/brands/b5.png',
     },
     {
       id: 6,
-      img: "https://www.modularkitcheninnoida.com/assets/images/b6.png",
+      img: '/images/brands/b6.png',
     },
     {
       id: 7,
-      img: "https://www.modularkitcheninnoida.com/assets/images/b7.png",
+      img: '/images/brands/b7.png',
     },
     {
       id: 8,
-      img: "https://www.modularkitcheninnoida.com/assets/images/b8.png",
+      img: '/images/brands/b8.png',
     },
     {
       id: 9,
-      img: "https://www.modularkitcheninnoida.com/assets/images/b9.png",
+      img: '/images/brands/b9.png',
     },
     {
       id: 10,
-      img: "https://www.modularkitcheninnoida.com/assets/images/b10.png",
+      img: '/images/brands/b10.png',
     },
     {
       id: 11,
-      img: "https://www.modularkitcheninnoida.com/assets/images/b1.png",
+      img: '/images/brands/b1.png',
     },
     {
       id: 12,
-      img: "https://www.modularkitcheninnoida.com/assets/images/b2.png",
+      img: '/images/brands/b2.png',
     },
 
     {
       id: 13,
-      img: "https://www.modularkitcheninnoida.com/assets/images/b3.png",
+      img: '/images/brands/b3.png',
     },
     {
       id: 14,
-      img: "https://www.modularkitcheninnoida.com/assets/images/b4.png",
+      img: '/images/brands/b4.png',
     },
-  ];
+  ]
 
   const data = [
     {
       id: 1,
-      img: "https://www.modularkitcheninnoida.com/assets/images/c1.png",
+      img: '/images/brands/c1.png',
     },
     {
       id: 2,
-      img: "https://www.modularkitcheninnoida.com/assets/images/c2.png",
+      img: '/images/brands/c2.png',
     },
     {
       id: 3,
-      img: "https://www.modularkitcheninnoida.com/assets/images/c3.png",
+      img: '/images/brands/c3.png',
     },
     {
       id: 4,
-      img: "https://www.modularkitcheninnoida.com/assets/images/c4.png",
+      img: '/images/brands/c4.png',
     },
     {
       id: 5,
-      img: "https://www.modularkitcheninnoida.com/assets/images/c5.png",
+      img: '/images/brands/c5.png',
     },
     {
       id: 6,
-      img: "https://www.modularkitcheninnoida.com/assets/images/c6.png",
+      img: '/images/brands/c6.png',
     },
     {
       id: 7,
-      img: "https://www.modularkitcheninnoida.com/assets/images/c7.png",
+      img: '/images/brands/c7.png',
     },
     {
       id: 8,
-      img: "https://www.modularkitcheninnoida.com/assets/images/c8.png",
+      img: '/images/brands/c8.png',
     },
     {
       id: 9,
-      img: "https://www.modularkitcheninnoida.com/assets/images/c9.png",
+      img: '/images/brands/c9.png',
     },
     {
       id: 10,
-      img: "https://www.modularkitcheninnoida.com/assets/images/c10.png",
+      img: '/images/brands/c10.png',
     },
     {
       id: 11,
-      img: "https://www.modularkitcheninnoida.com/assets/images/c1.png",
+      img: '/images/brands/c1.png',
     },
     {
       id: 12,
-      img: "https://www.modularkitcheninnoida.com/assets/images/c2.png",
+      img: '/images/brands/c2.png',
     },
 
     {
       id: 13,
-      img: "https://www.modularkitcheninnoida.com/assets/images/c3.png",
+      img: '/images/brands/c3.png',
     },
     {
       id: 14,
-      img: "https://www.modularkitcheninnoida.com/assets/images/c4.png",
+      img: '/images/brands/c4.png',
     },
-  ];
+  ]
 
-  const aniRef = useRef();
+  const aniRef = useRef()
   const { scrollYProgress } = useScroll({
     target: aniRef,
-  });
+  })
 
-  const translateXright = useTransform(scrollYProgress, [1, 0], [20, -20]);
-  const translateXleft = useTransform(scrollYProgress, [1, 0], [-20, 20]);
+  const translateXright = useTransform(scrollYProgress, [1, 0], [20, -20])
+  const translateXleft = useTransform(scrollYProgress, [1, 0], [-20, 20])
 
-  const translateXrightMob = useTransform(scrollYProgress, [1, 0], [100, -100]);
-  const translateXleftMob = useTransform(scrollYProgress, [1, 0], [-100, 100]);
+  const translateXrightMob = useTransform(scrollYProgress, [1, 0], [40, -40])
+  const translateXleftMob = useTransform(scrollYProgress, [1, 0], [-40, 40])
 
   const translateXrightWithSpring = useSpring(translateXright, {
     stiffness: 200,
     damping: 40,
-  });
+  })
   const translateXleftWithSpring = useSpring(translateXleft, {
     stiffness: 200,
     damping: 40,
-  });
+  })
 
   const translateXrightWithSpringMob = useSpring(translateXrightMob, {
     stiffness: 10,
     damping: 10,
-  });
+  })
   const translateXleftWithSpringMob = useSpring(translateXleftMob, {
     stiffness: 10,
     damping: 10,
-  });
-
+  })
 
   const videoVariants = {
     initial: {
@@ -517,7 +500,7 @@ const Collection = () => {
         staggerChildren: 0.1,
       },
     },
-  };
+  }
 
   const imagesVariants = {
     initial: {
@@ -534,25 +517,21 @@ const Collection = () => {
         staggerChildren: 0.2,
       },
     },
-  };
+  }
 
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false)
 
   useEffect(() => {
-    const video = document.querySelector("video");
-    video.addEventListener("load", () => {
-      setIsPlaying(true);
-    });
-  }, []);
-
-
-
-
+    const video = document.querySelector('video')
+    video.addEventListener('load', () => {
+      setIsPlaying(true)
+    })
+  }, [])
 
   return (
     <>
       <div id="fry">
-        <div style={containerStyle}>
+        <div style={containerStyle} className="sm:mt-8">
           <div style={textContainerStyle}>
             <h3 className="sm:text-3xl text-xl font-bold">
               INDIA’S NO.1 INTERIOR & ARCHITECTURAL BRAND
@@ -568,18 +547,18 @@ const Collection = () => {
       <div className="flex items-center justify-center">
         <TypeAnimation
           sequence={[
-            "TOP KITCHEN & CLOSET BRAND ",
+            'TOP KITCHEN & CLOSET BRAND ',
             1000, // wait 1s before replacing "Mice" with "Hamsters"
-            " LARGEST KITCHEN DEALERS",
+            ' LARGEST KITCHEN DEALERS',
             1000,
-            "MODULAR KITCHEN & CLOSET",
+            'MODULAR KITCHEN & CLOSET',
             1000,
-            "LARGEST ARCHITECTURAL BRAND",
+            'LARGEST ARCHITECTURAL BRAND',
             1000,
-            "TOP AWARDED INTERIORS",
+            'TOP AWARDED INTERIORS',
             1000,
           ]}
-          style={{ fontSize: "55px" }}
+          style={{ fontSize: '55px' }}
           wrapper="span"
           speed={50}
           repeat={Infinity}
@@ -597,11 +576,11 @@ const Collection = () => {
           </div>
           <div className="box b">
             <h1>
-              {" "}
+              {' '}
               OUR STYLE
               <br />
               IS TO DELIVER SMILES
-            </h1>{" "}
+            </h1>{' '}
           </div>
         </div>
       </div>
@@ -635,13 +614,10 @@ const Collection = () => {
       </section>
 
       <div className="mb-12">
-
-
         <TruncatedText />
-
       </div>
 
-      <Marquee style={{ backgroundColor: " yellow " }} className="my-6">
+      <Marquee style={{ backgroundColor: ' yellow ' }} className="my-6">
         <div className="marquee">
           <h3>
             Top Interior, Architectural & Modular Kitchen - Wardrobe Brand in
@@ -663,34 +639,46 @@ const Collection = () => {
               </div>
               <div className="animated">
                 <motion.h2
-                  className="md:text-4xl font-extrabold text-md  text-center overflow-hidden uppercase mt-8"
-                  style={isLargeScreen ? { x: translateXleftWithSpringMob } : { x: translateXleftWithSpring }}
+                  className="md:text-6xl font-extrabold text-md  text-center overflow-hidden uppercase mt-8"
+                  style={
+                    isLargeScreen
+                      ? { x: translateXleftWithSpringMob }
+                      : { x: translateXleftWithSpring }
+                  }
                 >
-                  <span className="text-red-500">Dive Deep</span> into the World of <span className="">DIH</span>
+                  <span className="text-red-500">Dive Deep</span>{' '}
+                  <span className="italic font-light">into</span>
                 </motion.h2>
                 <motion.h2
-                  className="md:text-4xl font-extrabold text-md  text-center  overflow-hidden uppercase mb-8"
-                  style={isLargeScreen ? { x: translateXrightWithSpringMob } : { x: translateXrightWithSpring }}
+                  className="md:text-6xl font-extrabold text-md  text-center  overflow-hidden uppercase mb-8"
+                  style={
+                    isLargeScreen
+                      ? { x: translateXrightWithSpringMob }
+                      : { x: translateXrightWithSpring }
+                  }
                 >
-                  <b>Dive Deep</b> into the World of <b className="text-red-500">DIH</b>
+                  <span className="italic font-light">the World of </span>{' '}
+                  <b className="text-red-500">DIH</b>
                 </motion.h2>
 
-                <motion.video
-                  loop
-                  autoPlay
-                  playsInline
-                  muted
-                  controls={isPlaying}
-                  src="video/lux.mp4"
-                  alt=""
-                  height={10}
-                  width={1500}
-                  className="rounded shadow-md my-6 max-[600px]:mb-10"
-                  id="seek"
-                  variants={videoVariants}
-                  initial="initial"
-                  whileInView="animate"
-                />
+                <Link href="/luxe">
+                  <motion.video
+                    loop
+                    autoPlay
+                    playsInline
+                    muted
+                    controls={isPlaying}
+                    src="video/lux.mp4"
+                    alt=""
+                    height={10}
+                    width={1500}
+                    className="rounded shadow-md my-6 max-[600px]:mb-10"
+                    id="seek"
+                    variants={videoVariants}
+                    initial="initial"
+                    whileInView="animate"
+                  />
+                </Link>
               </div>
               <section class="bordered bordersec"></section>
               <div className="main-hero">
@@ -836,11 +824,10 @@ const Collection = () => {
               </motion.div>
             </motion.div>
           </div>
-         
         </section>
-         {/* before and after */}
-         <CarouselBeforeAfter/>
-          {/* ------------ */}
+        {/* before and after */}
+        <CarouselBeforeAfter />
+        {/* ------------ */}
       </div>
 
       <div className="containr">
@@ -1073,7 +1060,7 @@ const Collection = () => {
               <div className="slidering" key={index}>
                 <img src={imageUrl.url} alt="movie" />
               </div>
-            );
+            )
           })}
         </Carousel>
         <div className="flex justify-center items-center ">
@@ -1117,7 +1104,7 @@ const Collection = () => {
               <div className="slidering" key={index}>
                 <img src={imageUrl.url} alt="kitchen" />
               </div>
-            );
+            )
           })}
         </Carousel>
         <div className="flex justify-center items-center ">
@@ -1161,7 +1148,7 @@ const Collection = () => {
               <div className="slidering" key={index}>
                 <img src={imageUrl.url} alt="kitchen" />
               </div>
-            );
+            )
           })}
         </Carousel>
 
@@ -1206,7 +1193,7 @@ const Collection = () => {
               <div className="slidering" key={index}>
                 <img src={imageUrl.url} alt="kitchen" />
               </div>
-            );
+            )
           })}
         </Carousel>
         <div className="flex justify-center items-center ">
@@ -1227,7 +1214,7 @@ const Collection = () => {
             width={0}
             height={0}
             sizes="100vw"
-            style={{ width: "40%", height: "auto" }}
+            style={{ width: '40%', height: 'auto' }}
             src="/images/icon/working.png"
             alt=""
             className="w-60 h-70 mx-auto"
@@ -1244,7 +1231,7 @@ const Collection = () => {
             width={0}
             height={0}
             sizes="100vw"
-            style={{ width: "50%", height: "auto" }}
+            style={{ width: '50%', height: 'auto' }}
             src="/images/icon/interior-design.png"
             alt=""
             className="w-60 h-70 mx-auto"
@@ -1260,7 +1247,7 @@ const Collection = () => {
             width={0}
             height={0}
             sizes="100vw"
-            style={{ width: "50%", height: "auto" }}
+            style={{ width: '50%', height: 'auto' }}
             src="/images/icon/badge.png"
             alt=""
             className="w-60 h-70 mx-auto"
@@ -1276,7 +1263,7 @@ const Collection = () => {
             width={0}
             height={0}
             sizes="100vw"
-            style={{ width: "65%", height: "auto" }}
+            style={{ width: '65%', height: 'auto' }}
             src="/images/icon/payment.png"
             alt=""
             className="w-60 h-70 mx-auto"
@@ -1325,36 +1312,12 @@ const Collection = () => {
                 width={0}
                 height={0}
                 sizes="100vw"
-                style={{ width: "120%", height: "75px" }}
+                style={{ width: '120%', height: '75px' }}
               />
             </div>
           ))}
         </div>
       </div>
-      {/* <div className="main">
-        <img src="/images/left.gif" width={50} height={50} />
-        <svg id="rotatingText" viewBox="0 0 200 200" width={200} height={200}>
-          <defs>
-            <path
-              id="circle"
-              d="M 100, 100
-   m -75, 0
-   a 75, 75 0 1, 0 150, 0
-   a 75, 75 0 1, 0 -150, 0
-   "
-            ></path>
-          </defs>
-          <text width={400}>
-            <textPath
-              alignmentBaseline="top"
-              xlinkHref="#circle"
-              className="text"
-            >
-              No.1 Architectural Brand in India
-            </textPath>
-          </text>
-        </svg>
-      </div> */}
 
       <div className="flex items-center justify-c">
         <div className="w-1/6 main2">
@@ -1410,14 +1373,14 @@ const Collection = () => {
                 width={0}
                 height={0}
                 sizes="100vw"
-                style={{ width: "120%", height: "75px" }}
+                style={{ width: '120%', height: '75px' }}
               />
             </div>
           ))}
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Collection;
+export default Collection

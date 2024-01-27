@@ -1,9 +1,9 @@
-"use client";
-import Image from "next/image";
-import React, { useState, useEffect } from "react";
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
-import { motion } from "framer-motion";
+'use client'
+import Image from 'next/image'
+import React, { useState, useEffect } from 'react'
+import Carousel from 'react-multi-carousel'
+import 'react-multi-carousel/lib/styles.css'
+import { motion } from 'framer-motion'
 const responsive = {
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
@@ -20,38 +20,38 @@ const responsive = {
     items: 2,
     slidesToSlide: 1, // optional, default to 1.
   },
-};
+}
 
 const sliderImageUrl = [
   //First image url
   {
-    url: "https://source.unsplash.com/black-flat-screen-tv-mounted-on-white-wall-3hEGHI4b4gg",
+    url: 'https://source.unsplash.com/black-flat-screen-tv-mounted-on-white-wall-3hEGHI4b4gg',
   },
   {
-    url: "https://source.unsplash.com/white-wooden-kitchen-island-and-cupboard-cabinets-near-glass-panel-door-AQl-J19ocWE",
+    url: 'https://source.unsplash.com/white-wooden-kitchen-island-and-cupboard-cabinets-near-glass-panel-door-AQl-J19ocWE',
   },
   //Second image url
   {
-    url: "https://source.unsplash.com/white-and-black-kitchen-cabinet-jylx7bVZMIk",
+    url: 'https://source.unsplash.com/white-and-black-kitchen-cabinet-jylx7bVZMIk',
   },
   //Third image url
   {
-    url: "https://source.unsplash.com/black-round-bowl-on-brown-wooden-seat-NWG-vYPZDoM",
+    url: 'https://source.unsplash.com/black-round-bowl-on-brown-wooden-seat-NWG-vYPZDoM',
   },
 
   //Fourth image url
 
   {
-    url: "https://source.unsplash.com/two-brown-wooden-bar-stools-cc0Gg3BegjE",
+    url: 'https://source.unsplash.com/two-brown-wooden-bar-stools-cc0Gg3BegjE',
   },
 
   {
-    url: "https://source.unsplash.com/brown-and-white-wooden-kitchen-cabinet-DQpUeNzRj6s",
+    url: 'https://source.unsplash.com/brown-and-white-wooden-kitchen-cabinet-DQpUeNzRj6s',
   },
-];
+]
 
 const Display = () => {
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false)
   const imagesVariant = {
     initial: {
       y: 10,
@@ -65,36 +65,36 @@ const Display = () => {
         staggerChildren: 0.5,
       },
     },
-  };
+  }
   useEffect(() => {
-    const video = document.querySelector("video");
-    video.addEventListener("load", () => {
-      setIsPlaying(true);
-    });
-  }, []);
+    const video = document.querySelector('video')
+    video.addEventListener('load', () => {
+      setIsPlaying(true)
+    })
+  }, [])
 
   const containerStyle = {
-    position: "relative",
-    height: "fit-content", // Adjust as needed
-    width: "fit-content", // Adjust as needed
-    display: "inline-block", // Ensure the container only takes the size of its content
-  };
+    position: 'relative',
+    height: 'fit-content', // Adjust as needed
+    width: 'fit-content', // Adjust as needed
+    display: 'inline-block', // Ensure the container only takes the size of its content
+  }
 
   const textContainerStyle = {
-    zIndex: "1", // Ensure text is above the background image
-    textAlign: "center", // Center the text
-    position: "relative", // Position the text within the container
-  };
+    zIndex: '1', // Ensure text is above the background image
+    textAlign: 'center', // Center the text
+    position: 'relative', // Position the text within the container
+  }
 
   const backgroundImageStyle = {
-    position: "absolute", // Position the image behind the text
-    top: "0",
-    left: "0",
-    width: "100%", // Set the width to 100%
-    height: "100%", // Set the height to 100%
-    objectFit: "cover", // Ensure the image covers the container
-    opacity: "0.5", // Adjust the opacity as needed
-  };
+    position: 'absolute', // Position the image behind the text
+    top: '0',
+    left: '0',
+    width: '100%', // Set the width to 100%
+    height: '100%', // Set the height to 100%
+    objectFit: 'cover', // Ensure the image covers the container
+    opacity: '1', // Adjust the opacity as needed
+  }
 
   return (
     <>
@@ -136,7 +136,6 @@ const Display = () => {
             />
           </div>
         </div>
-      
       </div>
 
       <div className="wrapper">
@@ -311,15 +310,11 @@ const Display = () => {
               </div>
             </div>
           </div>
-       
         </section>
-       
       </div>
       <section class="bordered bordersec"></section>
-
-    
     </>
-  );
-};
+  )
+}
 
-export default Display;
+export default Display

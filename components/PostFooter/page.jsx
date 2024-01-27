@@ -1,23 +1,23 @@
-import Marquee from "react-fast-marquee";
-import React, { useState, useEffect, useRef } from "react";
-import Link from "next/link";
+import Marquee from 'react-fast-marquee'
+import React, { useState, useEffect, useRef } from 'react'
+import Link from 'next/link'
 const PostFooter = () => {
-  const ref = useRef();
-  const videoRef = useRef();
-  const [isPlaying, setIsPlaying] = useState(false);
+  const ref = useRef()
+  const videoRef = useRef()
+  const [isPlaying, setIsPlaying] = useState(false)
   useEffect(() => {
-    const video = document.querySelector("video");
-    video.addEventListener("load", () => {
-      setIsPlaying(true);
-    });
-  }, []);
+    const video = document.querySelector('video')
+    video.addEventListener('load', () => {
+      setIsPlaying(true)
+    })
+  }, [])
   return (
     <>
       <section className="view1 monuments relative">
         <div className=" mt-24 w-full h-full flex items-center justify-center">
           <p
             className="text-black font-bold md:text-6xl sm:text-4xl text-2xl text-shadow-lg"
-            style={{ textShadow: "3px 3px 6px rgba(0, 0, 0, 0.5)" }}
+            style={{ textShadow: '3px 3px 6px rgba(0, 0, 0, 0.5)' }}
           >
             WE ARE DELHI BASED
           </p>
@@ -28,13 +28,12 @@ const PostFooter = () => {
           type="image/svg+xml"
           className="w-full h-full"
         />
-
       </section>
 
       <div className="flex flex-col sm:flex-row gap-4 bg-slate-100 w-full mx-auto py-16">
         <div className="p-4 bg-white rounded-lg shadow-lg sm:w-1/3">
           <div className="font-bold text-gray-800 px-8 ">
-            <Marquee style={{ color: "Red" }}>
+            <Marquee style={{ color: 'Red' }}>
               <div className="marquee">
                 <h3>BOOK A DESIGN VISIT TODAY</h3>
               </div>
@@ -76,7 +75,7 @@ const PostFooter = () => {
                 </span>
                 <textarea
                   className="w-full h-32 border-b-2 border-b-gray-500 mt-2 p-3 focus:outline-none focus:shadow-outline"
-                  defaultValue={""}
+                  defaultValue={''}
                 />
               </div>
               <div className="mt-8">
@@ -127,7 +126,7 @@ const PostFooter = () => {
                 </span>
                 <textarea
                   className="w-full h-32 border-b-2 border-b-gray-500 mt-2 p-3 focus:outline-none focus:shadow-outline"
-                  defaultValue={""}
+                  defaultValue={''}
                 />
               </div>
               <div className="mt-8 flex items-center gap-4">
@@ -149,47 +148,47 @@ const PostFooter = () => {
         <div className="p-4 bg-white rounded-lg shadow-lg sm:w-1/3">
           <div className="bold text-gray-800  ">
             <p className="w-full p-8 bg-slate-950 focus:outline-none focus:shadow-outline text-xl text-center uppercase text-gray-100 border-b-2 border-b-gray-500">
-              {" "}
+              {' '}
               Check Our Recent Project
             </p>
 
             <Link href="https://www.facebook.com/designindiankitchen">
-              {" "}
+              {' '}
               <button
                 className="w-full p-20  focus:outline-none focus:shadow-outline text-xl text-center uppercase border-b-2 border-b-gray-950"
-                style={{ backgroundColor: "#ffe216" }}
+                style={{ backgroundColor: '#ffe216' }}
               >
-                {" "}
+                {' '}
                 Facebook
               </button>
             </Link>
             <Link href="https://www.instagram.com/designindiankitchen">
-              {" "}
+              {' '}
               <button
                 className="w-full p-20  focus:outline-none focus:shadow-outline text-xl text-center uppercase border-b-2 border-b-gray-950"
-                style={{ backgroundColor: "#ffe216" }}
+                style={{ backgroundColor: '#ffe216' }}
               >
-                {" "}
+                {' '}
                 Instagram
-              </button>{" "}
+              </button>{' '}
             </Link>
             <Link href="https://www.youtube.com/channel/UCqkIRwI6EL9QmaTZHYm6Hug">
-              {" "}
+              {' '}
               <button
                 className="w-full p-20 text-xl text-center uppercase focus:outline-none focus:shadow-outline border-b-2 border-b-gray-950"
-                style={{ backgroundColor: "#ffe216" }}
+                style={{ backgroundColor: '#ffe216' }}
               >
-                {" "}
+                {' '}
                 Youtube
               </button>
             </Link>
             <Link href="https://twitter.com/indiankitchens">
-              {" "}
+              {' '}
               <button
                 className="w-full p-20 text-xl text-center uppercase focus:outline-none focus:shadow-outlineborder-b-2 border-b-gray-950 "
-                style={{ backgroundColor: "#ffe216" }}
+                style={{ backgroundColor: '#ffe216' }}
               >
-                {" "}
+                {' '}
                 Twitter
               </button>
             </Link>
@@ -575,9 +574,9 @@ const PostFooter = () => {
                 height={0}
                 sizes="100vw"
                 style={{
-                  width: "100%",
-                  height: "auto",
-                  backgroundAttachment: "fixed",
+                  width: '100%',
+                  height: 'auto',
+                  backgroundAttachment: 'fixed',
                 }}
               />
             </div>
@@ -589,7 +588,7 @@ const PostFooter = () => {
             </div>
             <div
               className="text-6xl w-full sm:w-fit max-[600px]:text-2xl max-[600px]:py-4 text-grey-dark text-center  items-center justify-center px-24 max-[400px]:px-4"
-              style={{ fontFamily: "Impact" }}
+              style={{ fontFamily: 'Impact' }}
             >
               <p className="w-full">
                 The Most Reliable, Most Recommended & Most Loved ❤️ Brand ✌
@@ -613,29 +612,26 @@ const PostFooter = () => {
                 width={0}
                 height={0}
                 sizes="100vw"
-                style={{ width: "100%", height: "auto" }}
+                style={{ width: '100%', height: 'auto' }}
               />
             </div>
           </div>
         </div>
       </div>
-      <Link href='#'>
-
+      <Link href="#">
         <section class="handshake sm:py-64 py-32 sm:mb-24 mb-8">
-      
-            <svg
-
-              version="1.1"
-              id="Layer_1"
-              xmlns="http://www.w3.org/2000/svg"
-              x="0px"
-              y="0px"
-              viewBox="0 0 1200 1200"
-            >
-              <g>
-                <path
-                  class="st0"
-                  d="M971.39,716.19c3.63,14.34,3.4,28.66-1.25,42.67c-4.6,13.86-16.04,19.17-31.76,15.6
+          <svg
+            version="1.1"
+            id="Layer_1"
+            xmlns="http://www.w3.org/2000/svg"
+            x="0px"
+            y="0px"
+            viewBox="0 0 1200 1200"
+          >
+            <g>
+              <path
+                class="st0"
+                d="M971.39,716.19c3.63,14.34,3.4,28.66-1.25,42.67c-4.6,13.86-16.04,19.17-31.76,15.6
             c-19.57-4.45-37.13-13.62-54.21-23.63c-16.21-9.51-31.83-20-47.82-29.89c-1.78-1.1-4.21-1.34-6.38-1.61
             c-2.46-0.31-4.98-0.33-7.46-0.23c-2.84,0.12-5.67,0.69-8.51,0.73c-1.75,0.03-3.66-0.21-5.24-0.9c-6.63-2.91-13.16-6.04-19.91-9.17
             c-0.13,1.25-0.21,1.95-0.4,3.77c-4.01-5.24-7.47-9.77-11.14-14.56c-2.87,3.94-5.55,7.85-8.47,11.58
@@ -721,10 +717,10 @@ const PostFooter = () => {
             c12.01,2.46,23.06,1.47,32.32-7.91c10.13-10.26,8.66-29.09-3.13-37.33C721.01,745.53,703.99,751.14,683.86,746.62z M724.49,707.57
             c-0.3,7.51,7.43,19.31,13.21,20.08C732.95,720.42,728.72,713.99,724.49,707.57z M666.52,517.36c0.84,0.37,1.69,0.74,2.53,1.11
             c1.36-3.51,2.72-7.02,4.08-10.52c-0.6-0.25-1.2-0.5-1.8-0.75C669.73,510.57,668.12,513.97,666.52,517.36z"
-                ></path>
-                <path
-                  class="st0"
-                  d="M419.28,681.48c-10.78,6.47-21.42,13.18-32.38,19.34c-6.8,3.82-14.01,6.9-21.13,10.11
+              ></path>
+              <path
+                class="st0"
+                d="M419.28,681.48c-10.78,6.47-21.42,13.18-32.38,19.34c-6.8,3.82-14.01,6.9-21.13,10.11
             c-10.31,4.66-20.16,2.98-28.46-4.12c-7.15-6.12-14.24-12.78-19.46-20.48c-2.54-3.74-1.34-10.48-0.7-15.73
             c0.38-3.1,2.99-1.46,4.45,0.04c4.05,4.17,7.88,8.57,12.11,12.56c2.45,2.32,5.49,4.02,8.3,6.02c5.74-9.24,36.33-218.61,34.61-236.61
             c-4.28,3.21-8.69,5.45-11.65,8.94c-7.54,8.88-16.65,8.83-26.23,5.33c-14.96-5.46-29.76-11.4-44.56-17.31
@@ -735,212 +731,211 @@ const PostFooter = () => {
             c-4.53-3.58-8.33-8.09-12.44-12.2c-1.23-1.23-2.4-2.51-4.5-4.72c-0.76,7.58-2.2,13.77,3.22,18.87
             c6.86,6.45,13.34,13.38,20.68,19.23c5.73,4.58,13.11,5.78,19.86,2.43c15.6-7.74,30.93-16.04,46.3-24.23
             c3.43-1.83,6.6-4.15,9.88-6.24C418.6,680.36,418.94,680.92,419.28,681.48z"
-                ></path>
-                <path
-                  class="st0"
-                  d="M954.45,750.64c-3.51-39.11-7.6-78.18-10.39-117.34c-3.51-49.31-6.02-98.69-8.81-148.06
+              ></path>
+              <path
+                class="st0"
+                d="M954.45,750.64c-3.51-39.11-7.6-78.18-10.39-117.34c-3.51-49.31-6.02-98.69-8.81-148.06
             c-0.46-8.14-0.22-16.32-0.15-24.48c0.02-2.6,0.58-5.19,1.08-9.41c3.08,2.51,5.65,3.82,7.09,5.91c6.88,9.96,13.45,20.13,20.28,30.47
             c3.88-0.96,8.31-2.06,12.74-3.16c0.14,0.47,0.28,0.94,0.42,1.4c-2.64,0.68-5.27,1.41-7.92,2.02c-3.57,0.82-5.68,2.28-4.29,6.57
             c0.48,1.47-0.43,3.44-0.93,5.11c-0.05,0.16-2.34,0.09-2.51-0.31c-0.82-2.03-2.45-5.08-1.64-6.18c2.9-3.94,0.81-6.7-1.11-9.74
             c-5.15-8.14-10.3-16.27-15.47-24.39c-1.23-1.94-2.54-3.84-3.81-5.75c-0.84,0.45-1.67,0.89-2.51,1.34c0,4.71-0.23,9.42,0.03,14.11
             c3.34,59.33,6.47,118.68,10.26,177.99c2.07,32.38,5.34,64.69,7.99,97.04c0.19,2.27-0.24,4.59-0.4,6.91
             C954.39,750.71,954.45,750.64,954.45,750.64z"
-                ></path>
-                <path
-                  class="st0"
-                  d="M971.52,716.29c-2.86-0.91-5.71-1.81-8.57-2.72c0.11-0.46,0.22-0.91,0.33-1.37
+              ></path>
+              <path
+                class="st0"
+                d="M971.52,716.29c-2.86-0.91-5.71-1.81-8.57-2.72c0.11-0.46,0.22-0.91,0.33-1.37
             c32.91,6.44,65.81,12.88,98.72,19.31c0.03,0.36,0.06,0.72,0.09,1.08c-1.23,0.08-2.51,0.44-3.68,0.21
             c-27.38-5.39-54.75-10.85-82.13-16.26c-1.6-0.31-3.26-0.26-4.89-0.37C971.39,716.19,971.52,716.29,971.52,716.29z"
-                ></path>
-                <path
-                  class="st0"
-                  d="M839.58,712.6c27.54,8.62,55.08,17.25,81.73,25.59c-1.42-0.08-4.23,0.3-6.67-0.46
+              ></path>
+              <path
+                class="st0"
+                d="M839.58,712.6c27.54,8.62,55.08,17.25,81.73,25.59c-1.42-0.08-4.23,0.3-6.67-0.46
             c-24.87-7.75-49.68-15.7-74.5-23.6c-0.27-0.09-0.47-0.38-0.7-0.57C839.49,713.24,839.54,712.92,839.58,712.6z"
-                ></path>
-                <path
-                  class="st0"
-                  d="M336.75,665.54c-28.47-2.72-56.95-5.44-85.42-8.16c0.06-0.58,0.12-1.16,0.17-1.74
+              ></path>
+              <path
+                class="st0"
+                d="M336.75,665.54c-28.47-2.72-56.95-5.44-85.42-8.16c0.06-0.58,0.12-1.16,0.17-1.74
             c28.47,2.72,56.95,5.45,85.42,8.17C336.87,664.39,336.81,664.97,336.75,665.54z"
-                ></path>
-                <path
-                  class="st0"
-                  d="M377.65,606.66c2.44-17.66,4.89-35.31,7.33-52.97c0.55,0.08,1.09,0.15,1.64,0.23
+              ></path>
+              <path
+                class="st0"
+                d="M377.65,606.66c2.44-17.66,4.89-35.31,7.33-52.97c0.55,0.08,1.09,0.15,1.64,0.23
             c-2.43,17.66-4.86,35.32-7.28,52.98C378.77,606.82,378.21,606.74,377.65,606.66z"
-                ></path>
-                <path
-                  class="st0"
-                  d="M372.46,657.33c-2.66,11.79-5.32,23.59-7.98,35.38c-0.53-0.12-1.06-0.24-1.58-0.36
+              ></path>
+              <path
+                class="st0"
+                d="M372.46,657.33c-2.66,11.79-5.32,23.59-7.98,35.38c-0.53-0.12-1.06-0.24-1.58-0.36
             c2.62-11.78,5.24-23.56,7.86-35.34C371.33,657.12,371.9,657.23,372.46,657.33z"
-                ></path>
-                <path
-                  class="st0"
-                  d="M918.83,485.98c0,10.56,0,21.13,0,31.69c-0.21,0.03-0.43,0.06-0.64,0.09c0-10.56,0-21.12,0-31.68
+              ></path>
+              <path
+                class="st0"
+                d="M918.83,485.98c0,10.56,0,21.13,0,31.69c-0.21,0.03-0.43,0.06-0.64,0.09c0-10.56,0-21.12,0-31.68
             C918.4,486.05,918.62,486.02,918.83,485.98z"
-                ></path>
-                <path
-                  class="st0"
-                  d="M924.38,606.73c-1.13-10.78-2.26-21.56-3.4-32.33c0.54-0.06,1.08-0.12,1.63-0.18
+              ></path>
+              <path
+                class="st0"
+                d="M924.38,606.73c-1.13-10.78-2.26-21.56-3.4-32.33c0.54-0.06,1.08-0.12,1.63-0.18
             c1.16,10.79,2.32,21.58,3.48,32.36C925.52,606.63,924.95,606.68,924.38,606.73z"
-                ></path>
-                <path
-                  class="st0"
-                  d="M390.71,445.76c0,9.46,0,18.92,0,28.38c-0.31,0.01-0.63,0.03-0.94,0.04c0-9.47,0-18.94,0-28.4
+              ></path>
+              <path
+                class="st0"
+                d="M390.71,445.76c0,9.46,0,18.92,0,28.38c-0.31,0.01-0.63,0.03-0.94,0.04c0-9.47,0-18.94,0-28.4
             C390.09,445.77,390.4,445.77,390.71,445.76z"
-                ></path>
-                <path
-                  class="st0"
-                  d="M918.55,470.95c0.82-8.49,1.65-16.99,2.47-25.48c0.54,0.05,1.08,0.1,1.62,0.15
+              ></path>
+              <path
+                class="st0"
+                d="M918.55,470.95c0.82-8.49,1.65-16.99,2.47-25.48c0.54,0.05,1.08,0.1,1.62,0.15
             c-0.82,8.47-1.64,16.95-2.46,25.42C919.65,471.01,919.1,470.98,918.55,470.95z"
-                ></path>
-                <path
-                  class="st0"
-                  d="M920.18,536.33c0.83,8.52,1.66,17.04,2.49,25.55c-0.54,0.06-1.07,0.12-1.61,0.17
+              ></path>
+              <path
+                class="st0"
+                d="M920.18,536.33c0.83,8.52,1.66,17.04,2.49,25.55c-0.54,0.06-1.07,0.12-1.61,0.17
             c-0.85-8.54-1.7-17.07-2.55-25.61C919.07,536.41,919.63,536.37,920.18,536.33z"
-                ></path>
-                <path
-                  class="st0"
-                  d="M390.34,491.37c0,6.43,0,12.86,0,19.29c-0.31,0-0.62,0-0.92,0c0-6.44,0-12.88,0-19.32
+              ></path>
+              <path
+                class="st0"
+                d="M390.34,491.37c0,6.43,0,12.86,0,19.29c-0.31,0-0.62,0-0.92,0c0-6.44,0-12.88,0-19.32
             C389.73,491.35,390.03,491.36,390.34,491.37z"
-                ></path>
-                <path
-                  class="st0"
-                  d="M373.54,642.41c1.23-6.29,2.46-12.58,3.68-18.86c0.54,0.1,1.07,0.2,1.61,0.3c-1.21,6.27-2.43,12.54-3.64,18.81
+              ></path>
+              <path
+                class="st0"
+                d="M373.54,642.41c1.23-6.29,2.46-12.58,3.68-18.86c0.54,0.1,1.07,0.2,1.61,0.3c-1.21,6.27-2.43,12.54-3.64,18.81
             C374.64,642.57,374.09,642.49,373.54,642.41z"
-                ></path>
-                <path
-                  class="st0"
-                  d="M930.4,693.61c0.64,6.27,1.29,12.55,1.93,18.82c-0.52,0.06-1.04,0.11-1.56,0.17
+              ></path>
+              <path
+                class="st0"
+                d="M930.4,693.61c0.64,6.27,1.29,12.55,1.93,18.82c-0.52,0.06-1.04,0.11-1.56,0.17
             c-0.66-6.27-1.33-12.54-1.99-18.82C929.32,693.73,929.86,693.67,930.4,693.61z"
-                ></path>
-                <path
-                  class="st0"
-                  d="M928.49,662.31c0.59,5.63,1.19,11.26,1.78,16.89c-0.51,0.06-1.02,0.13-1.54,0.19
+              ></path>
+              <path
+                class="st0"
+                d="M928.49,662.31c0.59,5.63,1.19,11.26,1.78,16.89c-0.51,0.06-1.02,0.13-1.54,0.19
             c-0.65-5.68-1.31-11.36-1.96-17.04C927.34,662.34,927.91,662.32,928.49,662.31z"
-                ></path>
-                <path
-                  class="st0"
-                  d="M936.5,749.9c1.88,4.83,3.75,9.67,5.63,14.5c-0.48,0.2-0.97,0.4-1.45,0.59c-1.9-4.82-3.8-9.65-5.7-14.47
+              ></path>
+              <path
+                class="st0"
+                d="M936.5,749.9c1.88,4.83,3.75,9.67,5.63,14.5c-0.48,0.2-0.97,0.4-1.45,0.59c-1.9-4.82-3.8-9.65-5.7-14.47
             C935.48,750.32,935.99,750.11,936.5,749.9z"
-                ></path>
-                <path
-                  class="st0"
-                  d="M388.18,520.48c0,4.35,0,8.69,0,13.04c-0.29,0.01-0.57,0.02-0.86,0.03c0-4.37,0-8.74,0-13.1
+              ></path>
+              <path
+                class="st0"
+                d="M388.18,520.48c0,4.35,0,8.69,0,13.04c-0.29,0.01-0.57,0.02-0.86,0.03c0-4.37,0-8.74,0-13.1
             C387.61,520.46,387.89,520.47,388.18,520.48z"
-                ></path>
-                <path
-                  class="st0"
-                  d="M932.91,739.11c-0.67-4.38-1.35-8.77-2.02-13.15c0.56-0.09,1.12-0.19,1.68-0.28c0.62,4.4,1.24,8.79,1.85,13.19
+              ></path>
+              <path
+                class="st0"
+                d="M932.91,739.11c-0.67-4.38-1.35-8.77-2.02-13.15c0.56-0.09,1.12-0.19,1.68-0.28c0.62,4.4,1.24,8.79,1.85,13.19
             C933.92,738.95,933.42,739.03,932.91,739.11z"
-                ></path>
-                <path
-                  class="st1"
-                  d="M724.49,707.57c4.23,6.43,8.46,12.86,13.21,20.08C731.91,726.88,724.18,715.08,724.49,707.57z"
-                ></path>
-                <path
-                  class="st1"
-                  d="M666.52,517.36c1.6-3.39,3.21-6.78,4.81-10.17c0.6,0.25,1.2,0.5,1.8,0.75c-1.36,3.51-2.72,7.02-4.08,10.52
+              ></path>
+              <path
+                class="st1"
+                d="M724.49,707.57c4.23,6.43,8.46,12.86,13.21,20.08C731.91,726.88,724.18,715.08,724.49,707.57z"
+              ></path>
+              <path
+                class="st1"
+                d="M666.52,517.36c1.6-3.39,3.21-6.78,4.81-10.17c0.6,0.25,1.2,0.5,1.8,0.75c-1.36,3.51-2.72,7.02-4.08,10.52
             C668.21,518.09,667.36,517.72,666.52,517.36z"
-                ></path>
-                <path
-                  class="st0"
-                  d="M644.48,717.27c-1.93-2.51-3.9-5-5.79-7.54c-19.35-25.95-29.1-55.86-35.49-87.07
+              ></path>
+              <path
+                class="st0"
+                d="M644.48,717.27c-1.93-2.51-3.9-5-5.79-7.54c-19.35-25.95-29.1-55.86-35.49-87.07
             c-3.73-18.22-7-36.55-10.28-54.86c-1.94-10.8,2.33-19.21,11.76-24.25c9.77-5.22,20.07-9.42,30.16-14.03
             c0.44-0.2,1.07,0.02,1.77,0.81c-4.85,1.9-9.88,3.44-14.51,5.78c-6.65,3.36-13.2,6.99-19.44,11.05c-6.96,4.52-9.09,11.32-8.18,19.52
             c3.08,27.88,10.29,54.86,17.03,81.97c5.96,23.99,17.73,45.04,32.08,64.85c0.68,0.93,1.36,1.87,2.04,2.8
             C645.23,716.63,644.86,716.95,644.48,717.27z"
-                ></path>
-                <path
-                  class="st0"
-                  d="M436.11,689.01c-5.28-10.21-7.43-42.35-3.31-48.72C429.87,656.81,434.44,672.77,436.11,689.01z"
-                ></path>
-                <path
-                  class="st0"
-                  d="M468.03,700.36c3.61,11.99,7.22,23.99,10.84,35.98C472.07,725.35,469.61,712.96,468.03,700.36z"
-                ></path>
-                <path
-                  class="st0"
-                  d="M478,713.09c5.05,8.37,10.1,16.73,14.86,24.6C488.97,736.39,480.34,723.25,478,713.09z"
-                ></path>
-                <path
-                  class="st0"
-                  d="M504.81,747.04c2.46,7.14,5.12,14.85,7.53,21.84C507.8,766.07,503.01,752.5,504.81,747.04z"
-                ></path>
-                <path
-                  class="st0"
-                  d="M568.65,808.61c-7.16-4.33-12-10.54-14.62-18.48C558.91,796.29,563.78,802.45,568.65,808.61z"
-                ></path>
-                <path
-                  class="st0"
-                  d="M439.01,669.2c1.97,7.35,3.95,14.7,5.92,22.05c-0.51,0.14-1.03,0.28-1.54,0.43c-2-7.34-4-14.68-6-22.03
+              ></path>
+              <path
+                class="st0"
+                d="M436.11,689.01c-5.28-10.21-7.43-42.35-3.31-48.72C429.87,656.81,434.44,672.77,436.11,689.01z"
+              ></path>
+              <path
+                class="st0"
+                d="M468.03,700.36c3.61,11.99,7.22,23.99,10.84,35.98C472.07,725.35,469.61,712.96,468.03,700.36z"
+              ></path>
+              <path
+                class="st0"
+                d="M478,713.09c5.05,8.37,10.1,16.73,14.86,24.6C488.97,736.39,480.34,723.25,478,713.09z"
+              ></path>
+              <path
+                class="st0"
+                d="M504.81,747.04c2.46,7.14,5.12,14.85,7.53,21.84C507.8,766.07,503.01,752.5,504.81,747.04z"
+              ></path>
+              <path
+                class="st0"
+                d="M568.65,808.61c-7.16-4.33-12-10.54-14.62-18.48C558.91,796.29,563.78,802.45,568.65,808.61z"
+              ></path>
+              <path
+                class="st0"
+                d="M439.01,669.2c1.97,7.35,3.95,14.7,5.92,22.05c-0.51,0.14-1.03,0.28-1.54,0.43c-2-7.34-4-14.68-6-22.03
             C437.93,669.5,438.47,669.35,439.01,669.2z"
-                ></path>
-                <path
-                  class="st0"
-                  d="M493.55,718.2c3.89,5.96,7.77,11.91,11.66,17.87c-0.42,0.28-0.85,0.57-1.27,0.85
+              ></path>
+              <path
+                class="st0"
+                d="M493.55,718.2c3.89,5.96,7.77,11.91,11.66,17.87c-0.42,0.28-0.85,0.57-1.27,0.85
             c-3.93-5.92-7.86-11.84-11.79-17.76C492.61,718.84,493.08,718.52,493.55,718.2z"
-                ></path>
-                <path
-                  class="st0"
-                  d="M529.08,774.36c-5.72-4.13-10.1-9.16-11.74-16.04C521.25,763.66,525.16,769.01,529.08,774.36z"
-                ></path>
-                <path
-                  class="st0"
-                  d="M540.71,782.97c2.37,5.97,4.68,11.77,6.99,17.58C543.28,797.25,539.81,788.66,540.71,782.97z"
-                ></path>
-                <path
-                  class="st0"
-                  d="M448.39,676.25c1.76,5.31,3.51,10.62,5.27,15.93c-0.48,0.16-0.97,0.33-1.45,0.49
+              ></path>
+              <path
+                class="st0"
+                d="M529.08,774.36c-5.72-4.13-10.1-9.16-11.74-16.04C521.25,763.66,525.16,769.01,529.08,774.36z"
+              ></path>
+              <path
+                class="st0"
+                d="M540.71,782.97c2.37,5.97,4.68,11.77,6.99,17.58C543.28,797.25,539.81,788.66,540.71,782.97z"
+              ></path>
+              <path
+                class="st0"
+                d="M448.39,676.25c1.76,5.31,3.51,10.62,5.27,15.93c-0.48,0.16-0.97,0.33-1.45,0.49
             c-1.76-5.31-3.52-10.61-5.28-15.92C447.41,676.59,447.9,676.42,448.39,676.25z"
-                ></path>
-                <path
-                  class="st0"
-                  d="M617.36,475.38c-6.31,7.11-12.62,14.23-18.93,21.34c-0.43-0.37-0.86-0.75-1.29-1.12
+              ></path>
+              <path
+                class="st0"
+                d="M617.36,475.38c-6.31,7.11-12.62,14.23-18.93,21.34c-0.43-0.37-0.86-0.75-1.29-1.12
             c6.32-7.13,12.65-14.25,18.97-21.38C616.53,474.61,616.95,474.99,617.36,475.38z"
-                ></path>
-                <path
-                  class="st0"
-                  d="M633.63,474.19c-5.45,5.8-10.9,11.61-16.35,17.41c0.36,0.35,0.73,0.7,1.09,1.05
+              ></path>
+              <path
+                class="st0"
+                d="M633.63,474.19c-5.45,5.8-10.9,11.61-16.35,17.41c0.36,0.35,0.73,0.7,1.09,1.05
             c5.54-5.72,11.07-11.43,16.61-17.15C634.53,475.06,634.08,474.63,633.63,474.19z"
-                ></path>
-                <path
-                  class="st0"
-                  d="M660.09,470.75c5.52-3.93,11.04-7.87,16.55-11.8c0.34,0.47,0.68,0.94,1.02,1.4
+              ></path>
+              <path
+                class="st0"
+                d="M660.09,470.75c5.52-3.93,11.04-7.87,16.55-11.8c0.34,0.47,0.68,0.94,1.02,1.4
             c-5.52,3.93-11.04,7.86-16.56,11.79C660.76,471.68,660.43,471.22,660.09,470.75z"
-                ></path>
-                <path
-                  class="st0"
-                  d="M641.92,461.23c2.68-5.4,5.36-10.79,8.04-16.19c0.51,0.24,1.02,0.47,1.52,0.71
+              ></path>
+              <path
+                class="st0"
+                d="M641.92,461.23c2.68-5.4,5.36-10.79,8.04-16.19c0.51,0.24,1.02,0.47,1.52,0.71
             c-2.65,5.39-5.31,10.78-7.96,16.17C642.98,461.69,642.45,461.46,641.92,461.23z"
-                ></path>
-                <path
-                  class="st0"
-                  d="M662.94,454.08c-4.11,3.61-8.22,7.21-12.33,10.82c-0.06-0.02-0.12-0.05-0.17-0.07
+              ></path>
+              <path
+                class="st0"
+                d="M662.94,454.08c-4.11,3.61-8.22,7.21-12.33,10.82c-0.06-0.02-0.12-0.05-0.17-0.07
             c3.78-3.94,7.57-7.89,11.35-11.83C662.17,453.36,662.56,453.72,662.94,454.08z"
-                ></path>
-                <path
-                  class="st0"
-                  d="M647.29,485.66c-2.56,4.43-5.12,8.86-7.68,13.3c-0.46-0.25-0.91-0.5-1.36-0.74c2.54-4.51,5.09-9.02,7.63-13.53
+              ></path>
+              <path
+                class="st0"
+                d="M647.29,485.66c-2.56,4.43-5.12,8.86-7.68,13.3c-0.46-0.25-0.91-0.5-1.36-0.74c2.54-4.51,5.09-9.02,7.63-13.53
             C646.34,485.01,646.82,485.33,647.29,485.66z"
-                ></path>
-                <path
-                  class="st0"
-                  d="M630.89,490.9c2.3-4.33,4.6-8.65,6.89-12.98c0.52,0.27,1.04,0.53,1.55,0.8c-2.31,4.32-4.63,8.64-6.94,12.96
+              ></path>
+              <path
+                class="st0"
+                d="M630.89,490.9c2.3-4.33,4.6-8.65,6.89-12.98c0.52,0.27,1.04,0.53,1.55,0.8c-2.31,4.32-4.63,8.64-6.94,12.96
             C631.9,491.42,631.4,491.16,630.89,490.9z"
-                ></path>
-                <path
-                  class="st0"
-                  d="M460.68,475.09c-6.3,12.51-12.69,25.21-18.83,37.39C441.75,506.01,454.98,479.43,460.68,475.09z"
-                ></path>
-              </g>
-            </svg>
-            <h3>REFER AND PARTNER WITH US AND WE ASSURE GREAT REWARDS</h3>
-    
+              ></path>
+              <path
+                class="st0"
+                d="M460.68,475.09c-6.3,12.51-12.69,25.21-18.83,37.39C441.75,506.01,454.98,479.43,460.68,475.09z"
+              ></path>
+            </g>
+          </svg>
+          <h3>REFER AND PARTNER WITH US AND WE ASSURE GREAT REWARDS</h3>
         </section>
       </Link>
 
       <section className="view1">
         <h2 className="text-uppercase view-heading text-center mb-4">
-          a nice day to{" "}
+          a nice day to{' '}
           <span className="text-yellow-400 border-b-2 border-yellow-400">
             <a href="https://www.designindiankitchen.com/contact-modular-kitchen-dealers-delhi-gurgaon-india/">
               book with us
@@ -956,37 +951,37 @@ const PostFooter = () => {
             className="cloud1"
             alt="kitchen-renovation-service-delhi"
             src="https://www.designindiankitchen.com/wp-content/themes/dkiblogs/assets/images/cloud1.png"
-            style={{ filter: "invert(0)" }}
+            style={{ filter: 'invert(0)' }}
           />
           <img
             className="cloud2"
             alt="kitchen-renovation-service-noida"
             src="https://www.designindiankitchen.com/wp-content/themes/dkiblogs/assets/images/cloud2.png"
-            style={{ filter: "invert(0)" }}
+            style={{ filter: 'invert(0)' }}
           />
           <img
             className="cloud3"
             alt="kitchen-renovation-service-gurgaon"
             src="https://www.designindiankitchen.com/wp-content/themes/dkiblogs/assets/images/cloud3.png"
-            style={{ filter: "invert(0)" }}
+            style={{ filter: 'invert(0)' }}
           />
           <img
             className="cloudCloud"
             alt="kitchen-renovation-service-faridabad"
             src="https://www.designindiankitchen.com/wp-content/themes/dkiblogs/assets/images/cloudCloud.png"
-            style={{ filter: "invert(0)" }}
+            style={{ filter: 'invert(0)' }}
           />
           <img
             className="squiggle1"
             alt="kitchen-renovation-service"
             src="https://www.designindiankitchen.com/wp-content/themes/dkiblogs/assets/images/squiggle1.png"
-            style={{ filter: "invert(0)" }}
+            style={{ filter: 'invert(0)' }}
           />
           <img
             className="squiggle2"
             alt="modular-kitchen-renovation-service-delhi"
             src="https://www.designindiankitchen.com/wp-content/themes/dkiblogs/assets/images/squiggle2.png"
-            style={{ filter: "invert(0)" }}
+            style={{ filter: 'invert(0)' }}
           />
         </div>
         <div className="balloons">
@@ -994,37 +989,37 @@ const PostFooter = () => {
             className="balloonCloud"
             alt="modular-kitchen-services-delhi"
             src="https://www.designindiankitchen.com/wp-content/themes/dkiblogs/assets/images/balloonCloud.png"
-            style={{ filter: "invert(0)" }}
+            style={{ filter: 'invert(0)' }}
           />
           <img
             className="smallBalloon"
             alt="top-modular-kitchen-brand-delhi-gurgaon"
             src="https://www.designindiankitchen.com/wp-content/themes/dkiblogs/assets/images/balloonSmall.png"
-            style={{ filter: "invert(0)" }}
+            style={{ filter: 'invert(0)' }}
           />
         </div>
         <img
           className="townImageImg"
           alt="hettich-modular-kitchens-in-delhi-gurgaon-faridabad-noida"
           src="https://www.designindiankitchen.com/wp-content/themes/dkiblogs/assets/images/townImage.png"
-          style={{ filter: "invert(0)" }}
+          style={{ filter: 'invert(0)' }}
         />
         <div className="vehicles">
           <img
             className="bus"
             alt="hafele-modular-kitchen-in-delhi-gurgaon-noida-faridabad-india"
             src="https://www.designindiankitchen.com/wp-content/themes/dkiblogs/assets/images/bus.png"
-            style={{ filter: "invert(0)" }}
+            style={{ filter: 'invert(0)' }}
           />
           <img
             className="car"
             alt="best-modular-kitchen-company-in-delhi-gurgaon-noida"
             src="https://www.designindiankitchen.com/wp-content/themes/dkiblogs/assets/images/car.png"
-            style={{ filter: "invert(0)" }}
+            style={{ filter: 'invert(0)' }}
           />
         </div>
       </section>
     </>
-  );
-};
-export default PostFooter;
+  )
+}
+export default PostFooter
