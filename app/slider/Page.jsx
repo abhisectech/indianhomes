@@ -173,11 +173,11 @@ const Page = ({ images, initialSlide, onClose, onNextSlide, onPrevSlide }) => {
             onSubmit={handleSubmit}
           >
             <h2 className="sm:text-2xl text-xl font-bold pt-2 text-gray-700">
-              Our designer will call you to help with your interior
-              requirements.
+              Our Designer will call you to help with your Interior
+              Requirements.
             </h2>
             <div className="flex items-center my-2">
-              <h2 className="flex-1 text-xl py-2 italic text-center text-black uppercase">
+              <h2 className="flex-1 text-xl py-2 text-center text-black uppercase">
                 Book a Visit Today
               </h2>
             </div>
