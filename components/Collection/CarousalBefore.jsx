@@ -1,10 +1,9 @@
 'use client'
-import Carousel from 'react-multi-carousel'
-import 'react-multi-carousel/lib/styles.css'
+import { useState } from 'react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import ReactBeforeSliderComponent from 'react-before-after-slider-component'
 import 'react-before-after-slider-component/dist/build.css'
-import ReactCompareImage from 'react-compare-image'
-import { Slider } from './Slider'
+
 const containerStyle = {
   position: 'relative',
   height: 'fit-content', // Adjust as needed
@@ -27,42 +26,35 @@ const backgroundImageStyle = {
   objectFit: 'cover', // Ensure the image covers the container
   opacity: '1', // Adjust the opacity as needed
 }
-const FIRST_IMAGE1 =
-  'https://source.unsplash.com/a-kitchen-with-blue-cabinets-and-a-black-refrigerator-zFGBEikZoRg'
-
-const SECOND_IMAGE1 =
-  'https://source.unsplash.com/a-ladder-and-buckets-of-paint-in-a-room-under-construction-XXanshmt5so'
-
-const FIRST_IMAGE = {
-  imageUrl:
-    'https://source.unsplash.com/a-kitchen-with-blue-cabinets-and-a-black-refrigerator-zFGBEikZoRg',
-}
-const SECOND_IMAGE = {
-  imageUrl:
-    'https://source.unsplash.com/a-ladder-and-buckets-of-paint-in-a-room-under-construction-XXanshmt5so',
-}
 
 const CarouselBeforeAfter = () => {
-  const carouselData = [
-    {
-      firstImage:
-        'https://source.unsplash.com/a-kitchen-with-blue-cabinets-and-a-black-refrigerator-zFGBEikZoRg',
-      secondImage:
-        'https://source.unsplash.com/a-ladder-and-buckets-of-paint-in-a-room-under-construction-XXanshmt5so',
-    },
-    {
-      firstImage:
-        'https://source.unsplash.com/a-kitchen-with-blue-cabinets-and-a-black-refrigerator-zFGBEikZoRg',
-      secondImage:
-        'https://source.unsplash.com/a-ladder-and-buckets-of-paint-in-a-room-under-construction-XXanshmt5so',
-    },
-    {
-      firstImage:
-        'https://source.unsplash.com/a-kitchen-with-blue-cabinets-and-a-black-refrigerator-zFGBEikZoRg',
-      secondImage:
-        'https://source.unsplash.com/a-ladder-and-buckets-of-paint-in-a-room-under-construction-XXanshmt5so',
-    },
-  ]
+  const [idx, setIdx] = useState(1)
+  console.log('curr - ' + idx)
+
+  const handleBack = () => {
+    if (idx > 1) {
+      setIdx(idx - 1)
+      // console.log('new -' + idx)
+    } else {
+      console.log('idx is less then 1')
+    }
+  }
+
+  const handleNext = () => {
+    if (idx < 4) {
+      setIdx(idx + 1)
+      // console.log('new -' + idx)
+    } else {
+      console.log('idx is more then 4')
+    }
+  }
+
+  const FIRST_IMAGE1 = {
+    imageUrl: `/images/beforeafter/after${idx}.jpg`,
+  }
+  const SECOND_IMAGE1 = {
+    imageUrl: `/images/beforeafter/before${idx}.jpg`,
+  }
 
   const responsive = {
     superLargeDesktop: {
@@ -85,7 +77,7 @@ const CarouselBeforeAfter = () => {
   }
 
   return (
-    <div className="flex flex-col justify-center items-center w-full">
+    <div className="flex flex-col justify-center items-center w-full ">
       {/* Your existing content */}
       <div className="sm:px-16 my-16" id="">
         {/* ... existing content ... */}
@@ -113,39 +105,36 @@ const CarouselBeforeAfter = () => {
       </div>
 
       {/* Carousel */}
-      <div className="mb-16">
-        {/* <Slider {...settings}>
-            {carouselData.map((data, index) => (
-              <ReactBeforeSliderComponent
-                key={index}
-                firstImage={data.firstImage}
-                secondImage={data.secondImage}
-              />
-            ))}
-          </Slider> */}
-        {/* <Carousel
-          responsive={responsive}
-          autoPlay={true}
-          swipeable={true}
-          draggable={true}
-          showDots={true}
-          infinite={true}
-          partialVisible={false}
-          dotListClass="custom-dot-list-style"
-        >
-           {carouselData.map((data, index) => (
-              <ReactBeforeSliderComponent
-                key={index}
-                firstImage={data.firstImage}
-                secondImage={data.secondImage}
-              />
-            ))}
-        </Carousel> */}
-
-        <ReactBeforeSliderComponent
-          firstImage={FIRST_IMAGE}
-          secondImage={SECOND_IMAGE}
-        />
+      <div className="mb-16 w-full max-h-[90%]">
+        <div className="flex items-center justify-center">
+          <button
+            className={`mr-auto border-2 border-blue-500 rounded-lg p-2 transition duration-300 ease-in-out ${
+              idx === 1
+                ? 'opacity-50 cursor-not-allowed'
+                : 'hover:bg-blue-500 hover:text-white'
+            }`}
+            onClick={handleBack}
+            disabled={idx === 1} // Disable if idx is 1
+          >
+            <ChevronLeft />
+          </button>
+          <ReactBeforeSliderComponent
+            firstImage={FIRST_IMAGE1}
+            secondImage={SECOND_IMAGE1}
+            className="mx-4 w-full" // Adjust margin as needed
+          />
+          <button
+            className={`ml-auto border-2 border-blue-500 rounded-lg p-2 transition duration-300 ease-in-out ${
+              idx === 4
+                ? 'opacity-50 cursor-not-allowed'
+                : 'hover:bg-blue-500 hover:text-white'
+            }`}
+            onClick={handleNext}
+            disabled={idx === 4} // Disable if idx is 4
+          >
+            <ChevronRight />
+          </button>
+        </div>
 
         {/* <Slider /> */}
       </div>
