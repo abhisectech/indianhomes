@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import ReactBeforeSliderComponent from 'react-before-after-slider-component'
 import 'react-before-after-slider-component/dist/build.css'
@@ -29,7 +29,35 @@ const backgroundImageStyle = {
 
 const CarouselBeforeAfter = () => {
   const [idx, setIdx] = useState(1)
+  const [imagesLoaded, setImagesLoaded] = useState(false)
+  const totalImages = 4
   console.log('curr - ' + idx)
+
+  const preloadImages = () => {
+    const imagePromises = []
+    for (let i = 1; i <= totalImages; i++) {
+      const image1 = new Image()
+      const image2 = new Image()
+
+      image1.src = `/images/beforeafter/after${i}.jpg`
+      image2.src = `/images/beforeafter/before${i}.jpg`
+
+      // Add both promises to the array
+      imagePromises.push(
+        new Promise((resolve) => {
+          image1.onload = image2.onload = resolve
+        })
+      )
+    }
+
+    // Resolve the promise once all images are loaded
+    Promise.all(imagePromises).then(() => setImagesLoaded(true))
+  }
+
+  // Call the preloadImages function when the component mounts
+  useEffect(() => {
+    preloadImages()
+  }, [])
 
   const handleBack = () => {
     if (idx > 1) {
@@ -105,39 +133,39 @@ const CarouselBeforeAfter = () => {
       </div>
 
       {/* Carousel */}
-      <div className="mb-16 w-full max-h-[90%]">
-        <div className="flex items-center justify-center">
-          <button
-            className={`mr-auto border-2 border-blue-500 rounded-lg p-2 transition duration-300 ease-in-out ${
-              idx === 1
-                ? 'opacity-50 cursor-not-allowed'
-                : 'hover:bg-blue-500 hover:text-white'
-            }`}
-            onClick={handleBack}
-            disabled={idx === 1} // Disable if idx is 1
-          >
-            <ChevronLeft />
-          </button>
-          <ReactBeforeSliderComponent
-            firstImage={FIRST_IMAGE1}
-            secondImage={SECOND_IMAGE1}
-            className="mx-4 w-full" // Adjust margin as needed
-          />
-          <button
-            className={`ml-auto border-2 border-blue-500 rounded-lg p-2 transition duration-300 ease-in-out ${
-              idx === 4
-                ? 'opacity-50 cursor-not-allowed'
-                : 'hover:bg-blue-500 hover:text-white'
-            }`}
-            onClick={handleNext}
-            disabled={idx === 4} // Disable if idx is 4
-          >
-            <ChevronRight />
-          </button>
+      {imagesLoaded && (
+        <div className="mb-16 w-full max-h-[90%]">
+          <div className="flex items-center justify-center">
+            <button
+              className={`mr-auto border-2 border-blue-500 rounded-lg p-2 transition duration-300 ease-in-out ${
+                idx === 1
+                  ? 'opacity-50 cursor-not-allowed'
+                  : 'hover:bg-blue-500 hover:text-white'
+              }`}
+              onClick={handleBack}
+              disabled={idx === 1} // Disable if idx is 1
+            >
+              <ChevronLeft />
+            </button>
+            <ReactBeforeSliderComponent
+              firstImage={FIRST_IMAGE1}
+              secondImage={SECOND_IMAGE1}
+              className="mx-4 w-full" // Adjust margin as needed
+            />
+            <button
+              className={`ml-auto border-2 border-blue-500 rounded-lg p-2 transition duration-300 ease-in-out ${
+                idx === 4
+                  ? 'opacity-50 cursor-not-allowed'
+                  : 'hover:bg-blue-500 hover:text-white'
+              }`}
+              onClick={handleNext}
+              disabled={idx === 4} // Disable if idx is 4
+            >
+              <ChevronRight />
+            </button>
+          </div>
         </div>
-
-        {/* <Slider /> */}
-      </div>
+      )}
     </div>
   )
 }
