@@ -38,6 +38,7 @@
     "react-before-after-slider-component": "^1.1.8",
     "react-bootstrap": "^2.9.2",
     "react-card-slider-component": "^1.0.9",
+    "react-clock": "^4.6.0",
     "react-compare-image": "^3.4.0",
     "react-countup": "^6.5.0",
     "react-dom": "^18",

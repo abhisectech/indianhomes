@@ -1,29 +1,29 @@
-"use client";
+'use client'
 
-import Image from "next/image";
-import { useState } from "react";
+import Image from 'next/image'
+import { useState } from 'react'
 
 export const Slider = () => {
-  const [sliderPosition, setSliderPosition] = useState(50);
-  const [isDragging, setIsDragging] = useState(false);
+  const [sliderPosition, setSliderPosition] = useState(50)
+  const [isDragging, setIsDragging] = useState(false)
 
   const handleMove = (event) => {
-    if (!isDragging) return;
+    if (!isDragging) return
 
-    const rect = event.currentTarget.getBoundingClientRect();
-    const x = Math.max(0, Math.min(event.clientX - rect.left, rect.width));
-    const percent = Math.max(0, Math.min((x / rect.width) * 100, 100));
+    const rect = event.currentTarget.getBoundingClientRect()
+    const x = Math.max(0, Math.min(event.clientX - rect.left, rect.width))
+    const percent = Math.max(0, Math.min((x / rect.width) * 100, 100))
 
-    setSliderPosition(percent);
-  };
+    setSliderPosition(percent)
+  }
 
   const handleMouseDown = () => {
-    setIsDragging(true);
-  };
+    setIsDragging(true)
+  }
 
   const handleMouseUp = () => {
-    setIsDragging(false);
-  };
+    setIsDragging(false)
+  }
 
   return (
     <div className="w-full relative" onMouseUp={handleMouseUp}>
@@ -60,5 +60,5 @@ export const Slider = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
