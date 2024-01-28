@@ -13,6 +13,8 @@ import { motion, useScroll, useSpring, useTransform } from 'framer-motion'
 import useMedia from 'use-media'
 import CarouselBeforeAfter from './CarousalBefore'
 
+import BrandImageSlider from './BrandsCarousel'
+
 const falshResponsive = {
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
@@ -1300,10 +1302,8 @@ const Collection = () => {
           </div>
         </div>
       </div>
-      <div className="slider">
-        {/* ----------------- */}
-
-        {/* -------------------------- */}
+      {/* <div className="slider">
+      
         <div className="slide-track mb-16">
           {brand.map((item, index) => (
             <div key={index} className="slide">
@@ -1317,6 +1317,9 @@ const Collection = () => {
             </div>
           ))}
         </div>
+      </div> */}
+      <div className="brands">
+        <BrandImageSlider brandImages={brand} />
       </div>
 
       <div className="flex items-center justify-c">
@@ -1364,7 +1367,7 @@ const Collection = () => {
         </div>
       </div>
 
-      <div className="slider">
+      {/* <div className="slider">
         <div className="slide-track">
           {data.map((item, index) => (
             <div key={index} className="slide">
@@ -1378,6 +1381,9 @@ const Collection = () => {
             </div>
           ))}
         </div>
+      </div> */}
+      <div className="brands">
+        <BrandImageSlider brandImages={data} />
       </div>
     </>
   )
