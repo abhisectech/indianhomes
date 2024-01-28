@@ -15,7 +15,7 @@ const Page = ({}) => {
   const [showSlider, setShowSlider] = useState(false);
   const [images, setImages] = useState<Array<{ id: number; filename: string }>>([]);
   useEffect(() => {
-    const categoryIds = [64]; // Add the category IDs you want to fetch
+    const categoryIds = [67]; // Add the category IDs you want to fetch
     const fetchImages = async () => {
       try {
         const timestamp = Date.now();
