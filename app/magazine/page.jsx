@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './style.css';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
 import Header from '@/components/Navbar/Header';
 import Omsairam from '@/components/Navbar/Omsairam';
 import Footer from '@/components/Footer/Footer';
@@ -50,7 +49,7 @@ const WordPressPosts = () => {
   };
 
   return (
-    <Router>
+  
    <>
       <Omsairam />
       <Header />
@@ -75,8 +74,7 @@ const WordPressPosts = () => {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 mt-4">
           {posts.map((post) => (
-            <Link key={post.id} to={`/magazine/${post.id}`}>  {/* Assuming you have a route for individual blog posts */}
-              <div className="bg-white p-4 border rounded cursor-pointer">
+              <div key={post.id} to={`/magazine/${post.id}`} className="bg-white p-4 border rounded cursor-pointer">
                 {post._embedded && post._embedded['wp:featuredmedia'] && (
                   <img
                     src={post._embedded['wp:featuredmedia'][0].source_url}
@@ -87,13 +85,11 @@ const WordPressPosts = () => {
                 <h2 className="text-xl font-bold">{post.title.rendered}</h2>
                 <p className="text-gray-500">{new Date(post.date).toLocaleDateString()}</p>
               </div>
-            </Link>
           ))}
         </div>
       </div>
       <Footer />
     </>
-    </Router>
   );
 };
 
