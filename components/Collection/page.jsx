@@ -463,11 +463,11 @@ const Collection = () => {
     target: aniRef,
   })
 
-  const translateXright = useTransform(scrollYProgress, [1, 0], [20, -20])
-  const translateXleft = useTransform(scrollYProgress, [1, 0], [-20, 20])
+  const translateXright = useTransform(scrollYProgress, [1, 0], [200, -200])
+  const translateXleft = useTransform(scrollYProgress, [1, 0], [-200, 200])
 
-  const translateXrightMob = useTransform(scrollYProgress, [1, 0], [40, -40])
-  const translateXleftMob = useTransform(scrollYProgress, [1, 0], [-40, 40])
+  const translateXrightMob = useTransform(scrollYProgress, [1, 0], [400, -400])
+  const translateXleftMob = useTransform(scrollYProgress, [1, 0], [-400, 400])
 
   const translateXrightWithSpring = useSpring(translateXright, {
     stiffness: 200,
@@ -627,61 +627,116 @@ const Collection = () => {
           </h3>
         </div>
       </Marquee>
+      <div className="w-full overflow-hidden mx-auto text-center" ref={aniRef}>
+        <motion.h2
+          className="md:text-[72px] text-xl  text-center uppercase sm:my-8 mt-8 whitespace-nowrap"
+          style={
+            isLargeScreen
+              ? { x: translateXleftWithSpringMob }
+              : { x: translateXleftWithSpring }
+          }
+        >
+          <span className="font-[50]"> welcome to </span>
+          <span style={{ fontWeight: 900, WebkitTextStroke: '2px black' }}>
+            affordable luxury
+          </span>
+
+          <span className="font-[100]"> welcome to </span>
+          <span style={{ fontWeight: 900, WebkitTextStroke: '2px black' }}>
+            affordable luxury
+          </span>
+
+          <span className="font-[100]"> welcome to </span>
+          <span style={{ fontWeight: 900, WebkitTextStroke: '2px black' }}>
+            affordable luxury
+          </span>
+        </motion.h2>
+        <motion.h2
+          className="md:text-[72px] text-xl  text-center uppercase pr-2 sm:my-8 mb-8 whitespace-nowrap"
+          style={
+            isLargeScreen
+              ? { x: translateXrightWithSpringMob }
+              : { x: translateXrightWithSpring }
+          }
+        >
+          <span className="font-[50]"> welcome to </span>
+          <span style={{ fontWeight: 900, WebkitTextStroke: '2px black' }}>
+            affordable luxury
+          </span>
+
+          <span className="font-[100]"> welcome to </span>
+          <span style={{ fontWeight: 900, WebkitTextStroke: '2px black' }}>
+            affordable luxury
+          </span>
+
+          <span className="font-[100]"> welcome to </span>
+          <span style={{ fontWeight: 900, WebkitTextStroke: '2px black' }}>
+            affordable luxury
+          </span>
+        </motion.h2>
+      </div>
 
       <div className="container mx-auto ">
         <section className="newz">
           <div className="flex flex-wrap">
             <div className=" mb-4" id="news">
-              <section class="bordered bordersec"></section>
-              <div className="main-hero" ref={aniRef}>
+              {/* <section class="bordered bordersec"></section>
+              <div className="main-hero">
                 <div className="cover">
                   <div className="box ai"></div>
                   <div className="box bi"></div>
                 </div>
               </div>
-              <div className="animated">
-                <motion.h2
-                  className="md:text-6xl font-extrabold text-md  text-center overflow-hidden uppercase mt-8"
-                  style={
-                    isLargeScreen
-                      ? { x: translateXleftWithSpringMob }
-                      : { x: translateXleftWithSpring }
-                  }
-                >
-                  <span className="text-red-500">Dive Deep</span>{' '}
-                  <span className="italic font-light">into</span>
-                </motion.h2>
-                <motion.h2
-                  className="md:text-6xl font-extrabold text-md  text-center  overflow-hidden uppercase mb-8"
-                  style={
-                    isLargeScreen
-                      ? { x: translateXrightWithSpringMob }
-                      : { x: translateXrightWithSpring }
-                  }
-                >
-                  <span className="italic font-light">the World of </span>{' '}
-                  <b className="text-red-500">DIH</b>
-                </motion.h2>
+            </div> */}
 
-                <Link href="/luxe">
-                  <motion.video
-                    loop
-                    autoPlay
-                    playsInline
-                    muted
-                    controls={isPlaying}
-                    src="video/lux.mp4"
-                    alt=""
-                    height={10}
-                    width={1500}
-                    className="rounded shadow-md my-6 max-[600px]:mb-10"
-                    id="seek"
-                    variants={videoVariants}
-                    initial="initial"
-                    whileInView="animate"
-                  />
-                </Link>
-              </div>
+              {/* <div className="w-[150%%] overflow-hidden" ref={aniRef}>
+          <motion.h2
+            className="md:text-6xl font-extrabold text-md  text-center overflow-hidden uppercase mt-8"
+            style={
+              isLargeScreen
+                ? { x: translateXleftWithSpringMob }
+                : { x: translateXleftWithSpring }
+            }
+          >
+            <span className="text-red-500">Dive Deep</span>{' '}
+            <span className="italic font-light">into </span>
+            <span className="italic font-light">the World of </span>{' '}
+            <b className="text-red-500">DIH</b>
+          </motion.h2>
+          <motion.h2
+            className="md:text-6xl font-extrabold text-md  text-center  overflow-hidden uppercase mb-8"
+            style={
+              isLargeScreen
+                ? { x: translateXrightWithSpringMob }
+                : { x: translateXrightWithSpring }
+            }
+          >
+            <span className="text-red-500">Dive Deep</span>{' '}
+            <span className="italic font-light">into </span>
+            <span className="italic font-light">the World of </span>{' '}
+            <b className="text-red-500">DIH</b>
+          </motion.h2>
+        </div> */}
+
+              <Link href="/luxe">
+                <motion.video
+                  loop
+                  autoPlay
+                  playsInline
+                  muted
+                  controls={isPlaying}
+                  src="video/lux.mp4"
+                  alt=""
+                  height={10}
+                  width={1500}
+                  className="rounded shadow-md my-6 max-[600px]:mb-10"
+                  id="seek"
+                  variants={videoVariants}
+                  initial="initial"
+                  whileInView="animate"
+                />
+              </Link>
+
               <section class="bordered bordersec"></section>
               <div className="main-hero">
                 <div className="cover">
