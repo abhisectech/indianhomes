@@ -1,4 +1,3 @@
-// pages/index.js
 'use client'
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
@@ -6,6 +5,7 @@ import './style.css'
 import Header from '@/components/Navbar/Header'
 import Omsairam from '@/components/Navbar/Omsairam'
 import Footer from '@/components/Footer/Footer'
+import Link from 'next/link'
 
 const WordPressPosts = () => {
   const [categories, setCategories] = useState([])
@@ -78,27 +78,28 @@ const WordPressPosts = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 lg:gap-8 my-4 max-w-[1366px] mx-auto">
           {posts.map((post) => (
-            <div
-              key={post.id}
-              to={`/magazine/${post.id}`}
-              className="bg-white h-96 p-4 mx-4 border rounded cursor-pointer shadow-md transition-transform transform hover:scale-105"
-            >
-              {post._embedded && post._embedded['wp:featuredmedia'] && (
-                <img
-                  src={post._embedded['wp:featuredmedia'][0].source_url}
-                  alt={post._embedded['wp:featuredmedia'][0].alt_text}
-                  className="mb-2 w-full h-52 object-cover rounded-t"
-                />
-              )}
-              <div className="flex flex-col justify-between h-[40%]">
-                <h2 className="text-xl font-bold mb-2">
-                  {post.title.rendered}
-                </h2>
-                <p className="text-gray-500 text-sm mb-0">
-                  {new Date(post.date).toLocaleDateString()}
-                </p>
+            <Link key={post.id} href={`/magazine/${post.slug}/${post.id}`}>
+              <div
+                key={post.id}
+                className="bg-white h-96 p-4 mx-4 border rounded cursor-pointer shadow-md transition-transform transform hover:scale-105"
+              >
+                {post._embedded && post._embedded['wp:featuredmedia'] && (
+                  <img
+                    src={post._embedded['wp:featuredmedia'][0].source_url}
+                    alt={post._embedded['wp:featuredmedia'][0].alt_text}
+                    className="mb-2 w-full h-52 object-cover rounded-t"
+                  />
+                )}
+                <div className="flex flex-col justify-between h-[40%]">
+                  <h2 className="text-lg font-bold mb-2">
+                    {post.title.rendered}
+                  </h2>
+                  <p className="text-gray-500 text-sm mb-0">
+                    {new Date(post.date).toLocaleDateString()}
+                  </p>
+                </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

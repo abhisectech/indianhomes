@@ -21,7 +21,7 @@ const page = () => {
             <button className="inline-flex items-center mr-4">
               <ArrowLeft className="w-6 h-6" />
             </button>
-            <h3 className="inline text-lg">Passage</h3>
+            <h3 className="inline text-lg">Bedroom</h3>
           </div>
           <div className="p-4 m-4 bg-blue-500 flex justify-between rounded-lg shadow-lg text-white">
             <div>
@@ -43,7 +43,7 @@ const page = () => {
           </div>
 
           {/* the image map */}
-          <PassageImage />
+          <BedroomImage />
 
           <div className="flex flex-col items-center justify-center m-12">
             <h3 className="text-xl font-bold mb-4">

@@ -63,7 +63,7 @@ export default function RootLayout({
           <SpaceProvider>
             <GlobalStyle />
             <header className="dark:text-white"></header>
-            <ThemeSwitcher />
+            {/* <ThemeSwitcher /> */}
             {children}
           </SpaceProvider>
         </Providers>

@@ -632,22 +632,46 @@ const Collection = () => {
           className="md:text-[72px] text-xl  text-center uppercase sm:my-8 mt-8 whitespace-nowrap"
           style={
             isLargeScreen
-              ? { x: translateXleftWithSpringMob }
-              : { x: translateXleftWithSpring }
+              ? {
+                  x: translateXleftWithSpringMob,
+                  fontFamily: 'Roboto, sans-serif',
+                }
+              : {
+                  x: translateXleftWithSpring,
+                  fontFamily: 'Roboto, sans-serif',
+                }
           }
         >
           <span className="font-[50]"> welcome to </span>
-          <span style={{ fontWeight: 900, WebkitTextStroke: '2px black' }}>
+          <span
+            style={{
+              fontWeight: 900,
+              WebkitTextStroke: '2px black',
+              letterSpacing: '2px',
+            }}
+          >
             affordable luxury
           </span>
 
           <span className="font-[100]"> welcome to </span>
-          <span style={{ fontWeight: 900, WebkitTextStroke: '2px black' }}>
+          <span
+            style={{
+              fontWeight: 900,
+              WebkitTextStroke: '2px black',
+              letterSpacing: '2px',
+            }}
+          >
             affordable luxury
           </span>
 
           <span className="font-[100]"> welcome to </span>
-          <span style={{ fontWeight: 900, WebkitTextStroke: '2px black' }}>
+          <span
+            style={{
+              fontWeight: 900,
+              WebkitTextStroke: '2px black',
+              letterSpacing: '2px',
+            }}
+          >
             affordable luxury
           </span>
         </motion.h2>
@@ -655,22 +679,46 @@ const Collection = () => {
           className="md:text-[72px] text-xl  text-center uppercase pr-2 sm:my-8 mb-8 whitespace-nowrap"
           style={
             isLargeScreen
-              ? { x: translateXrightWithSpringMob }
-              : { x: translateXrightWithSpring }
+              ? {
+                  x: translateXrightWithSpringMob,
+                  fontFamily: 'Roboto, sans-serif',
+                }
+              : {
+                  x: translateXrightWithSpring,
+                  fontFamily: 'Roboto, sans-serif',
+                }
           }
         >
           <span className="font-[50]"> welcome to </span>
-          <span style={{ fontWeight: 900, WebkitTextStroke: '2px black' }}>
+          <span
+            style={{
+              fontWeight: 900,
+              WebkitTextStroke: '2px black',
+              letterSpacing: '2px',
+            }}
+          >
             affordable luxury
           </span>
 
           <span className="font-[100]"> welcome to </span>
-          <span style={{ fontWeight: 900, WebkitTextStroke: '2px black' }}>
+          <span
+            style={{
+              fontWeight: 900,
+              WebkitTextStroke: '2px black',
+              letterSpacing: '2px',
+            }}
+          >
             affordable luxury
           </span>
 
           <span className="font-[100]"> welcome to </span>
-          <span style={{ fontWeight: 900, WebkitTextStroke: '2px black' }}>
+          <span
+            style={{
+              fontWeight: 900,
+              WebkitTextStroke: '2px black',
+              letterSpacing: '2px',
+            }}
+          >
             affordable luxury
           </span>
         </motion.h2>
