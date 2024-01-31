@@ -7,7 +7,9 @@ import { GlobalStyle } from '../components/GlobalStyles'
 import './globals.css'
 import ThemeSwitcher from './ThemeSwitcher'
 import Providers from './providers'
+import { Provider } from 'react-redux';
 import { SpaceProvider } from './SpaceContext'
+import store from '@/components/redux/store'
 export default function RootLayout({
   children,
 }: {
@@ -18,8 +20,6 @@ export default function RootLayout({
       <Head>
         <title>Top Interior Designer & Architect - Delhi - Gurgaon - India</title>
         <meta name="description" content="Connect with the best interior and architect brand in Delhi, gurgaon, noida & India. we serve most affordable modular interiors with top quality materials." />
-
-
         <meta name="Author" content="Design Indian Homes" />
         <meta name="Generator" content="www.designindianhomes.com" />
         <meta name="Language" content="en" />
@@ -59,6 +59,7 @@ export default function RootLayout({
 
       </Head>
       <body className="dark:text-white">
+        <Provider store={store}>
         <Providers>
           <SpaceProvider>
             <GlobalStyle />
@@ -67,6 +68,7 @@ export default function RootLayout({
             {children}
           </SpaceProvider>
         </Providers>
+        </Provider>
       </body>
     </html>
   )
