@@ -15,9 +15,12 @@ import MyForm from "../components/MyForm";
 import "../style/hero.css";
 import Omsairam from "../components/Navbar/Omsairam";
 import PostFooter from "../components/PostFooter/page";
+// import { Provider } from 'react-redux';
+// import store from '@/components/redux/store'
 export default function Home() {
   return (
     <>
+    {/* <Provider store={store}>  */}
       <Fragment>
         <Omsairam />
         <Header />
@@ -38,6 +41,7 @@ export default function Home() {
         <PostFooter />
         <Footer />
       </Fragment>
+      {/* </Provider> */}
     </>
   );
 }

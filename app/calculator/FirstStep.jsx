@@ -1,53 +1,85 @@
-'use state'
-import React, { useState } from 'react'
-import IncDecButton from './IncDecButton'
-const FirstStepSection = () => {
-  // State for options
-  const [selectedOptionSet1, setSelectedOptionSet1] = useState(null)
-  const [selectedOptionSet2, setSelectedOptionSet2] = useState(null)
-  const [selectedOptionSet3, setSelectedOptionSet3] = useState(null)
-  const [selectedOptionSet4, setSelectedOptionSet4] = useState(null)
-  const [textInput, setTextInput] = useState('')
+"use strict";
+import React, { useEffect } from 'react';
+import {Provider} from 'react-redux';
+import store from '@/components/redux/store'
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  setOptionSet1,
+  setOptionSet2,
+  setOptionSet3,
+  setOptionSet4,
+  setTextInput,
+} from '@/components/redux/actions/firstStepActions'
 
-  // Handle button click for each option set
+const FirstStepSection = () => {
+  const dispatch = useDispatch();
+  const {
+    selectedOptionSet1,
+    selectedOptionSet2,
+    selectedOptionSet3,
+    selectedOptionSet4,
+    textInput,
+  } = useSelector((state) => state.firstStep);
+
+  // Load saved input values from local storage on component mount
+  useEffect(() => {
+    const savedData = JSON.parse(localStorage.getItem('firstStepData')) || {};
+    dispatch(setOptionSet1(savedData.selectedOptionSet1 || null));
+    dispatch(setOptionSet2(savedData.selectedOptionSet2 || null));
+    dispatch(setOptionSet3(savedData.selectedOptionSet3 || null));
+    dispatch(setOptionSet4(savedData.selectedOptionSet4 || null));
+    dispatch(setTextInput(savedData.textInput || ''));
+  }, [dispatch]);
+
+  // Save input values to local storage whenever they change
+  useEffect(() => {
+    const dataToSave = {
+      selectedOptionSet1,
+      selectedOptionSet2,
+      selectedOptionSet3,
+      selectedOptionSet4,
+      textInput,
+    };
+    localStorage.setItem('firstStepData', JSON.stringify(dataToSave));
+  }, [selectedOptionSet1, selectedOptionSet2, selectedOptionSet3, selectedOptionSet4, textInput]);
+
   const handleButtonClick = (option, setNumber, event) => {
     if (event) {
-      event.preventDefault() // Prevent the default form submission behavior
+      event.preventDefault();
     }
     switch (setNumber) {
       case 1:
-        setSelectedOptionSet1(option)
-        break
+        dispatch(setOptionSet1(option));
+        break;
       case 2:
-        setSelectedOptionSet2(option)
-        break
+        dispatch(setOptionSet2(option));
+        break;
       case 3:
-        setSelectedOptionSet3(option)
-        break
+        dispatch(setOptionSet3(option));
+        break;
       case 4:
-        setSelectedOptionSet4(option)
-        break
+        dispatch(setOptionSet4(option));
+        break;
       default:
-        break
+        break;
     }
-  }
+  };
 
-  // Handle input text change
   const handleTextInputChange = (e) => {
-    setTextInput(e.target.value)
-  }
+    dispatch(setTextInput(e.target.value));
+  };
 
-  // Log the selected options and text input on button click (you can modify this logic)
   const handleFormSubmit = (event) => {
-    event.preventDefault()
-    console.log('Selected Option Set 1:', selectedOptionSet1)
-    console.log('Selected Option Set 2:', selectedOptionSet2)
-    console.log('Selected Option Set 3:', selectedOptionSet3)
-    console.log('Selected Option Set 4:', selectedOptionSet4)
-    console.log('Text Input:', textInput)
-  }
+    event.preventDefault();
+    console.log('Selected Option Set 1:', selectedOptionSet1);
+    console.log('Selected Option Set 2:', selectedOptionSet2);
+    console.log('Selected Option Set 3:', selectedOptionSet3);
+    console.log('Selected Option Set 4:', selectedOptionSet4);
+    console.log('Text Input:', textInput);
+  };
 
   return (
+    <Provider store={store}>
     <div>
       <form className="m-4">
         {/* First set of options */}
@@ -198,7 +230,7 @@ const FirstStepSection = () => {
         </div>
 
         {/* Input text field */}
-        <div>
+        <div> 
           <h3 className="text-lg font-bold mb-2">
             Your City <span className="text-red-500">*</span>
           </h3>
@@ -222,6 +254,7 @@ const FirstStepSection = () => {
         </button>
       </form>
     </div>
+    </Provider>
   )
 }
 
