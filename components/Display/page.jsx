@@ -1,54 +1,50 @@
 'use client'
 import Image from 'next/image'
 import React, { useState, useEffect } from 'react'
-import Carousel from 'react-multi-carousel'
+
 import 'react-multi-carousel/lib/styles.css'
 import { motion } from 'framer-motion'
-const responsive = {
-  desktop: {
-    breakpoint: { max: 3000, min: 1024 },
-    items: 4,
-    slidesToSlide: 4, // optional, default to 1.
-  },
-  tablet: {
-    breakpoint: { max: 1024, min: 768 },
-    items: 3,
-    slidesToSlide: 3, // optional, default to 1.
-  },
-  mobile: {
-    breakpoint: { max: 767, min: 264 },
-    items: 2,
-    slidesToSlide: 1, // optional, default to 1.
-  },
+import Slider from 'react-slick'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
+
+const Carousel = () => {
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    nextArrow: false,
+    prevArrow: false,
+    arrows: false,
+  }
+  const images = [
+    '/images/52.png',
+    '/images/74.png',
+    '/images/12.png',
+    '/images/50.png',
+    // Add more image URLs as needed
+  ]
+  return (
+    <Slider {...settings} className="mx-auto w-[300px] h-[300px] rounded-lg">
+      {images.map((image, index) => (
+        <div
+          key={index}
+          className="outline-none focus:outline-none rounded-lg w-[300px] h-[300px]"
+        >
+          <img
+            src={image}
+            alt={`Slide ${index + 1}`}
+            className="w-full h-auto rounded-lg"
+          />
+        </div>
+      ))}
+    </Slider>
+  )
 }
-
-const sliderImageUrl = [
-  //First image url
-  {
-    url: 'https://source.unsplash.com/black-flat-screen-tv-mounted-on-white-wall-3hEGHI4b4gg',
-  },
-  {
-    url: 'https://source.unsplash.com/white-wooden-kitchen-island-and-cupboard-cabinets-near-glass-panel-door-AQl-J19ocWE',
-  },
-  //Second image url
-  {
-    url: 'https://source.unsplash.com/white-and-black-kitchen-cabinet-jylx7bVZMIk',
-  },
-  //Third image url
-  {
-    url: 'https://source.unsplash.com/black-round-bowl-on-brown-wooden-seat-NWG-vYPZDoM',
-  },
-
-  //Fourth image url
-
-  {
-    url: 'https://source.unsplash.com/two-brown-wooden-bar-stools-cc0Gg3BegjE',
-  },
-
-  {
-    url: 'https://source.unsplash.com/brown-and-white-wooden-kitchen-cabinet-DQpUeNzRj6s',
-  },
-]
 
 const Display = () => {
   const [isPlaying, setIsPlaying] = useState(false)
@@ -189,127 +185,25 @@ const Display = () => {
 
       <section class="bordered bordersec"></section>
       <div className="gridz">
-        <article className="mainz">
+        <article className="mainz rounded-lg">
           <h1>ABOUT US</h1>
-          <p>
-            We are one of the oldest business families in India with a family
-            legacy of 112 years in business. Started for the noble cause of
-            nation-building and self-sustenance in a pre-independent India, the
-            forefathers believed ethical, honest and transparent business
-            practices should form the foundation of the group.
-            <br />
-            Having ventured into jewellery retailing in 1993 in Thrissur,
-            Kerala, India, where we are headquartered, and as on June 30, 2020,
-            we have 137 showrooms spread across India and GCC
-          </p>
+          <div className="text-left">
+            <p>
+              <span className="text-4xl font-bold">D</span>esign Indian Homes is
+              India&apos;s top Interior, Architectural & Modular Interior Brand
+              serving across Delhi, Gurgaon, Noida & NCR. It is the most sought
+              out by Homemakers, Architects, Interior Designers, Developers &
+              just anyone who needs an Affordable Interior Makeover, Renovation
+              Services, Architectural Services, Modular Kitchen, Wardrobe,
+              Vanities, TV Units, Living works, Bathroom Or Just a peaceful
+              Turnkey Work by Our Team. We are serving End to End Interiors &
+              Modular Interiors across Delhi, Gurgaon, Noida, Faridabad & across
+              NCR.
+            </p>
+          </div>
         </article>
         <section className="sidezi">
-          <div className="sliderz slider--cover">
-            <div className="slider__inner">
-              <input
-                defaultChecked=""
-                type="radio"
-                name="slider__radiobox"
-                id="slider__radiobox--1"
-                className="slider__radiobox slider__radiobox--1"
-              />
-              <label
-                htmlFor="slider__radiobox--1"
-                className="slider__radiobox-label slider__radiobox-label--item slider__radiobox-label--item-1"
-              />
-              <label
-                htmlFor="slider__radiobox--4"
-                className="slider__radiobox-label slider__radiobox-label--prev slider__radiobox-label--prev-4"
-              />
-              <label
-                htmlFor="slider__radiobox--2"
-                className="slider__radiobox-label slider__radiobox-label--next slider__radiobox-label--next-2"
-              />
-              <input
-                type="radio"
-                name="slider__radiobox"
-                id="slider__radiobox--2"
-                className="slider__radiobox slider__radiobox--2"
-              />
-              <label
-                htmlFor="slider__radiobox--2"
-                className="slider__radiobox-label slider__radiobox-label--item slider__radiobox-label--item-2"
-              />
-              <label
-                htmlFor="slider__radiobox--1"
-                className="slider__radiobox-label slider__radiobox-label--prev slider__radiobox-label--prev-1"
-              />
-              <label
-                htmlFor="slider__radiobox--3"
-                className="slider__radiobox-label slider__radiobox-label--next slider__radiobox-label--next-3"
-              />
-              <input
-                type="radio"
-                name="slider__radiobox"
-                id="slider__radiobox--3"
-                className="slider__radiobox slider__radiobox--3"
-              />
-              <label
-                htmlFor="slider__radiobox--3"
-                className="slider__radiobox-label slider__radiobox-label--item slider__radiobox-label--item-3"
-              />
-              <label
-                htmlFor="slider__radiobox--2"
-                className="slider__radiobox-label slider__radiobox-label--prev slider__radiobox-label--prev-2"
-              />
-              <label
-                htmlFor="slider__radiobox--4"
-                className="slider__radiobox-label slider__radiobox-label--next slider__radiobox-label--next-4"
-              />
-              <input
-                type="radio"
-                name="slider__radiobox"
-                id="slider__radiobox--4"
-                className="slider__radiobox slider__radiobox--4"
-              />
-              <label
-                htmlFor="slider__radiobox--4"
-                className="slider__radiobox-label slider__radiobox-label--item slider__radiobox-label--item-4"
-              />
-              <label
-                htmlFor="slider__radiobox--3"
-                className="slider__radiobox-label slider__radiobox-label--prev slider__radiobox-label--prev-3"
-              />
-              <label
-                htmlFor="slider__radiobox--1"
-                className="slider__radiobox-label slider__radiobox-label--next slider__radiobox-label--next-1"
-              />
-              <div className="slider__slides">
-                <div className="slider__slide slider__slide--1">
-                  <Image src="/images/52.png" alt="" width={300} height={300} />
-                </div>
-                <div className="slider__slide slider__slide--2">
-                  <Image
-                    alt="Placeholder 1200x600"
-                    src="/images/74.png"
-                    width={300}
-                    height={300}
-                  />
-                </div>
-                <div className="slider__slide slider__slide--3">
-                  <Image
-                    alt="Placeholder 300x150 "
-                    src="/images/12.png"
-                    width={300}
-                    height={300}
-                  />
-                </div>
-                <div className="slider__slide slider__slide--4">
-                  <Image
-                    alt="Placeholder 800x400"
-                    src="/images/50.png"
-                    width={300}
-                    height={300}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
+          <Carousel />
         </section>
       </div>
       <section class="bordered bordersec"></section>

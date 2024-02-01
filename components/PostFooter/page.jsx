@@ -29,7 +29,14 @@ const PostFooter = () => {
           className="w-full h-full"
         />
       </section>
-
+      <div className=" mt-24 pt-16 w-full h-full flex items-center justify-center bg-slate-100">
+        <p
+          className="text-black font-bold md:text-5xl sm:text-4xl text-2xl text-shadow-lg"
+          style={{ textShadow: '3px 3px 6px rgba(0, 0, 0, 0.5)' }}
+        >
+          CONNECT WITH US <span className="text-red-500 underline">NOW</span>
+        </p>
+      </div>
       <div className="flex flex-col sm:flex-row gap-4 bg-slate-100 w-full mx-auto py-16">
         <div className="p-4 bg-white rounded-lg shadow-lg sm:w-1/3">
           <div className="font-bold text-gray-800 px-8 ">

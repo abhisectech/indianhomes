@@ -107,7 +107,8 @@ const CarouselBeforeAfter = () => {
   return (
     <div className="flex flex-col justify-center items-center w-full ">
       {/* Your existing content */}
-      <div className="sm:px-16 my-16" id="">
+      <hr className="border-t-[1px] border-red-500 w-full mb-8 my-16" />
+      <div className="sm:px-16 " id="">
         {/* ... existing content ... */}
         <div className="mt-16 sm:mt-0">
           <div className="flex justify-center items-center sm:my-8">
