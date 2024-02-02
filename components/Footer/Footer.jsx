@@ -324,6 +324,79 @@ function Time() {
   )
 }
 
+const LetsConnectForm = () => {
+  const handleFormSubmit = (event) => {
+    event.preventDefault()
+
+    const formData = {
+      name: event.target.elements.name.value,
+      email: event.target.elements.email.value,
+      contactNumber: event.target.elements.contactNumber.value,
+      message: event.target.elements.message.value,
+    }
+    const recipientEmail = 'saurabhbehal@gmail.com'
+    const emailData = `
+        Name: ${formData.name},
+        Email: ${formData.email},
+        Mobile: ${formData.contactNumber},
+        Message: ${formData.message},
+     
+    `
+    const mailtoLink = `mailto:${recipientEmail}?subject=Booked a Design Visit&body=${encodeURIComponent(
+      emailData ?? null
+    )}`
+
+    window.open(mailtoLink, '_blank')
+  }
+
+  return (
+    <form onSubmit={handleFormSubmit} className="mt-4">
+      <input
+        type="text"
+        name="name"
+        placeholder="Name"
+        className="w-full mb-4 border-b border-gray-300 focus:outline-none focus:border-blue-500 placeholder-gray-500 py-2 px-4 rounded-md transition-all duration-300 bg-gradient-to-r from-teal-400 to-blue-500"
+      />
+
+      <br />
+
+      <input
+        type="email"
+        name="email"
+        placeholder="Email"
+        className="w-full mb-4 border-b border-gray-300 focus:outline-none focus:border-blue-500 placeholder-gray-500 py-2 px-4 rounded-md transition-all duration-300 bg-gradient-to-r from-teal-400 to-blue-500"
+      />
+
+      <br />
+
+      <input
+        type="text"
+        name="contactNumber"
+        placeholder="Mobile Number"
+        className="w-full mb-4 border-b border-gray-300 focus:outline-none focus:border-blue-500 placeholder-gray-500 py-2 px-4 rounded-md transition-all duration-300 bg-gradient-to-r from-teal-400 to-blue-500"
+      />
+
+      <br />
+
+      <textarea
+        name="message"
+        placeholder="Message"
+        className="w-full mb-8 border-b border-gray-300 focus:outline-none focus:border-blue-500 placeholder-gray-500 py-2 px-4 rounded-md transition-all duration-300 bg-gradient-to-r from-teal-400 to-blue-500"
+      />
+
+      <br />
+      <button
+        type="submit"
+        // className="py-2 px-6 hover:text-white hover:bg-black"
+        // style={{ border: "1px solid black" }}
+        className="w-full rounded-full border-b border-gray-300 focus:outline-none focus:border-blue-500 placeholder-gray-500 py-2 px-4 transition-all duration-300 bg-gradient-to-r from-lime-300 to-green-400"
+      >
+        Submit
+      </button>
+    </form>
+  )
+}
+
 export class Footer extends Component {
   render() {
     return (
@@ -598,58 +671,7 @@ export class Footer extends Component {
                 </div>
                 <div>
                   <h1 className="text-4xl font-bold">LETS CONNECT</h1>
-                  <form onSubmit={null} className="mt-4">
-                    <input
-                      type="text"
-                      name="name"
-                      value={null}
-                      placeholder="Name"
-                      className="w-full mb-4 border-b border-gray-300 focus:outline-none focus:border-blue-500 placeholder-gray-500 py-2 px-4 rounded-md transition-all duration-300 bg-gradient-to-r from-teal-400 to-blue-500"
-                      onChange={null}
-                    />
-
-                    <br />
-
-                    <input
-                      type="email"
-                      name="email"
-                      placeholder="Email"
-                      value={null}
-                      className="w-full mb-4 border-b border-gray-300 focus:outline-none focus:border-blue-500 placeholder-gray-500 py-2 px-4 rounded-md transition-all duration-300 bg-gradient-to-r from-teal-400 to-blue-500"
-                      onChange={null}
-                    />
-
-                    <br />
-
-                    <input
-                      type="text"
-                      name="contactNumber"
-                      value={null}
-                      placeholder="Mobile Number"
-                      className="w-full mb-4 border-b border-gray-300 focus:outline-none focus:border-blue-500 placeholder-gray-500 py-2 px-4 rounded-md transition-all duration-300 bg-gradient-to-r from-teal-400 to-blue-500"
-                      onChange={null}
-                    />
-
-                    <br />
-
-                    <textarea
-                      name="message"
-                      value={null}
-                      placeholder="Message"
-                      onChange={null}
-                      className="w-full mb-8 border-b border-gray-300 focus:outline-none focus:border-blue-500 placeholder-gray-500 py-2 px-4 rounded-md transition-all duration-300 bg-gradient-to-r from-teal-400 to-blue-500"
-                    />
-
-                    <br />
-                    <button
-                      type="submit"
-                      // className="py-2 px-6 hover:text-white hover:bg-black"
-                      // style={{ border: "1px solid black" }}
-                      className="w-full rounded-full border-b border-gray-300 focus:outline-none focus:border-blue-500 placeholder-gray-500 py-2 px-4 transition-all duration-300 bg-gradient-to-r from-lime-300 to-green-400"
-                    >
-                      Submit
-                    </button>
-                  </form>
+                  <LetsConnectForm />
                 </div>
               </div>
 
