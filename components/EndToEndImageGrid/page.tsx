@@ -166,7 +166,7 @@ const EndToEndImageGrid = () => {
               <motion.div
                 variants={imagesVariant}
                 key={index}
-                className="text-center md:w-full sm:w-4/5"
+                className="text-center md:w-full sm:w-4/5  flex flex-col justify-center items-center"
               >
                 {/* <div className="mb-4 sm:ml-8">
                     <Image

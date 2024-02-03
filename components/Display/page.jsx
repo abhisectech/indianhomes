@@ -29,11 +29,14 @@ const Carousel = () => {
     // Add more image URLs as needed
   ]
   return (
-    <Slider {...settings} className="mx-auto w-[300px] h-[300px] rounded-lg">
+    <Slider
+      {...settings}
+      className="mx-auto w-full sm:w-[400px] h-[360px] rounded-lg overflow-hidden"
+    >
       {images.map((image, index) => (
         <div
           key={index}
-          className="outline-none focus:outline-none rounded-lg w-[300px] h-[300px]"
+          className="outline-none focus:outline-none rounded-lg w-full sm:w-[400px] h-[360px]"
         >
           <img
             src={image}
@@ -202,7 +205,8 @@ const Display = () => {
             </p>
           </div>
         </article>
-        <section className="sidezi">
+        {/* sidezi */}
+        <section className="w-full ">
           <Carousel />
         </section>
       </div>

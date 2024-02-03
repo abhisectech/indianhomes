@@ -971,10 +971,7 @@ const Collection = () => {
         <h1 className="text-3xl font-bold sm:mb-16 mb-8 text-center">
           Why Design Indian Homes?
         </h1>
-        <div
-          id=""
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 gap-y-8"
-        >
+        <div id="" className="grid grid-cols-2 lg:grid-cols-4 gap-4 gap-y-8">
           <div className="flex flex-col items-center text-center">
             <Image
               width={100}
@@ -1113,51 +1110,49 @@ const Collection = () => {
           whileInView="animate"
         >
           <motion.div className="card" variants={imagesVariants}>
-            <div className="grin">
-              <article className="mainz ">
-                <h2>Connect on</h2>
-                <h1>Whatsapp</h1>
-              </article>
-              <section className="sidez">
-                <Image
-                  src="https://www.tanishq.co.in/on/demandware.static/-/Library-Sites-TanishqSharedLibrary/default/dw9fa2f775//images/home/whatsapp-icon.svg"
-                  width={0}
-                  height={0}
-                />
-              </section>
-            </div>
+            <a
+              href="https://wa.me/9899264978"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div className="grin">
+                <article className="mainz">
+                  <h2>Connect on</h2>
+                  <h1>Whatsapp</h1>
+                </article>
+                <section className="sidez">
+                  <Image src="/images/whatsapp-icon.svg" width={0} height={0} />
+                </section>
+              </div>
+            </a>
           </motion.div>
 
           <motion.div className="card" variants={imagesVariants}>
+          <Link href="/book-visit">
             <div className="grin">
               <article className="mainz ">
                 <h2>Book An</h2>
                 <h1>Appointment</h1>
               </article>
               <section className="sidez">
-                <Image
-                  src="https://www.tanishq.co.in/on/demandware.static/-/Library-Sites-TanishqSharedLibrary/default/dwac5fb555//images/home/marker-icon.svg"
-                  width={0}
-                  height={0}
-                />
+                <Image src="/images/marker-icon.svg" width={0} height={0} />
               </section>
-            </div>
+            </div></Link>
+
           </motion.div>
 
           <motion.div className="card" variants={imagesVariants}>
-            <div className="grin">
-              <article className="mainz ">
-                <h2>Schedule A</h2>
-                <h1>Video Call</h1>
-              </article>
-              <section className="sidez">
-                <Image
-                  src="https://www.tanishq.co.in/on/demandware.static/-/Library-Sites-TanishqSharedLibrary/default/dw153e7692//images/home/video-icon.svg"
-                  width={0}
-                  height={0}
-                />
-              </section>
-            </div>
+            <Link href="/schedule-videocall">
+              <div className="grin">
+                <article className="mainz ">
+                  <h2>Schedule A</h2>
+                  <h1>Video Call</h1>
+                </article>
+                <section className="sidez">
+                  <Image src="/images/video-icon.svg" width={0} height={0} />
+                </section>
+              </div>
+            </Link>
           </motion.div>
         </motion.section>
       </div>

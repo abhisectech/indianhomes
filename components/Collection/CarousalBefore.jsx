@@ -59,22 +59,30 @@ const CarouselBeforeAfter = () => {
     preloadImages()
   }, [])
 
+  // const handleBack = () => {
+  //   if (idx > 1) {
+  //     setIdx(idx - 1)
+  //     // console.log('new -' + idx)
+  //   } else {
+  //     console.log('idx is less then 1')
+  //   }
+  // }
+
+  // const handleNext = () => {
+  //   if (idx < 4) {
+  //     setIdx(idx + 1)
+  //     // console.log('new -' + idx)
+  //   } else {
+  //     console.log('idx is more then 4')
+  //   }
+  // }
+
   const handleBack = () => {
-    if (idx > 1) {
-      setIdx(idx - 1)
-      // console.log('new -' + idx)
-    } else {
-      console.log('idx is less then 1')
-    }
+    setIdx(((idx - 2 + totalImages) % totalImages) + 1)
   }
 
   const handleNext = () => {
-    if (idx < 4) {
-      setIdx(idx + 1)
-      // console.log('new -' + idx)
-    } else {
-      console.log('idx is more then 4')
-    }
+    setIdx((idx % totalImages) + 1)
   }
 
   const FIRST_IMAGE1 = {
@@ -138,13 +146,8 @@ const CarouselBeforeAfter = () => {
         <div className="mb-16 w-full max-h-[90%]">
           <div className="flex items-center justify-center">
             <button
-              className={`mr-auto border-2 border-blue-500 rounded-lg p-2 transition duration-300 ease-in-out ${
-                idx === 1
-                  ? 'opacity-50 cursor-not-allowed'
-                  : 'hover:bg-blue-500 hover:text-white'
-              }`}
+              className={`ml-auto border-2 border-blue-500 rounded-lg p-2 transition duration-300 ease-in-out hover:bg-blue-500 hover:text-white `}
               onClick={handleBack}
-              disabled={idx === 1} // Disable if idx is 1
             >
               <ChevronLeft />
             </button>
@@ -154,13 +157,8 @@ const CarouselBeforeAfter = () => {
               className="mx-4 w-full" // Adjust margin as needed
             />
             <button
-              className={`ml-auto border-2 border-blue-500 rounded-lg p-2 transition duration-300 ease-in-out ${
-                idx === 4
-                  ? 'opacity-50 cursor-not-allowed'
-                  : 'hover:bg-blue-500 hover:text-white'
-              }`}
+              className={`ml-auto border-2 border-blue-500 rounded-lg p-2 transition duration-300 ease-in-out hover:bg-blue-500 hover:text-white `}
               onClick={handleNext}
-              disabled={idx === 4} // Disable if idx is 4
             >
               <ChevronRight />
             </button>

@@ -1711,7 +1711,7 @@ section.outter.hero-video {
   }
 }
 
-@media (min-width: 200px) and (max-width: 1000px) {
+@media (min-width: 200px) and (max-width: 1024px) {
   .jiu {
     display: none;
   }

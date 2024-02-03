@@ -30,7 +30,7 @@ const FirstForm = () => {
   }
 
   return (
-    <div className="sm:p-4 sm:pb-4 bg-white rounded-lg shadow-lg sm:w-1/3">
+    <div className="sm:p-4 pb-4 bg-white rounded-lg shadow-lg sm:w-1/3">
       <div className="font-bold text-gray-800 px-8 ">
         <Marquee style={{ color: 'Red' }}>
           <div className="marquee">
