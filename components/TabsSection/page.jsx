@@ -114,7 +114,7 @@ const ResponsiveTabs = () => {
             <StyledTabs
               value={value}
               onChange={handleChange}
-              allowScrollButtonsMobile
+              variant="scrollable"
               scrollButtons="auto"
               aria-label="styled tabs example"
               className="flex justify-center"

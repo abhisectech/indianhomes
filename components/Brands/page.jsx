@@ -6,7 +6,7 @@ import 'react-multi-carousel/lib/styles.css'
 
 const MobileCard = ({ image, title, description, slug }) => {
   return (
-    <div className="w-[360px] h-[400px] mx-auto bg-white rounded-md overflow-hidden shadow-lg m-4">
+    <div className="w-[340px] h-[400px] mx-auto bg-white rounded-md overflow-hidden shadow-lg m-4">
       <Link href={`/offers/${slug}`}>
         <img
           src={image}
@@ -48,7 +48,7 @@ const MobileCarousel = () => {
       image:
         'https://source.unsplash.com/gray-2-seat-sofa-near-round-table-WPqcd-gpJeE',
       title: 'AFFORDABLE, YET WHOLESOME',
-      description: ' On Top Priority',
+      description: 'On Top Priority',
       slug: '#top-priority',
     },
     {

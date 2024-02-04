@@ -111,7 +111,7 @@ const DesignDropdown = ({
         </svg>
       </button>
       {isOpen && (
-        <div className="z-10 absolute mt-2 bg-[#87fff0] border rounded-lg shadow-md w-64">
+        <div className="z-10 block mt-2 bg-[#87fff0] border rounded-lg shadow-md w-64">
           <ul>
             {links.map((link, index) => (
               <li

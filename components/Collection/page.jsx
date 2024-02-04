@@ -230,8 +230,8 @@ const TruncatedText = () => {
     <div className=" text-center">
       <div className={` ${showFullText ? 'my-8' : 'my-2'}`}>
         {showFullText ? (
-          <div className="mb-6 text-left mx-12">
-            <div className="mb-2">
+          <div className="mb-6 text-left sm:mx-12 mx-4">
+            <div className="mb-2 text-left">
               <p>
                 <span className="text-4xl font-bold">D</span>esign Indian Homes
                 is India&apos;s top Interior, Architectural & Modular Interior
@@ -333,8 +333,8 @@ const TruncatedText = () => {
             Wood Societies since 2016. <br />
           </div>
         ) : (
-          <div className="mb-2 text-left mx-12">
-            <p>
+          <div className="mb-2 text-left sm:mx-12 mx-4">
+            <p className="text-left">
               <span className="text-4xl font-bold">D</span>esign Indian Homes is
               India&apos;s top Interior, Architectural & Modular Interior Brand
               serving across Delhi, Gurgaon, Noida & NCR. It is the most sought
@@ -1128,17 +1128,17 @@ const Collection = () => {
           </motion.div>
 
           <motion.div className="card" variants={imagesVariants}>
-          <Link href="/book-visit">
-            <div className="grin">
-              <article className="mainz ">
-                <h2>Book An</h2>
-                <h1>Appointment</h1>
-              </article>
-              <section className="sidez">
-                <Image src="/images/marker-icon.svg" width={0} height={0} />
-              </section>
-            </div></Link>
-
+            <Link href="/book-visit">
+              <div className="grin">
+                <article className="mainz ">
+                  <h2>Book An</h2>
+                  <h1>Appointment</h1>
+                </article>
+                <section className="sidez">
+                  <Image src="/images/marker-icon.svg" width={0} height={0} />
+                </section>
+              </div>
+            </Link>
           </motion.div>
 
           <motion.div className="card" variants={imagesVariants}>
