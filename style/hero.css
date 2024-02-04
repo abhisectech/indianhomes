@@ -1333,7 +1333,7 @@ input[type="range"]:focus::-moz-range-thumb {
   top: -170px;
 }
 
-@media (max-width: 786px) {
+@media (-webkit-min-device-pixel-ratio: 786px) {
   .main1 {
     display: grid;
     align-items: center;
@@ -1342,6 +1342,7 @@ input[type="range"]:focus::-moz-range-thumb {
     z-index: 0;
     top: -100px;
     opacity: 0.5;
+   
   }
 
   .main1 img {
@@ -1354,6 +1355,8 @@ input[type="range"]:focus::-moz-range-thumb {
     animation-iteration-count: infinite;
     filter: drop-shadow(0px 0px 5px #333);
     opacity: 0.5;
+
+   
   }
   #rotatingText1 {
     animation-name: rotate-circle;
@@ -1363,9 +1366,10 @@ input[type="range"]:focus::-moz-range-thumb {
     position: absolute;
     top: -170px;
     opacity: 0.8;
+     
   }
 }
-@media (max-width: 786px) {
+@media (-webkit-min-device-pixel-ratio: 786px) {
   .main2 {
     display: grid;
     align-items: center;
