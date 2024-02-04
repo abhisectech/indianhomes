@@ -116,6 +116,7 @@ const CarouselBeforeAfter = () => {
     <div className="flex flex-col justify-center items-center w-full ">
       {/* Your existing content */}
       <hr className="border-t-[1px] border-red-500 w-full mb-8 my-16" />
+
       <div className="sm:px-16 " id="">
         {/* ... existing content ... */}
         <div className="mt-16 sm:mt-0">
@@ -143,27 +144,53 @@ const CarouselBeforeAfter = () => {
 
       {/* Carousel */}
       {imagesLoaded && (
-        <div className="mb-16 w-full max-h-[90%]">
-          <div className="flex items-center justify-center">
-            <button
-              className={`ml-auto border-2 border-blue-500 rounded-lg p-2 transition duration-300 ease-in-out hover:bg-blue-500 hover:text-white `}
-              onClick={handleBack}
-            >
-              <ChevronLeft />
-            </button>
-            <ReactBeforeSliderComponent
-              firstImage={FIRST_IMAGE1}
-              secondImage={SECOND_IMAGE1}
-              className="mx-4 w-full" // Adjust margin as needed
-            />
-            <button
-              className={`ml-auto border-2 border-blue-500 rounded-lg p-2 transition duration-300 ease-in-out hover:bg-blue-500 hover:text-white `}
-              onClick={handleNext}
-            >
-              <ChevronRight />
-            </button>
+        <>
+          <div className="hidden sm:block mb-16 w-full max-h-[90%]">
+            <div className="flex items-center justify-center">
+              <button
+                className={`ml-auto border-2 border-blue-500 rounded-lg p-2 transition duration-300 ease-in-out hover:bg-blue-500 hover:text-white `}
+                onClick={handleBack}
+              >
+                <ChevronLeft />
+              </button>
+              <ReactBeforeSliderComponent
+                firstImage={FIRST_IMAGE1}
+                secondImage={SECOND_IMAGE1}
+                className="mx-4 w-full" // Adjust margin as needed
+              />
+              <button
+                className={`ml-auto border-2 border-blue-500 rounded-lg p-2 transition duration-300 ease-in-out hover:bg-blue-500 hover:text-white `}
+                onClick={handleNext}
+              >
+                <ChevronRight />
+              </button>
+            </div>
           </div>
-        </div>
+          {/* for small screen */}
+          <div className="block sm:hidden mb-16 w-full max-h-[90%]">
+            <div className="flex flex-col items-center justify-center gap-4">
+              <ReactBeforeSliderComponent
+                firstImage={FIRST_IMAGE1}
+                secondImage={SECOND_IMAGE1}
+                className="mx-4 w-full" // Adjust margin as needed
+              />
+              <div>
+                <button
+                  className={`ml-auto mr-2 border-2 border-blue-500 rounded-lg p-2 transition duration-300 ease-in-out hover:bg-blue-500 hover:text-white `}
+                  onClick={handleBack}
+                >
+                  <ChevronLeft />
+                </button>
+                <button
+                  className={`mr-auto ml-2 border-2 border-blue-500 rounded-lg p-2 transition duration-300 ease-in-out hover:bg-blue-500 hover:text-white `}
+                  onClick={handleNext}
+                >
+                  <ChevronRight />
+                </button>
+              </div>
+            </div>
+          </div>
+        </>
       )}
     </div>
   )

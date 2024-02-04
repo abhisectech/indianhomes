@@ -85,12 +85,12 @@ const ResponsiveTabs = () => {
     <>
       <div className="div">
         <section class="bordered bordersec"></section>
-        <div className="main-hero">
+        {/* <div className="main-hero">
           <div className="cover">
             <div className="box ai"></div>
             <div className="box bi"></div>
           </div>
-        </div>
+        </div> */}
         <div className="mt-16">
           {/* <h1>End-to-End Interior Solutions</h1> */}
           <div className="flex justify-center items-center sm:my-8">

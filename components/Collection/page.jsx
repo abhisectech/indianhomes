@@ -817,12 +817,12 @@ const Collection = () => {
               </Link>
 
               <section class="bordered bordersec"></section>
-              <div className="main-hero">
+              {/* <div className="main-hero">
                 <div className="cover">
                   <div className="box ai"></div>
                   <div className="box bi"></div>
                 </div>
-              </div>
+              </div> */}
               <div className="flex justify-center items-center sm:my-16 my-8">
                 <div style={containerStyle}>
                   <div
@@ -1046,15 +1046,10 @@ const Collection = () => {
         </div>
       </div>
 
-      <section class="bordered bordersec"></section>
-      <div className="main-hero">
-        <div className="cover">
-          <div className="box ai"></div>
-          <div className="box bi"></div>
-        </div>
-      </div>
+      <section class="bordered bordersec pt-16"></section>
+
       {/* ------------------------------------------------ */}
-      <div className="z-10 text-center text-2xl sm:text-4xl sm:py-12 py-8 font-bold">
+      <div className="z-10 text-center text-2xl sm:text-4xl sm:py-16 py-12 font-bold">
         {/* <h1 className="sm:-mb-16">Connect With Us</h1> */}
         <div className="flex justify-center items-center sm:my-8">
           <div style={containerStyle}>
@@ -1408,12 +1403,12 @@ const Collection = () => {
       </div>
 
       <section class="bordered bordersec"></section>
-      <div className="main-hero">
+      {/* <div className="main-hero">
         <div className="cover">
           <div className="box ai"></div>
           <div className="box bi"></div>
         </div>
-      </div>
+      </div> */}
 
       <div className="">
         {/* <h1>Brands you will find in our products</h1> */}

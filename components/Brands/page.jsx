@@ -182,12 +182,12 @@ const Brands = () => {
   return (
     <>
       <section className="bordered bordersec"></section>
-      <div className="main-hero">
+      {/* <div className="main-hero">
         <div className="cover">
           <div className="box ai"></div>
           <div className="box bi"></div>
         </div>
-      </div>
+      </div> */}
       <div className="my-16">
         {/* <h1>Our Exclusive Packages</h1> */}
         <div className="flex justify-center items-center sm:my-8">
@@ -302,12 +302,12 @@ const Brands = () => {
       </div>
       {/* section of black circles */}
       <section class="bordered bordersec"></section>
-      <div className="main-hero">
+      {/* <div className="main-hero">
         <div className="cover">
           <div className="box ai"></div>
           <div className="box bi"></div>
         </div>
-      </div>
+      </div> */}
       <div className="my-16">
         {/* <h1>Why We Deliver Inspiring Interiors</h1> */}
         <div className="flex justify-center items-center sm:my-8">

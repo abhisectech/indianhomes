@@ -187,7 +187,7 @@ const Display = () => {
       </div>
 
       <section class="bordered bordersec"></section>
-      <div className="gridz">
+      <div className="gridz mt-12">
         <article className="mainz rounded-lg">
           <h1>ABOUT US</h1>
           <div className="text-left">
