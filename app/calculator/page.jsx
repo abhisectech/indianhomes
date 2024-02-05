@@ -17,6 +17,13 @@ import { useSpaceContext } from '../SpaceContext'
 const steps = ['Property Details', 'Select Spaces', 'Plan Spaces', 'Finalise']
 
 const YourStepperComponent = () => {
+
+  const [selectedSpace, setSelectedSpace] = useState(''); // Add initial state as needed
+
+  const handlePlanClick = (spaceName) => {
+    setSelectedSpace(spaceName);
+  };
+
   const [activeStep, setActiveStep] = useState(0)
    const { spaceCounts, setSpaceCounts } = useSpaceContext()
 
@@ -64,7 +71,7 @@ const YourStepperComponent = () => {
           />
         )
       case 2:
-        return <ThirdStep id='plan-spaces' spaceCounts={spaceCounts} />
+        return <ThirdStep id='plan-spaces' onPlanClick={handlePlanClick} />
       case 3:
         return <FourthStep id='finalise'/>
       default:

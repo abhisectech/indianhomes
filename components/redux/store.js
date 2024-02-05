@@ -1,7 +1,11 @@
 // store.js
 import { createStore } from 'redux';
-import reducer from './reducers';
+import rootReducer from './reducers'; // You'll create this file later
 
-const store = createStore(reducer);
+
+const store = createStore(
+  rootReducer,
+  // Add middleware or enhancers if needed
+);
 
 export default store;

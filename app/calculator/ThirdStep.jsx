@@ -1,40 +1,57 @@
-import React, { useState, useEffect } from 'react'
-import Modal from 'react-modal'
-import { Pencil } from 'lucide-react'
-import Link from 'next/link'
-const ThirdStep = ({ spaceCounts }) => {
-  const [areas, setAreas] = useState({})
-  const [editModalOpen, setEditModalOpen] = useState(false)
-  const [editSpaceName, setEditSpaceName] = useState('')
-  const [length, setLength] = useState('')
-  const [width, setWidth] = useState('')
+"use client";
+import React, { useState, useEffect } from 'react';
+import Modal from 'react-modal';
+import { Pencil } from 'lucide-react';
+import Link from 'next/link';
+import { useDispatch, useSelector } from 'react-redux';
+import { setSpaceAreas } from '@/components/redux/actions/secondStepActions';
+import { useRouter } from 'next/navigation';
+
+const ThirdStep = (props) => {
+ 
+  const dispatch = useDispatch();
+  const spaceCounts = useSelector((state) => state.space);
+  const [areas, setAreas] = useState({});
+  const [editModalOpen, setEditModalOpen] = useState(false);
+  const [editSpaceName, setEditSpaceName] = useState('');
+  const [length, setLength] = useState('');
+  const [width, setWidth] = useState('');
 
   const handleEditArea = (spaceName) => {
-    setEditSpaceName(spaceName)
-    setEditModalOpen(true)
-  }
+    setEditSpaceName(spaceName);
+    setEditModalOpen(true);
+  };
+
   const handleAreaChange = (spaceName, value) => {
     setAreas((prevAreas) => ({
       ...prevAreas,
       [spaceName]: value,
-    }))
-  }
+    }));
+  };
+
   const handleSave = () => {
     // Calculate the area based on length and width
-    const calculatedArea = length && width ? length * width : ''
-
+    const calculatedArea = length && width ? length * width : '';
+    dispatch(setSpaceAreas({ [editSpaceName]: calculatedArea || '' }));
     // Set the area to the state
     setAreas((prevAreas) => ({
       ...prevAreas,
       [editSpaceName]: calculatedArea || '',
-    }))
+    }));
 
     // Close the modal
-    setEditModalOpen(false)
-  }
+    setEditModalOpen(false);
+  };
+
   const handleSubmit = () => {
-    console.log('Entered Areas:', areas)
-  }
+    console.log('Entered Areas:', areas);
+    console.log('Redux Areas:', spaceCounts);
+  };
+  
+  useEffect(() => {
+    console.log('Redux Areas:', spaceCounts);
+  }, [spaceCounts]);
+
   const customStyles = {
     content: {
       top: '50%',
@@ -47,17 +64,29 @@ const ThirdStep = ({ spaceCounts }) => {
     overlay: {
       background: 'rgba(0, 0, 0, 0.5)', // Add a semi-transparent overlay
     },
-  }
+  };
 
   // Add a media query to adjust maxWidth for smaller screens
-  const smallerScreensMediaQuery = '@media (max-width: 768px)'
+  const smallerScreensMediaQuery = '@media (max-width: 768px)';
 
   customStyles.content = {
     ...customStyles.content,
     [smallerScreensMediaQuery]: {
       maxWidth: '100%',
     },
-  }
+  };
+
+  const router = useRouter(); // Add this line to use the useRouter hook
+
+  // ... other code
+
+  const handlePlanClick = (spaceName) => {
+    // Pass the selected space to the parent component
+    props.onPlanClick(spaceName);
+    router.push(`/calculator/image-maps/`);
+  };
+
+
   return (
     <div>
       <h2 className="text-xl font-bold mx-4">Plan your spaces</h2>
@@ -66,7 +95,7 @@ const ThirdStep = ({ spaceCounts }) => {
       </p>
       {Object.entries(spaceCounts).map(([spaceName, count]) => (
         <div key={spaceName} className="mx-4 mb-4">
-          {Array.from({ length: count }, (_, index) => (
+          {[...Array(count)].map((_, index) => (
             <div
               key={`${spaceName}-${index + 1}`}
               className={`flex items-center justify-between h-20 bg-white rounded-lg p-2 ${
@@ -103,11 +132,11 @@ const ThirdStep = ({ spaceCounts }) => {
               </div>
               {/* plan */}
               <div className="m-4">
-                <Link href={`/calculator/${spaceName}`}>
-                  <button className="text-xxs border-gray-300 border-2 rounded py-1 px-2 hover:bg-green-500 hover:text-white">
+                  <button className="text-xxs border-gray-300 border-2 rounded py-1 px-2 hover:bg-green-500 hover:text-white"
+                   onClick={() => handlePlanClick(spaceName)}>
                     PLAN
                   </button>
-                </Link>
+               
               </div>
             </div>
           ))}
@@ -207,7 +236,7 @@ const ThirdStep = ({ spaceCounts }) => {
         </button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ThirdStep
+export default ThirdStep;

@@ -4,7 +4,47 @@ import React, { useState } from 'react'
 
 const SvgMap = () => {
   const [selectedPolygon, setSelectedPolygon] = useState([])
+  const [selectedPackage, setSelectedPackage] = useState('premium'); // Default to premium
+  const [spaceSquareFootage, setSpaceSquareFootage] = useState({}); // New state for square footage
 
+  const pricing = {
+    premium: {
+      ShoeRack: { price: 5000},
+      Walls: { pricePerSqFt: 55},
+      Door: { price: 20000},
+      falseCeiling: { pricePerSqFt: 185 },
+      Electrical: { price: 5000 },
+      Console: { price: 20000 },
+      Flooring: { pricePerSqFt: 497},
+    },
+    luxury: {
+      ShoeRack: { price: 10000},
+      Walls: { pricePerSqFt: 65 },
+      Door: { price: 25000},
+      falseCeiling: { pricePerSqFt: 210},
+      Electrical: { price: 13000},
+      Console: { price: 30000},
+      Flooring: { pricePerSqFt: 498},
+    },
+    ultraLuxury: {
+      ShoeRack: { price: 20000},
+      Walls: {pricePerSqFt: 90},
+      Door: { price: 36000},
+      falseCeiling: { pricePerSqFt: 250 },
+      Electrical: { price: 18000 },
+      Console: { price: 50000},
+      Flooring: { pricePerSqFt: 499},
+    },
+  };
+  const initialSquareFootage = {
+    'falseCeiling': 185,
+    'Electrical': 0,
+    'Flooring': 498,
+    'ShoeRack': 1100,
+    'Walls': 65,
+    'Console': 50,
+    'Door': 0,
+  };
   const handlePolygonClick = (polygonId) => {
     const isSelected = selectedPolygon.includes(polygonId)
 
@@ -14,7 +54,48 @@ const SvgMap = () => {
         : [...prevSelected, polygonId]
     )
   }
+  const handleSquareFootageChange = (polygonId, value) => {
+    setSpaceSquareFootage((prevSquareFootage) => ({
+      ...prevSquareFootage,
+      [polygonId]: parseFloat(value) || 0,
+    }));
+  };
 
+  const [editableSquareFootage, setEditableSquareFootage] = useState(initialSquareFootage);
+
+  const calculateSpacePrice = (polygonId, selectedPackage) => {
+    const pricePerSqFt = pricing[selectedPackage]?.[polygonId]?.pricePerSqFt || 0;
+    const squareFootage = editableSquareFootage[polygonId] || 0;
+    const calculatedPrice = pricePerSqFt * squareFootage;
+
+    return calculatedPrice.toFixed(2);
+  };
+  const handleEditSquareFootage = (polygonId) => {
+    const newSquareFootage = prompt(`Enter new square footage for ${polygonId}:`, editableSquareFootage[polygonId]);
+
+    if (!isNaN(newSquareFootage) && newSquareFootage !== null) {
+      const updatedSquareFootage = { ...editableSquareFootage, [polygonId]: parseFloat(newSquareFootage) };
+      setEditableSquareFootage(updatedSquareFootage);
+    }
+  };
+  const handleTabChange = (selectedTab) => {
+    setSelectedPackage(selectedTab);
+  };
+
+  const renderTab = (tabName) => {
+    const isActive = selectedPackage === tabName;
+
+    return (
+      <button
+        key={tabName}
+        onClick={() => handleTabChange(tabName)}
+        className={`border px-4 py-3 text-base focus:outline-none rounded-lg ${isActive ? 'bg-green-500 text-white' : 'bg-white text-black'
+          }`}
+      >
+        {tabName}
+      </button>
+    );
+  };
   return (
     <div>
       <svg
@@ -31,10 +112,10 @@ const SvgMap = () => {
         <polygon
           points="119,99,1064,692,2076,686,3013,123,3013,3,7,-3"
           fill={
-            selectedPolygon.includes('false-ceiling') ? 'green' : 'transparent'
+            selectedPolygon.includes('falseCeiling') ? 'green' : 'transparent'
           }
           fillOpacity="0.2"
-          onClick={() => handlePolygonClick('false-ceiling')}
+          onClick={() => handlePolygonClick('falseCeiling')}
           style={{ cursor: 'pointer' }}
         />
 
@@ -57,8 +138,8 @@ const SvgMap = () => {
           x="1603.6666666666667"
           y="266.6666666666667"
           fontSize={40}
-          id="false-ceiling"
-          onClick={() => handlePolygonClick('false-ceiling')}
+          id="falseCeiling"
+          onClick={() => handlePolygonClick('falseCeiling')}
           className="cursor-pointer"
           style={{ color: 'black' }}
         >
@@ -241,9 +322,9 @@ const SvgMap = () => {
         {/* -------------- Shoe Rack ----------- */}
         <polygon
           points="2260,1004,2722,958,3002,961,2978,2075,2708,2077,2249,1682"
-          fill={selectedPolygon.includes('Shoe Rack') ? 'green' : 'transparent'}
+          fill={selectedPolygon.includes('ShoeRack') ? 'green' : 'transparent'}
           fillOpacity="0.2"
-          onClick={() => handlePolygonClick('Shoe Rack')}
+          onClick={() => handlePolygonClick('ShoeRack')}
           style={{ cursor: 'pointer' }}
         />
 
@@ -265,9 +346,9 @@ const SvgMap = () => {
           x="2708.1666666666665"
           y="1459.5"
           fontSize={40}
-          id="Shoe Rack"
+          id="ShoeRack"
           className="cursor-pointer"
-          onClick={() => handlePolygonClick('Shoe Rack')}
+          onClick={() => handlePolygonClick('ShoeRack')}
           style={{ color: 'black' }}
         >
           Shoe Rack
@@ -276,11 +357,63 @@ const SvgMap = () => {
 
         {/* -------------------------------------- */}
       </svg>
+      <div className='flex justify-center text-3xl font-bold mt-4'>
+        <h2>Select Your Packages</h2>
+      </div>
+      <div style={{ position: 'relative' }}>
+        <div className="flex gap-32 justify-center mt-4">
+          {renderTab('premium')}
+          {renderTab('luxury')}
+          {renderTab('ultraLuxury')}
+        </div>
+      </div>
+      <div className='mt-8'>
 
-      <div>
+        {selectedPolygon.map((polygon) => (
+          <div className='flow-root' key={polygon} style={{
+            border: '1px solid #000',
+            borderRadius: '5px',
+            padding: '20px',
+            marginBottom: '10px',
+            marginLeft: '20px',
+            marginRight: '20px',
+            backgroundColor: 'white',
+            marginTop: '10px',
+
+          }}>
+            <div className='float-left' >
+              <span>{polygon} </span>
+              {polygon === 'Flooring' || polygon === 'flooring' || polygon === 'walls' || polygon === 'Console' || polygon == 'ShoeRack' || polygon === 'falseCeiling' || polygon === 'Walls' ? (
+                <span
+                  style={{ cursor: 'pointer', fontSize: '12px' }}
+                  onClick={() => handleEditSquareFootage(polygon)}
+                >
+                  ✏️ Edit
+                </span>
+              ) : null}
+            </div>
+            <div>
+
+            </div>
+            <div className='float-right'>
+              {pricing[selectedPackage]?.[polygon]?.pricePerSqFt ? (
+
+                <span style={{ color: 'green', fontSize: '20px' }}>₹{calculateSpacePrice(polygon, selectedPackage)}</span>
+              ) : (
+                <span style={{ color: 'green', fontSize: '20px' }}>₹{pricing[selectedPackage]?.[polygon]?.price.toFixed(2)}</span>
+              )}
+            </div>
+
+          </div>
+
+
+        ))}
+
+      </div>
+      {/* <div>
         Selected Polygon:{' '}
         {selectedPolygon.map((polygon) => `${polygon},`) || 'None'}
-      </div>
+      </div> */}
     </div>
   )
 }

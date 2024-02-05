@@ -4,7 +4,48 @@ import React, { useState } from 'react'
 
 const SvgMap = () => {
   const [selectedPolygon, setSelectedPolygon] = useState([])
+  const [selectedPackage, setSelectedPackage] = useState('premium'); // Default to premium
+  const [spaceSquareFootage, setSpaceSquareFootage] = useState({}); // New state for square footage
 
+  const pricing = {
+    premium: {
+      Walls: { pricePerSqFt: 55 },
+      Door: {price: 20000},
+      StudyTables: {pricePerSqFt: 800},
+      upvcWindow: { pricePerSqFt: 800 },
+      FalseCeiling: { pricePerSqFt: 185 },
+      Electrical: { price: 5000 },
+      Flooring: { pricePerSqFt: 497 },
+    },
+    luxury: {
+      Walls: { pricePerSqFt: 65 },
+      Door: {price: 25000},
+      StudyTables: {pricePerSqFt: 1100},
+      upvcWindow: { pricePerSqFt: 1100 },
+      FalseCeiling: { pricePerSqFt: 210 },
+      Electrical: { price: 13000 },
+      Flooring: { pricePerSqFt: 498 },
+    },
+    ultraLuxury: {
+      Walls: { pricePerSqFt: 90 },
+      Door: {price: 36000},
+      StudyTables: {pricePerSqFt: 1500},
+      upvcWindow: { pricePerSqFt: 1500 },
+      FalseCeiling: { pricePerSqFt: 250 },
+      Electrical: { price: 18000 },
+      Flooring: { pricePerSqFt: 499 },
+    },
+  };
+
+  const initialSquareFootage = {
+    'FalseCeiling': 185,
+    'electrical': 10,
+    'Flooring': 48,
+    'StudyTables': 50,
+    'Door': 0,
+    'upvcWindow': 10,
+    'Walls': 65,
+  };
   const handlePolygonClick = (polygonId) => {
     const isSelected = selectedPolygon.includes(polygonId)
 
@@ -14,7 +55,46 @@ const SvgMap = () => {
         : [...prevSelected, polygonId]
     )
   }
+  const handleSquareFootageChange = (polygonId, value) => {
+    setSpaceSquareFootage((prevSquareFootage) => ({
+      ...prevSquareFootage,
+      [polygonId]: parseFloat(value) || 0,
+    }));
+  };
+  const [editableSquareFootage, setEditableSquareFootage] = useState(initialSquareFootage);
 
+  const calculateSpacePrice = (polygonId, selectedPackage) => {
+    const pricePerSqFt = pricing[selectedPackage]?.[polygonId]?.pricePerSqFt || 0;
+    const squareFootage = editableSquareFootage[polygonId] || 0;
+    const calculatedPrice = pricePerSqFt * squareFootage;
+
+    return calculatedPrice.toFixed(2);
+  };
+  const handleEditSquareFootage = (polygonId) => {
+    const newSquareFootage = prompt(`Enter new square footage for ${polygonId}:`, editableSquareFootage[polygonId]);
+
+    if (!isNaN(newSquareFootage) && newSquareFootage !== null) {
+      const updatedSquareFootage = { ...editableSquareFootage, [polygonId]: parseFloat(newSquareFootage) };
+      setEditableSquareFootage(updatedSquareFootage);
+    }
+  };
+  const handleTabChange = (selectedTab) => {
+    setSelectedPackage(selectedTab);
+  };
+  const renderTab = (tabName) => {
+    const isActive = selectedPackage === tabName;
+
+    return (
+      <button
+        key={tabName}
+        onClick={() => handleTabChange(tabName)}
+        className={`border px-4 py-3 text-base focus:outline-none rounded-lg ${isActive ? 'bg-green-500 text-white' : 'bg-white text-black'
+          }`}
+      >
+        {tabName}
+      </button>
+    );
+  };
   return (
     <div>
       <svg
@@ -31,10 +111,10 @@ const SvgMap = () => {
         <polygon
           points="3,37,496,372,1672,362,2436,4,1620,6,1,2"
           fill={
-            selectedPolygon.includes('false-ceiling') ? 'green' : 'transparent'
+            selectedPolygon.includes('FalseCeiling') ? 'green' : 'transparent'
           }
           fillOpacity="0.2"
-          onClick={() => handlePolygonClick('false-ceiling')}
+          onClick={() => handlePolygonClick('FalseCeiling')}
           style={{ cursor: 'pointer' }}
         />
 
@@ -57,8 +137,8 @@ const SvgMap = () => {
           x="1093"
           y="130.5"
           fontSize={40}
-          id="false-ceiling"
-          onClick={() => handlePolygonClick('false-ceiling')}
+          id="FalseCeiling"
+          onClick={() => handlePolygonClick('FalseCeiling')}
           className="cursor-pointer"
           style={{ color: 'black' }}
         >
@@ -174,10 +254,10 @@ const SvgMap = () => {
         <polygon
           points="839,467,1332,465,1334,844,832,855"
           fill={
-            selectedPolygon.includes('UPVC Window') ? 'green' : 'transparent'
+            selectedPolygon.includes('upvcWindow') ? 'green' : 'transparent'
           }
           fillOpacity="0.2"
-          onClick={() => handlePolygonClick('UPVC Window')}
+          onClick={() => handlePolygonClick('upvcWindow')}
           style={{ cursor: 'pointer' }}
         />
         <rect
@@ -198,9 +278,9 @@ const SvgMap = () => {
           x="1139.25"
           y="657.75"
           fontSize={40}
-          id="UPVC Window"
+          id="upvcWindow"
           className="cursor-pointer"
-          onClick={() => handlePolygonClick('UPVC Window')}
+          onClick={() => handlePolygonClick('upvcWindow')}
           style={{ color: 'black' }}
         >
           UPVC Window
@@ -257,10 +337,10 @@ const SvgMap = () => {
         <polygon
           points="1607,575,1863,521,1928,525,1926,577,2115,543,2113,476,2320,439,2432,439,2421,1522,2175,1509,2150,1490,2152,1372,1889,1216,1814,1176,1818,1021,1687,975,1689,1102,1672,1096,1527,1102,1521,913,1674,909,1676,749,1603,747"
           fill={
-            selectedPolygon.includes('Study Table') ? 'green' : 'transparent'
+            selectedPolygon.includes('StudyTables') ? 'green' : 'transparent'
           }
           fillOpacity="0.2"
-          onClick={() => handlePolygonClick('Study Table')}
+          onClick={() => handlePolygonClick('StudyTables')}
           style={{ cursor: 'pointer' }}
         />
 
@@ -282,9 +362,9 @@ const SvgMap = () => {
           x="1958.1304347826087"
           y="912.7826086956521"
           fontSize={40}
-          id="Study Table"
+          id="StudyTables"
           className="cursor-pointer"
-          onClick={() => handlePolygonClick('Study Table')}
+          onClick={() => handlePolygonClick('StudyTables')}
           style={{ color: 'black' }}
         >
           Study Table
@@ -292,7 +372,59 @@ const SvgMap = () => {
 
         {/* -------------------------------------- */}
       </svg>
+      <div className='flex justify-center text-3xl font-bold mt-4'>
+        <h2>Select Your Packages</h2>
+      </div>
+      <div style={{ position: 'relative' }}>
+        <div className="flex gap-32 justify-center mt-4">
+          {renderTab('premium')}
+          {renderTab('luxury')}
+          {renderTab('ultraLuxury')}
+        </div>
+      </div>
+      <div className='mt-8'>
 
+        {selectedPolygon.map((polygon) => (
+          <div className='flow-root' key={polygon} style={{
+            border: '1px solid #000',
+            borderRadius: '5px',
+            padding: '20px',
+            marginBottom: '10px',
+            marginLeft: '20px',
+            marginRight: '20px',
+            backgroundColor: 'white',
+            marginTop: '10px',
+
+          }}>
+            <div className='float-left' >
+              <span>{polygon} </span>
+              {polygon === 'FalseCeiling' || polygon === 'Flooring' || polygon === 'Walls' || polygon === 'crockeryUnit' || polygon == 'upvcWindow' || polygon === 'falseCeiling' || polygon === 'StudyTables' ? (
+                <span
+                  style={{ cursor: 'pointer', fontSize: '12px' }}
+                  onClick={() => handleEditSquareFootage(polygon)}
+                >
+                  ✏️ Edit
+                </span>
+              ) : null}
+            </div>
+            <div>
+
+            </div>
+            <div className='float-right'>
+              {pricing[selectedPackage]?.[polygon]?.pricePerSqFt ? (
+
+                <span style={{ color: 'green', fontSize: '20px' }}>₹{calculateSpacePrice(polygon, selectedPackage)}</span>
+              ) : (
+                <span style={{ color: 'green', fontSize: '20px' }}>₹{pricing[selectedPackage]?.[polygon]?.price.toFixed(2)}</span>
+              )}
+            </div>
+
+          </div>
+
+
+        ))}
+
+      </div>
       <div>
         Selected Polygon:{' '}
         {selectedPolygon.map((polygon) => `${polygon},`) || 'None'}

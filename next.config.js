@@ -6,6 +6,16 @@ const nextConfig = {
     images: {
       domains: ['www.modularkitcheninnoida.com', "images.unsplash.com"],
   },
+  // async redirects() {
+  //   return [
+  //     // ...other redirects
+  //     {
+  //       source: '/calculator/image-maps/:space',
+  //       destination: '/calculator/image-maps/[space]',
+  //       permanent: true,
+  //     },
+  //   ];
+  // },
     async rewrites() {
       return [
     

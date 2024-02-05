@@ -2,9 +2,79 @@
 
 import React, { useState } from 'react'
 
+
 const SvgMap = () => {
   const [selectedPolygon, setSelectedPolygon] = useState([])
-
+  const [selectedPackage, setSelectedPackage] = useState('premium'); // Default to premium
+  const [spaceSquareFootage, setSpaceSquareFootage] = useState({}); // New state for square footage
+  
+  
+  const pricing = {
+    premium: {
+      barUnit: { pricePerSqFt: 1250 },
+      TVPannel: {pricePerSqFt: 1000},
+      SideTables: {price: 8000},
+      CenterTable: {price: 20000},
+      Sofa: {price: 11000},
+      Console: {price: 20000},
+      Mandir: {price: 30000},
+      Walls: { pricePerSqFt: 55 },
+      upvcWindow: { pricePerSqFt: 800 },
+      falseCeiling: { pricePerSqFt: 185 },
+      Electrical: { price: 5000 },
+      crockeryUnit: { pricePerSqFt: 1300 },
+      diningTableSet: { price: 50000 },
+      Flooring: { pricePerSqFt: 497 },
+    },
+    luxury: {
+      barUnit: { pricePerSqFt: 1450 },
+      TVPannel: {pricePerSqFt: 1400},
+      CenterTable: {price: 35000},
+      Sofa: {price: 15000},
+      SideTables: {price: 12000},
+      Console: {price: 30000},
+      Mandir: {price: 45000},
+      Walls: { pricePerSqFt: 65 },
+      upvcWindow: { pricePerSqFt: 1100 },
+      falseCeiling: { pricePerSqFt: 210 },
+      Electrical: { price: 13000 },
+      crockeryUnit: { pricePerSqFt: 1600 },
+      diningTableSet: { price: 85000 },
+      Flooring: { pricePerSqFt: 498 },
+    },
+    ultraLuxury: {
+      barUnit: { pricePerSqFt: 1800 },
+      TVPannel: {pricePerSqFt: 1800},
+      CenterTable: {price: 60000},
+      Sofa: {price: 25000},
+      SideTables: {price: 20000},
+      Console: {price: 50000},
+      Mandir: {price: 75000},
+      Walls: { pricePerSqFt: 90 },
+      upvcWindow: { pricePerSqFt: 1500 },
+      falseCeiling: { pricePerSqFt: 250 },
+      Electrical: { price: 18000 },
+      crockeryUnit: { pricePerSqFt: 2000 },
+      diningTableSet: { price: 150000 },
+      Flooring: { pricePerSqFt: 499 },
+    },
+  };
+  const initialSquareFootage = {
+    'falseCeiling': 185,
+    'Electrical': 10,
+    'Flooring': 48,
+    'TVPannel': 10,
+    'CenterTable':  100,
+    'Sofa': 200,
+    'Console':500,
+    'Mandir':70,
+    'SideTables': 0,
+    'upvcWindow': 10,
+    'Walls': 65,
+    'crockeryUnit': 50,
+    'diningTableSet': 80,
+    'barUnit': 140,
+  };
   const handlePolygonClick = (polygonId) => {
     const isSelected = selectedPolygon.includes(polygonId)
 
@@ -14,7 +84,47 @@ const SvgMap = () => {
         : [...prevSelected, polygonId]
     )
   }
+  const handleSquareFootageChange = (polygonId, value) => {
+    setSpaceSquareFootage((prevSquareFootage) => ({
+      ...prevSquareFootage,
+      [polygonId]: parseFloat(value) || 0,
+    }));
+  };
+  const [editableSquareFootage, setEditableSquareFootage] = useState(initialSquareFootage);
 
+  const calculateSpacePrice = (polygonId, selectedPackage) => {
+    const pricePerSqFt = pricing[selectedPackage]?.[polygonId]?.pricePerSqFt || 0;
+    const squareFootage = editableSquareFootage[polygonId] || 0;
+    const calculatedPrice = pricePerSqFt * squareFootage;
+
+    return calculatedPrice.toFixed(2);
+  };
+  const handleEditSquareFootage = (polygonId) => {
+    const newSquareFootage = prompt(`Enter new square footage for ${polygonId}:`, editableSquareFootage[polygonId]);
+
+    if (!isNaN(newSquareFootage) && newSquareFootage !== null) {
+      const updatedSquareFootage = { ...editableSquareFootage, [polygonId]: parseFloat(newSquareFootage) };
+      setEditableSquareFootage(updatedSquareFootage);
+    }
+  };
+  const handleTabChange = (selectedTab) => {
+    setSelectedPackage(selectedTab);
+  };
+
+  const renderTab = (tabName) => {
+    const isActive = selectedPackage === tabName;
+
+    return (
+      <button
+        key={tabName}
+        onClick={() => handleTabChange(tabName)}
+        className={`border px-4 py-3 text-base focus:outline-none rounded-lg ${isActive ? 'bg-green-500 text-white' : 'bg-white text-black'
+          }`}
+      >
+        {tabName}
+      </button>
+    );
+  };
   return (
     <div>
       <svg
@@ -31,10 +141,10 @@ const SvgMap = () => {
         <polygon
           points="281,5,906,452,1594,472,2161,10"
           fill={
-            selectedPolygon.includes('false-ceiling') ? 'green' : 'transparent'
+            selectedPolygon.includes('falseCeiling') ? 'green' : 'transparent'
           }
           fillOpacity="0.2"
-          onClick={() => handlePolygonClick('false-ceiling')}
+          onClick={() => handlePolygonClick('falseCeiling')}
           style={{ cursor: 'pointer' }}
         />
 
@@ -57,8 +167,8 @@ const SvgMap = () => {
           x="1290.5"
           y="234.75"
           fontSize={40}
-          id="false-ceiling"
-          onClick={() => handlePolygonClick('false-ceiling')}
+          id="falseCeiling"
+          onClick={() => handlePolygonClick('falseCeiling')}
           className="cursor-pointer"
           style={{ color: 'black' }}
         >
@@ -140,10 +250,10 @@ const SvgMap = () => {
         <polygon
           points="1051,578,1449,585,1454,873,1053,868"
           fill={
-            selectedPolygon.includes('UPVC Window') ? 'green' : 'transparent'
+            selectedPolygon.includes('upvcWindow') ? 'green' : 'transparent'
           }
           fillOpacity="0.2"
-          onClick={() => handlePolygonClick('UPVC Window')}
+          onClick={() => handlePolygonClick('upvcWindow')}
           style={{ cursor: 'pointer' }}
         />
         <rect
@@ -164,9 +274,9 @@ const SvgMap = () => {
           x="1306.75"
           y="726"
           fontSize={40}
-          id="UPVC Window"
+          id="upvcWindow"
           className="cursor-pointer"
-          onClick={() => handlePolygonClick('UPVC Window')}
+          onClick={() => handlePolygonClick('upvcWindow')}
           style={{ color: 'black' }}
         >
           UPVC Window
@@ -257,10 +367,10 @@ const SvgMap = () => {
         <polygon
           points="279,1458,530,1458,527,1472,483,1470,589,1748,574,1750,466,1472,409,1472,421,1703,407,1708,390,1470,358,1475,249,1743,235,1743,338,1473,276,1470"
           fill={
-            selectedPolygon.includes('Side Tables') ? 'green' : 'transparent'
+            selectedPolygon.includes('SideTables') ? 'green' : 'transparent'
           }
           fillOpacity="0.2"
-          onClick={() => handlePolygonClick('Side Tables')}
+          onClick={() => handlePolygonClick('SideTables')}
           style={{ cursor: 'pointer' }}
         />
 
@@ -282,9 +392,9 @@ const SvgMap = () => {
           x="463.1875"
           y="1567.8125"
           fontSize={40}
-          id="Side Tables"
+          id="SideTables"
           className="cursor-pointer"
-          onClick={() => handlePolygonClick('Side Tables')}
+          onClick={() => handlePolygonClick('SideTables')}
           style={{ color: 'black' }}
         >
           Side Tables
@@ -360,9 +470,9 @@ const SvgMap = () => {
         {/* -------------- TV Panel ----------- */}
         <polygon
           points="1930,1013,2510,1244,2508,1532,2206,1500,1783,1193,1788,1015,1842,1011,1857,1023,1879,1030,1894,1033,1913,1030,1923,1023"
-          fill={selectedPolygon.includes('TV Panel') ? 'green' : 'transparent'}
+          fill={selectedPolygon.includes('TVPannel') ? 'green' : 'transparent'}
           fillOpacity="0.2"
-          onClick={() => handlePolygonClick('TV Panel')}
+          onClick={() => handlePolygonClick('TVPannel')}
           style={{ cursor: 'pointer' }}
         />
 
@@ -384,9 +494,9 @@ const SvgMap = () => {
           x="2057.75"
           y="1137.25"
           fontSize={40}
-          id="TV Panel"
+          id="TVPannel"
           className="cursor-pointer"
-          onClick={() => handlePolygonClick('TV Panel')}
+          onClick={() => handlePolygonClick('TVPannel')}
           style={{ color: 'black' }}
         >
           TV Panel
@@ -395,10 +505,10 @@ const SvgMap = () => {
         <polygon
           points="1122,1106,1395,1106,1510,1379,1510,1551,1024,1569,1033,1392"
           fill={
-            selectedPolygon.includes('Centre Table') ? 'green' : 'transparent'
+            selectedPolygon.includes('CenterTable') ? 'green' : 'transparent'
           }
           fillOpacity="0.2"
-          onClick={() => handlePolygonClick('Centre Table')}
+          onClick={() => handlePolygonClick('CenterTable')}
           style={{ cursor: 'pointer' }}
         />
 
@@ -420,9 +530,9 @@ const SvgMap = () => {
           x="1320.6666666666667"
           y="1350.5"
           fontSize={40}
-          id="Centre Table"
+          id="CenterTable"
           className="cursor-pointer"
-          onClick={() => handlePolygonClick('Centre Table')}
+          onClick={() => handlePolygonClick('CenterTable')}
           style={{ color: 'black' }}
         >
           Centre Table
@@ -430,11 +540,60 @@ const SvgMap = () => {
 
         {/* -------------------------------------- */}
       </svg>
-
-      <div>
-        Selected Polygon:{' '}
-        {selectedPolygon.map((polygon) => `${polygon},`) || 'None'}
+      <div className='flex justify-center text-3xl font-bold mt-4'>
+        <h2>Select Your Packages</h2>
       </div>
+      <div style={{ position: 'relative' }}>
+        <div className="flex gap-32 justify-center mt-4">
+          {renderTab('premium')}
+          {renderTab('luxury')}
+          {renderTab('ultraLuxury')}
+        </div>
+      </div>
+      <div className='mt-8'>
+
+        {selectedPolygon.map((polygon) => (
+          <div className='flow-root' key={polygon} style={{
+            border: '1px solid #000',
+            borderRadius: '5px',
+            padding: '20px',
+            marginBottom: '10px',
+            marginLeft: '20px',
+            marginRight: '20px',
+            backgroundColor: 'white',
+            marginTop: '10px',
+
+          }}>
+            <div className='float-left' >
+              <span>{polygon} </span>
+              {polygon === 'Flooring' || polygon === 'flooring' || polygon === 'Walls' || polygon === 'TVPannel' || polygon == 'upvcWindow' || polygon === 'falseCeiling' || polygon === 'diningTableSet' ? (
+                <span
+                  style={{ cursor: 'pointer', fontSize: '12px' }}
+                  onClick={() => handleEditSquareFootage(polygon)}
+                >
+                  ✏️ Edit
+                </span>
+              ) : null}
+            </div>
+            <div>
+
+            </div>
+            <div className='float-right'>
+              {pricing[selectedPackage]?.[polygon]?.pricePerSqFt ? (
+
+                <span style={{ color: 'green', fontSize: '20px' }}>₹{calculateSpacePrice(polygon, selectedPackage)}</span>
+              ) : (
+                <span style={{ color: 'green', fontSize: '20px' }}>₹{pricing[selectedPackage]?.[polygon]?.price.toFixed(2)}</span>
+              )}
+            </div>
+
+          </div>
+
+
+        ))}
+
+      </div>
+      
     </div>
   )
 }
