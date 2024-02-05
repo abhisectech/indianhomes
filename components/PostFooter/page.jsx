@@ -1,6 +1,322 @@
 import Marquee from 'react-fast-marquee'
 import React, { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
+
+const FirstForm = () => {
+  const handleFormSubmit = (event) => {
+    event.preventDefault()
+
+    const formData = {
+      name: event.target.elements.name.value,
+      email: event.target.elements.email.value,
+      number: event.target.elements.number.value,
+      address: event.target.elements.address.value,
+    }
+
+    const recipientEmail = 'saurabhbehal@gmail.com'
+    const emailData = `
+        Name: ${formData.name},
+        Email: ${formData.email},
+        Mobile: ${formData.number},
+        Address: ${formData.address},
+     
+    `
+
+    const mailtoLink = `mailto:${recipientEmail}?subject=Booked a Design Visit&body=${encodeURIComponent(
+      emailData ?? null
+    )}`
+
+    window.open(mailtoLink, '_blank')
+  }
+
+  return (
+    <div className="sm:p-4 pb-4 bg-white rounded-lg shadow-lg sm:w-1/3">
+      <div className="font-bold text-gray-800 px-8 ">
+        <Marquee style={{ color: 'Red' }}>
+          <div className="marquee">
+            <h3 className="sm:text-4xl">BOOK A DESIGN VISIT TODAY</h3>
+          </div>
+        </Marquee>
+        <h2 className="sm:text-3xl sm:my-12">
+          {' '}
+          & GET GUARANTEED <br />
+          AFFORDABE QUOTES BY US
+        </h2>
+        <form onSubmit={handleFormSubmit}>
+          <div className="mt-8">
+            <div>
+              <span className="uppercase  text-sm text-gray-600 font-bold">
+                Full Name
+              </span>
+              <input
+                className="w-full border-b-2 border-b-gray-500 mt-2 p-3  focus:outline-none focus:shadow-outline"
+                required
+                type="text"
+                id="name"
+                name="name"
+                // onChange={handleChange}
+              />
+            </div>
+            <div className="mt-8">
+              <span className="uppercase text-sm text-gray-600 font-bold">
+                Email
+              </span>
+              <input
+                className="w-full border-b-2 border-b-gray-500 mt-2 p-3 focus:outline-none focus:shadow-outline"
+                required
+                type="email"
+                id="email"
+                name="email"
+              />
+            </div>
+            <div className="mt-8">
+              <span className="uppercase text-sm text-gray-600 font-bold">
+                Contact Number
+              </span>
+              <input
+                className="w-full border-b-2 border-b-gray-500 mt-2 p-3 focus:outline-none focus:shadow-outline"
+                required
+                type="tel"
+                id="number"
+                name="number"
+              />
+            </div>
+            <div className="mt-8">
+              <span className="uppercase text-sm text-gray-600 font-bold">
+                Address
+              </span>
+              <input
+                required
+                type="text"
+                id="address"
+                name="address"
+                className="w-full  border-b-2 border-b-gray-500 mt-2 p-3 focus:outline-none focus:shadow-outline"
+              />
+            </div>
+            <div className="mt-8">
+              <button
+                type="submit"
+                className="mt-2 uppercase text-sm font-bold tracking-wide bg-slate-950 text-gray-100 p-3 rounded-lg w-full focus:outline-none focus:shadow-outline"
+              >
+                Send Message
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  )
+}
+
+const SecondForm = () => {
+  const [selectedFile, setSelectedFile] = useState(null)
+  const [formData, setFormData] = useState({
+    name: '',
+
+    email: '',
+    number: '',
+    message: '',
+  })
+  const [btnText, setBtnText] = useState('Submit')
+
+  const handleFileChange = (event) => {
+    setSelectedFile(event.target.files[0])
+  }
+
+  const handleChange = (event) => {
+    const { name, value } = event.target
+
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }))
+  }
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+
+    const formDataToSend = new FormData()
+    for (const key in formData) {
+      formDataToSend.append(key, formData[key])
+    }
+
+    formDataToSend.append('file', selectedFile)
+
+    try {
+      setBtnText('Uploading...')
+      const response = await fetch(
+        'http://localhost:3001/upload-postfooter-form',
+        {
+          method: 'POST',
+          body: formDataToSend,
+        }
+      )
+
+      if (response.ok) {
+        setBtnText('Done')
+        console.log('Form data and file uploaded successfully!')
+        console.log(
+          'Form Data to Send:',
+          Object.fromEntries(formDataToSend.entries())
+        )
+      } else {
+        setBtnText('Something Went Wrong')
+        console.error('Form data and file upload failed.')
+      }
+    } catch (error) {
+      setBtnText('Something Went Wrong')
+      console.error('Error during form data and file upload:', error)
+    }
+  }
+
+  return (
+    <div className="sm:p-4 bg-white rounded-lg shadow-lg sm:w-1/3">
+      <div className="bold text-gray-800 px-8 ">
+        ARE YOU AN ARCHITECT,INTERIOR <br />
+        DESIGNER OR DEVELOPER <br />
+        Do Connect With Us
+        <form onSubmit={handleSubmit}>
+          <div className="mt-8">
+            <div>
+              <span className="uppercase text-sm text-gray-600 font-bold">
+                Full Name
+              </span>
+              <input
+                className="w-full border-b-2 border-b-gray-500 mt-2 p-3  focus:outline-none focus:shadow-outline"
+                required
+                type="text"
+                id="name"
+                name="name"
+                onChange={handleChange}
+              />
+            </div>
+            <div className="mt-8">
+              <span className="uppercase text-sm text-gray-600 font-bold">
+                Email
+              </span>
+              <input
+                className="w-full border-b-2 border-b-gray-500 mt-2 p-3 focus:outline-none focus:shadow-outline"
+                required
+                type="email"
+                id="email"
+                name="email"
+                onChange={handleChange}
+              />
+            </div>
+            <div className="mt-8">
+              <span className="uppercase text-sm text-gray-600 font-bold">
+                Contact Number
+              </span>
+              <input
+                className="w-full border-b-2 border-b-gray-500 mt-2 p-3 focus:outline-none focus:shadow-outline"
+                required
+                type="tel"
+                id="number"
+                name="number"
+                onChange={handleChange}
+              />
+            </div>
+            <div className="mt-8">
+              <span className="uppercase text-sm text-gray-600 font-bold">
+                Message
+              </span>
+              <textarea
+                className="w-full border-b-2 border-b-gray-500 mt-2 p-3 focus:outline-none focus:shadow-outline"
+                required
+                type="text"
+                id="message"
+                name="message"
+                onChange={handleChange}
+                rows={2}
+              />
+            </div>
+            <div className="mt-8">
+              <label
+                htmlFor="file"
+                className="block text-xs sm:text-sm font-medium text-gray-600 mb-1"
+              >
+                Attach Your Project
+              </label>
+              <input
+                type="file"
+                id="file"
+                name="file"
+                className="form-input bg-white text-slate-950 border border-slate-950 py-2 px-4 rounded-md shadow-sm tracking-wide block w-full appearance-none leading-5 transition duration-150 ease-in-out"
+                onChange={handleFileChange}
+              />
+            </div>
+            <div className="mt-8 flex items-center gap-4">
+              <button
+                type="submit"
+                className="uppercase text-xs sm:text-sm font-bold tracking-wide bg-slate-950 text-gray-100 p-3 rounded-lg w-full focus:outline-none focus:shadow-outline max-[400px]:text-xs"
+              >
+                {btnText}
+              </button>
+            </div>
+            <div className="py-4">
+              *Our Brand is Associated with More than 283+ Architects, Interior
+              Designers and Developers across Delhi - NCR
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  )
+}
+
+const ThirdForm = () => {
+  return (
+    <div className="sm:p-4 bg-white rounded-lg shadow-lg sm:w-1/3">
+      <div className="bold text-gray-800  ">
+        <p className="w-full p-8 bg-slate-950 focus:outline-none focus:shadow-outline text-xl text-center uppercase text-gray-100 border-b-2 border-b-gray-500">
+          {' '}
+          Check Our Recent Project
+        </p>
+
+        <Link href="https://www.facebook.com/designindiankitchen">
+          {' '}
+          <button
+            className="w-full p-20  focus:outline-none focus:shadow-outline text-xl text-center uppercase border-b-2 border-b-gray-950"
+            style={{ backgroundColor: '#ffe216' }}
+          >
+            {' '}
+            Facebook
+          </button>
+        </Link>
+        <Link href="https://www.instagram.com/designindiankitchen">
+          {' '}
+          <button
+            className="w-full p-20  focus:outline-none focus:shadow-outline text-xl text-center uppercase border-b-2 border-b-gray-950"
+            style={{ backgroundColor: '#ffe216' }}
+          >
+            {' '}
+            Instagram
+          </button>{' '}
+        </Link>
+        <Link href="https://www.youtube.com/channel/UCqkIRwI6EL9QmaTZHYm6Hug">
+          {' '}
+          <button
+            className="w-full p-20 text-xl text-center uppercase focus:outline-none focus:shadow-outline border-b-2 border-b-gray-950"
+            style={{ backgroundColor: '#ffe216' }}
+          >
+            {' '}
+            Youtube
+          </button>
+        </Link>
+        <Link href="https://twitter.com/indiankitchens">
+          {' '}
+          <button
+            className="w-full p-20 text-xl text-center uppercase focus:outline-none focus:shadow-outlineborder-b-2 border-b-gray-950 "
+            style={{ backgroundColor: '#ffe216' }}
+          >
+            {' '}
+            Twitter
+          </button>
+        </Link>
+      </div>
+    </div>
+  )
+}
+
 const PostFooter = () => {
   const ref = useRef()
   const videoRef = useRef()
@@ -29,533 +345,19 @@ const PostFooter = () => {
           className="w-full h-full"
         />
       </section>
-
+      <div className=" mt-24 pt-16 w-full h-full flex items-center justify-center bg-slate-100">
+        <p
+          className="text-black font-bold md:text-5xl sm:text-4xl text-2xl text-shadow-lg"
+          style={{ textShadow: '3px 3px 6px rgba(0, 0, 0, 0.5)' }}
+        >
+          CONNECT WITH US <span className="text-red-500 underline">NOW</span>
+        </p>
+      </div>
       <div className="flex flex-col sm:flex-row gap-4 bg-slate-100 w-full mx-auto py-16">
-        <div className="p-4 bg-white rounded-lg shadow-lg sm:w-1/3">
-          <div className="font-bold text-gray-800 px-8 ">
-            <Marquee style={{ color: 'Red' }}>
-              <div className="marquee">
-                <h3>BOOK A DESIGN VISIT TODAY</h3>
-              </div>
-            </Marquee>
-            & GET GUARANTEED <br />
-            AFFORDABE QUOTES BY US
-            <div className="mt-8">
-              <div>
-                <span className="uppercase  text-sm text-gray-600 font-bold">
-                  Full Name
-                </span>
-                <input
-                  className="w-full border-b-2 border-b-gray-500 mt-2 p-3  focus:outline-none focus:shadow-outline"
-                  type="text"
-                  placeholder=""
-                />
-              </div>
-              <div className="mt-8">
-                <span className="uppercase text-sm text-gray-600 font-bold">
-                  Email
-                </span>
-                <input
-                  className="w-full border-b-2 border-b-gray-500 mt-2 p-3 focus:outline-none focus:shadow-outline"
-                  type="text"
-                />
-              </div>
-              <div className="mt-8">
-                <span className="uppercase text-sm text-gray-600 font-bold">
-                  Contact Number
-                </span>
-                <input
-                  className="w-full border-b-2 border-b-gray-500 mt-2 p-3 focus:outline-none focus:shadow-outline"
-                  type="text"
-                />
-              </div>
-              <div className="mt-8">
-                <span className="uppercase text-sm text-gray-600 font-bold">
-                  Address
-                </span>
-                <textarea
-                  className="w-full h-32 border-b-2 border-b-gray-500 mt-2 p-3 focus:outline-none focus:shadow-outline"
-                  defaultValue={''}
-                />
-              </div>
-              <div className="mt-8">
-                <button className="uppercase text-sm font-bold tracking-wide bg-slate-950 text-gray-100 p-3 rounded-lg w-full focus:outline-none focus:shadow-outline">
-                  Send Message
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="p-4 bg-white rounded-lg shadow-lg sm:w-1/3">
-          <div className="bold text-gray-800 px-8 ">
-            ARE YOU AN ARCHITECT,INTERIOR <br />
-            DESIGNER OR DEVELOPER <br />
-            Do Connect With Us
-            <div className="mt-8">
-              <div>
-                <span className="uppercase text-sm text-gray-600 font-bold">
-                  Full Name
-                </span>
-                <input
-                  className="w-full border-b-2 border-b-gray-500 mt-2 p-3  focus:outline-none focus:shadow-outline"
-                  type="text"
-                  placeholder=""
-                />
-              </div>
-              <div className="mt-8">
-                <span className="uppercase text-sm text-gray-600 font-bold">
-                  Email
-                </span>
-                <input
-                  className="w-full border-b-2 border-b-gray-500 mt-2 p-3 focus:outline-none focus:shadow-outline"
-                  type="text"
-                />
-              </div>
-              <div className="mt-8">
-                <span className="uppercase text-sm text-gray-600 font-bold">
-                  Contact Number
-                </span>
-                <input
-                  className="w-full border-b-2 border-b-gray-500 mt-2 p-3 focus:outline-none focus:shadow-outline"
-                  type="text"
-                />
-              </div>
-              <div className="mt-8">
-                <span className="uppercase text-sm text-gray-600 font-bold">
-                  Message
-                </span>
-                <textarea
-                  className="w-full h-32 border-b-2 border-b-gray-500 mt-2 p-3 focus:outline-none focus:shadow-outline"
-                  defaultValue={''}
-                />
-              </div>
-              <div className="mt-8 flex items-center gap-4">
-                <button className="uppercase text-sm font-bold tracking-wide bg-slate-950 text-gray-100 p-3 rounded-lg w-full focus:outline-none focus:shadow-outline max-[400px]:text-xs">
-                  Choose File
-                </button>
-
-                <button className="uppercase text-sm font-bold tracking-wide bg-slate-950 text-gray-100 p-3 rounded-lg w-full focus:outline-none focus:shadow-outline max-[400px]:text-xs">
-                  Submit
-                </button>
-              </div>
-              <div className="py-4">
-                *Our Brand is Associated with More than 283+ Architects,
-                Interior Designers and Developers across Delhi - NCR
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="p-4 bg-white rounded-lg shadow-lg sm:w-1/3">
-          <div className="bold text-gray-800  ">
-            <p className="w-full p-8 bg-slate-950 focus:outline-none focus:shadow-outline text-xl text-center uppercase text-gray-100 border-b-2 border-b-gray-500">
-              {' '}
-              Check Our Recent Project
-            </p>
-
-            <Link href="https://www.facebook.com/designindiankitchen">
-              {' '}
-              <button
-                className="w-full p-20  focus:outline-none focus:shadow-outline text-xl text-center uppercase border-b-2 border-b-gray-950"
-                style={{ backgroundColor: '#ffe216' }}
-              >
-                {' '}
-                Facebook
-              </button>
-            </Link>
-            <Link href="https://www.instagram.com/designindiankitchen">
-              {' '}
-              <button
-                className="w-full p-20  focus:outline-none focus:shadow-outline text-xl text-center uppercase border-b-2 border-b-gray-950"
-                style={{ backgroundColor: '#ffe216' }}
-              >
-                {' '}
-                Instagram
-              </button>{' '}
-            </Link>
-            <Link href="https://www.youtube.com/channel/UCqkIRwI6EL9QmaTZHYm6Hug">
-              {' '}
-              <button
-                className="w-full p-20 text-xl text-center uppercase focus:outline-none focus:shadow-outline border-b-2 border-b-gray-950"
-                style={{ backgroundColor: '#ffe216' }}
-              >
-                {' '}
-                Youtube
-              </button>
-            </Link>
-            <Link href="https://twitter.com/indiankitchens">
-              {' '}
-              <button
-                className="w-full p-20 text-xl text-center uppercase focus:outline-none focus:shadow-outlineborder-b-2 border-b-gray-950 "
-                style={{ backgroundColor: '#ffe216' }}
-              >
-                {' '}
-                Twitter
-              </button>
-            </Link>
-          </div>
-        </div>
+        <FirstForm />
+        <SecondForm />
+        <ThirdForm />
       </div>
-
-      {/*  <section className="Form-block" style={{ background: "#F1F9F9" }}>
-  <div className="container">
-    <div className="section-header">
-      <h2>Dont Miss.. ! Look Here</h2>
-      <p>
-        *Our Brand is Associated with More than 283+ Architects, Interior
-        Designers and Developers across Delhi - NCR
-      </p>
-    </div>
-    <div className="row flex p-4">
-      <div className="col-lg-4">
-        <div className="form-part">
-          <marquee
-            className="text-uppercase"
-            direction="left"
-            scrollamount={14}
-            behavior="scroll"
-          >
-            Book a design visit Today
-          </marquee>
-          <h3>
-            &amp; Get Guaranteed
-            <br />
-            Affordabe Quotes by us
-          </h3>
-          <div className="wpcf7 js" id="wpcf7-f1092-o1" lang="en-US" dir="ltr">
-            <div className="screen-reader-response">
-              <button role="status" aria-live="polite" aria-atomic="true" /> <ul />
-            </div>
-            <form
-              action="/#wpcf7-f1092-o1"
-              method="post"
-              className="wpcf7-form init"
-              aria-label="Contact form"
-              noValidate="novalidate"
-              data-status="init"
-            >
-              <div style={{ display: "none" }}>
-                <input type="hidden" name="_wpcf7" defaultValue={1092} />
-                <input
-                  type="hidden"
-                  name="_wpcf7_version"
-                  defaultValue="5.8.5"
-                />
-                <input
-                  type="hidden"
-                  name="_wpcf7_locale"
-                  defaultValue="en_US"
-                />
-                <input
-                  type="hidden"
-                  name="_wpcf7_unit_tag"
-                  defaultValue="wpcf7-f1092-o1"
-                />
-                <input
-                  type="hidden"
-                  name="_wpcf7_container_post"
-                  defaultValue={0}
-                />
-                <input
-                  type="hidden"
-                  name="_wpcf7_posted_data_hash"
-                  defaultValue=""
-                />
-                <input
-                  type="hidden"
-                  name="_wpcf7_recaptcha_response"
-                  defaultValue="03AFcWeA5yz-_USXs_-SnpUAeXJ8tEJcKjDafYP1BArbwr_Tw32QKNX9DOzDLCXYl1AnXA3T-pJOeH0on6i-d1QIY79W6qd_Ee7vSHO6GlJPP3BpqIf_nV_CEKbDi5E1IJnbRLkpRpoV6TRFb6A3oBwcLYvp_XRg_ULZyTNxkmmjXaylb3lc1ru8iLq0SZiMQisGctBHzqyNohlbH01u8MV6RtsZNMuBZB_1chClkOLKYnu507oofy9LbtWLnWMMhQ8nvSjLAgVL3b0vEC1c_5p6ht6YgEmeD4j1W5GdnJM7Q0ceO2hZEN0fNOOlQMwyc5_kJo122geGBbNtWtyR9gdP45HhCBvullx7Gsy8HhYSZK9pkZ9Qy3si700CH1hPDDmiJ9YVakW60W6VZ9PC9Oue0Q4HKiuD5ccKMnJPb5DzAtipKaWEgzbtAFlAGOAHpzABV2MfT-LiD46IbKPHWt1Z3ApZDxemOWBFp7en3syWZ-6nVzA4cs-NAgroNpQ18JIUYv22g4hRTzq2V12kCn2peHc-I-5gikYTOKKL2h76fCICkKGM9GtOf9Sh0F9Dt_WrznYV2GxJj1w_8V70P7GcFzlrdLzLVgNIO8zDY6jV9lJ3AyzUGtnwHP44l-Lg_YXVPo8uyaiZ3O"
-                />
-              </div>
-              <div className="form-group">
-                <p>
-                  <label htmlFor="name">NAME:</label>
-                  <br />
-                  <span className="wpcf7-form-control-wrap" data-name="Name">
-                    <input
-                      size={40}
-                      className="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-control"
-                      aria-required="true"
-                      aria-invalid="false"
-                      placeholder=""
-                      defaultValue=""
-                      type="text"
-                      name="Name"
-                    />
-                  </span>
-                </p>
-              </div>
-              <div className="form-group">
-                <p>
-                  <label htmlFor="email">EMAIL ID:</label>
-                  <br />
-                  <span className="wpcf7-form-control-wrap" data-name="Email">
-                    <input
-                      size={40}
-                      className="wpcf7-form-control wpcf7-email wpcf7-text wpcf7-validates-as-email form-control"
-                      aria-invalid="false"
-                      placeholder=""
-                      defaultValue=""
-                      type="email"
-                      name="Email"
-                    />
-                  </span>
-                </p>
-              </div>
-              <div className="form-group">
-                <p>
-                  <label htmlFor="contact">CONTACT NUMBER:</label>
-                  <br />
-                  <span className="wpcf7-form-control-wrap" data-name="contact">
-                    <input
-                      size={40}
-                      className="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-control"
-                      aria-required="true"
-                      aria-invalid="false"
-                      placeholder=""
-                      defaultValue=""
-                      type="text"
-                      name="contact"
-                    />
-                  </span>
-                </p>
-              </div>
-              <div className="form-group">
-                <p>
-                  <label htmlFor="address">ADDRESS:</label>
-                  <br />
-                  <span className="wpcf7-form-control-wrap" data-name="address">
-                    <textarea
-                      cols={40}
-                      rows={10}
-                      className="wpcf7-form-control wpcf7-textarea wpcf7-validates-as-required form-control"
-                      aria-required="true"
-                      aria-invalid="false"
-                      placeholder=""
-                      name="address"
-                      defaultValue={""}
-                    />
-                  </span>
-                </p>
-              </div>
-              <div className="submit-btn">
-                <p>
-                  <input
-                    className="wpcf7-form-control wpcf7-submit has-spinner form-control"
-                    type="submit"
-                    defaultValue="Send Message"
-                  />
-                  <span className="wpcf7-spinner" />
-                </p>
-              </div>
-              <div className="wpcf7-response-output" aria-hidden="true" />
-            </form>
-          </div>
-        </div>
-      </div>
-      <div className="col-lg-4">
-        <div className="form-part">
-          <h3>Are you an Architect,Interior Designer or Developer</h3>
-          <h4>Do Connect With Us</h4>
-          <div className="wpcf7 js" id="wpcf7-f1100-o2" lang="en-US" dir="ltr">
-            <div className="screen-reader-response">
-              <p role="status" aria-live="polite" aria-atomic="true" /> <ul />
-            </div>
-            <form
-              action="/#wpcf7-f1100-o2"
-              method="post"
-              className="wpcf7-form init"
-              aria-label="Contact form"
-              encType="multipart/form-data"
-              noValidate="novalidate"
-              data-status="init"
-            >
-              <div style={{ display: "none" }}>
-                <input type="hidden" name="_wpcf7" defaultValue={1100} />
-                <input
-                  type="hidden"
-                  name="_wpcf7_version"
-                  defaultValue="5.8.5"
-                />
-                <input
-                  type="hidden"
-                  name="_wpcf7_locale"
-                  defaultValue="en_US"
-                />
-                <input
-                  type="hidden"
-                  name="_wpcf7_unit_tag"
-                  defaultValue="wpcf7-f1100-o2"
-                />
-                <input
-                  type="hidden"
-                  name="_wpcf7_container_post"
-                  defaultValue={0}
-                />
-                <input
-                  type="hidden"
-                  name="_wpcf7_posted_data_hash"
-                  defaultValue=""
-                />
-                <input
-                  type="hidden"
-                  name="_wpcf7_recaptcha_response"
-                  defaultValue="03AFcWeA5yz-_USXs_-SnpUAeXJ8tEJcKjDafYP1BArbwr_Tw32QKNX9DOzDLCXYl1AnXA3T-pJOeH0on6i-d1QIY79W6qd_Ee7vSHO6GlJPP3BpqIf_nV_CEKbDi5E1IJnbRLkpRpoV6TRFb6A3oBwcLYvp_XRg_ULZyTNxkmmjXaylb3lc1ru8iLq0SZiMQisGctBHzqyNohlbH01u8MV6RtsZNMuBZB_1chClkOLKYnu507oofy9LbtWLnWMMhQ8nvSjLAgVL3b0vEC1c_5p6ht6YgEmeD4j1W5GdnJM7Q0ceO2hZEN0fNOOlQMwyc5_kJo122geGBbNtWtyR9gdP45HhCBvullx7Gsy8HhYSZK9pkZ9Qy3si700CH1hPDDmiJ9YVakW60W6VZ9PC9Oue0Q4HKiuD5ccKMnJPb5DzAtipKaWEgzbtAFlAGOAHpzABV2MfT-LiD46IbKPHWt1Z3ApZDxemOWBFp7en3syWZ-6nVzA4cs-NAgroNpQ18JIUYv22g4hRTzq2V12kCn2peHc-I-5gikYTOKKL2h76fCICkKGM9GtOf9Sh0F9Dt_WrznYV2GxJj1w_8V70P7GcFzlrdLzLVgNIO8zDY6jV9lJ3AyzUGtnwHP44l-Lg_YXVPo8uyaiZ3O"
-                />
-              </div>
-              <p>
-                <label htmlFor="name">Name:</label>
-                <br />
-                <span className="wpcf7-form-control-wrap" data-name="Name">
-                  <input
-                    size={40}
-                    className="wpcf7-form-control wpcf7-text wpcf7-validates-as-required form-control"
-                    id="name"
-                    aria-required="true"
-                    aria-invalid="false"
-                    defaultValue=""
-                    type="text"
-                    name="Name"
-                  />
-                </span>
-                <br />
-                <label htmlFor="email">Email:</label>
-                <br />
-                <span className="wpcf7-form-control-wrap" data-name="email">
-                  <input
-                    size={40}
-                    className="wpcf7-form-control wpcf7-email wpcf7-validates-as-required wpcf7-text wpcf7-validates-as-email"
-                    id="email"
-                    aria-required="true"
-                    aria-invalid="false"
-                    defaultValue=""
-                    type="email"
-                    name="email"
-                  />
-                </span>
-                <br />
-                <label htmlFor="contact">Contact No:</label>
-                <br />
-                <span className="wpcf7-form-control-wrap" data-name="contact">
-                  <input
-                    size={40}
-                    className="wpcf7-form-control wpcf7-text wpcf7-validates-as-required"
-                    id="contact"
-                    aria-required="true"
-                    aria-invalid="false"
-                    defaultValue=""
-                    type="text"
-                    name="contact"
-                  />
-                </span>
-                <br />
-                <label htmlFor="w3review">Message</label>
-                <br />
-                <span className="wpcf7-form-control-wrap" data-name="message">
-                  <textarea
-                    cols={40}
-                    rows={10}
-                    className="wpcf7-form-control wpcf7-textarea wpcf7-validates-as-required"
-                    id="message"
-                    aria-required="true"
-                    aria-invalid="false"
-                    name="message"
-                    defaultValue={""}
-                  />
-                </span>
-              </p>
-              <div className="submit-box">
-                <div className="upload-btn-wrapper">
-                  <p>
-                    <span className="wpcf7-form-control-wrap" data-name="file">
-                      <input
-                        size={40}
-                        className="wpcf7-form-control wpcf7-file"
-                        id="file"
-                        accept="audio/*,video/*,image/*"
-                        aria-invalid="false"
-                        type="file"
-                        name="file"
-                      />
-                    </span>
-                  </p>
-                </div>
-                <div className="mb-2 no-border ">
-                  <div className="submit-btn">
-                    <p>
-                      <input
-                        className="wpcf7-form-control wpcf7-submit has-spinner"
-                        id="submit"
-                        type="submit"
-                        defaultValue="Submit"
-                      />
-                      <span className="wpcf7-spinner" />
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <p>
-                *Our Brand is Associated with More than 283+ Architects,
-                Interior Designers and Developers across Delhi - NCR
-              </p>
-              <div className="wpcf7-response-output" aria-hidden="true" />
-            </form>
-          </div>
-        </div>
-      </div>
-      <div className="col-sm-12 col-md-4">
-        <div className="ourwork">
-          <h2>Check Our Recent Project</h2>
-          <div
-            className="cursor"
-            style={{
-              backgroundImage:
-                'url("https://www.designindiankitchen.com/wp-content/themes/dkiblogs/assets/images/v2.gif")',
-              opacity: 0,
-              visibility: "hidden",
-              transform: "scale(0.1, 0.1)",
-              top: 4042,
-              left: 704
-            }}
-          />
-          <div className="grid-container">
-            <div className="item1 project p-1">
-              <a href="https://www.facebook.com/designindiankitchen">
-                <div className="project-title">
-                  <h3>Facebook</h3>
-                </div>
-                <div className="project-overlay" />
-              </a>
-            </div>
-            <div className="item1 project p-2">
-              <a href="https://www.instagram.com/designindiankitchen/?hl=en">
-                <div className="project-title">
-                  <h3>Instagram</h3>
-                </div>
-                <div className="project-overlay" />
-              </a>
-            </div>
-            <div className="item1 project p-2">
-              <a href="https://www.youtube.com/channel/UCqkIRwI6EL9QmaTZHYm6Hug">
-                <div className="project-title">
-                  <h3>Youtube</h3>
-                </div>
-                <div className="project-overlay" />
-              </a>
-            </div>
-            <div className="item1 project p-2">
-              <a href="https://twitter.com/indiankitchens">
-                <div className="project-title">
-                  <h3>Twitter</h3>
-                </div>
-                <div className="project-overlay" />
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>  */}
 
       <div class="container m-auto p-8 text-grey-darkest">
         <div class="flex flex-wrap -mx-2 mb-8">
@@ -565,7 +367,7 @@ const PostFooter = () => {
                 loop
                 autoPlay
                 controls={isPlaying}
-                src="/video/fry.mp4"
+                src="/video/reel1.mp4"
                 playsInline
                 muted
                 className="rounded shadow-md 
@@ -605,7 +407,7 @@ const PostFooter = () => {
                 loop
                 autoPlay
                 controls={isPlaying}
-                src="/video/fr.mp4"
+                src="/video/reel2.mp4"
                 playsInline
                 muted
                 className="rounded shadow-md"

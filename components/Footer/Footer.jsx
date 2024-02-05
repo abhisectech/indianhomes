@@ -44,27 +44,30 @@ const LocationsTabs = () => {
   )
 
   return (
-    <div className="container mx-auto mt-8 p-0">
-      <Tabs
-        value={value}
-        onChange={handleChange}
-        variant="fullWidth"
-        scrollButtons="auto" // Add this to make tabs span the full width
-        className="text-center whitespace-nowrap" // Add this to center the text in tabs
-      >
-        <StyledTab
-          label="LOCATION - WARDROBE DESIGNS"
-          className="sm:text-xl text-sm font-[500] my-2"
-        />
-        <StyledTab
-          label="LOCATION - WARDROBE DESIGNS"
-          className="sm:text-xl text-sm font-[500] my-2"
-        />
-        <StyledTab
-          label="LOCATION - WARDROBE DESIGNS"
-          className="sm:text-xl text-sm font-[500] my-2"
-        />
-      </Tabs>
+    <div className="container mx-auto mt-8 p-0 ">
+      <div className="flex justify-center">
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          variant="scrollable"
+          scrollButtons="auto"
+          className="text-center  w-fit" // Add this to center the text in tabs
+        >
+          <StyledTab
+            label="WARDROBE DESIGNS"
+            className="sm:text-xl text-xs font-[500] my-2"
+          />
+          <StyledTab
+            label="KITCHEN DESIGNS"
+            className="sm:text-xl text-xs font-[500] my-2"
+          />
+          <StyledTab
+            label="INTERIOR DESIGNS"
+            className="sm:text-xl text-xs font-[500] my-2"
+          />
+        </Tabs>
+      </div>
+      <h2 className="mt-4 text-lg font-bold">LOCATIONS -</h2>
       <Box width="100%" className="mt-2">
         {value === 0 && <ParagraphTab text={paragraphs[0]} />}
         {value === 1 && <ParagraphTab text={paragraphs[1]} />}
@@ -111,7 +114,7 @@ const DesignDropdown = ({
         </svg>
       </button>
       {isOpen && (
-        <div className="z-10 absolute mt-2 bg-[#87fff0] border rounded-lg shadow-md w-64">
+        <div className="z-10 block mt-2 bg-[#87fff0] border rounded-lg shadow-md w-64">
           <ul>
             {links.map((link, index) => (
               <li
@@ -220,7 +223,7 @@ const DesignIdeasDropdownContainer = () => {
           label: 'Kitchen Renovation ',
           url: '/modular-kitchen-renovation-services',
         },
-        { label: 'Get Estimate ', url: '/modular-kitchen-price-estimator' },
+        { label: 'Get Estimate ', url: '/GetQuotes' },
       ],
     },
     {
@@ -321,6 +324,79 @@ function Time() {
         <li className="mb-2 text-sm mt-4 ml-6">{liveTime}</li>
       </ul>
     </div>
+  )
+}
+
+const LetsConnectForm = () => {
+  const handleFormSubmit = (event) => {
+    event.preventDefault()
+
+    const formData = {
+      name: event.target.elements.name.value,
+      email: event.target.elements.email.value,
+      contactNumber: event.target.elements.contactNumber.value,
+      message: event.target.elements.message.value,
+    }
+    const recipientEmail = 'saurabhbehal@gmail.com'
+    const emailData = `
+        Name: ${formData.name},
+        Email: ${formData.email},
+        Mobile: ${formData.contactNumber},
+        Message: ${formData.message},
+     
+    `
+    const mailtoLink = `mailto:${recipientEmail}?subject=Booked a Design Visit&body=${encodeURIComponent(
+      emailData ?? null
+    )}`
+
+    window.open(mailtoLink, '_blank')
+  }
+
+  return (
+    <form onSubmit={handleFormSubmit} className="mt-4">
+      <input
+        type="text"
+        name="name"
+        placeholder="Name"
+        className="w-full mb-4 border-b border-gray-300 focus:outline-none focus:border-blue-500 placeholder-gray-500 py-2 px-4 rounded-md transition-all duration-300 bg-gradient-to-r from-teal-400 to-blue-500"
+      />
+
+      <br />
+
+      <input
+        type="email"
+        name="email"
+        placeholder="Email"
+        className="w-full mb-4 border-b border-gray-300 focus:outline-none focus:border-blue-500 placeholder-gray-500 py-2 px-4 rounded-md transition-all duration-300 bg-gradient-to-r from-teal-400 to-blue-500"
+      />
+
+      <br />
+
+      <input
+        type="text"
+        name="contactNumber"
+        placeholder="Mobile Number"
+        className="w-full mb-4 border-b border-gray-300 focus:outline-none focus:border-blue-500 placeholder-gray-500 py-2 px-4 rounded-md transition-all duration-300 bg-gradient-to-r from-teal-400 to-blue-500"
+      />
+
+      <br />
+
+      <textarea
+        name="message"
+        placeholder="Message"
+        className="w-full mb-8 border-b border-gray-300 focus:outline-none focus:border-blue-500 placeholder-gray-500 py-2 px-4 rounded-md transition-all duration-300 bg-gradient-to-r from-teal-400 to-blue-500"
+      />
+
+      <br />
+      <button
+        type="submit"
+        // className="py-2 px-6 hover:text-white hover:bg-black"
+        // style={{ border: "1px solid black" }}
+        className="w-full rounded-full border-b border-gray-300 focus:outline-none focus:border-blue-500 placeholder-gray-500 py-2 px-4 transition-all duration-300 bg-gradient-to-r from-lime-300 to-green-400"
+      >
+        Submit
+      </button>
+    </form>
   )
 }
 
@@ -598,58 +674,7 @@ export class Footer extends Component {
                 </div>
                 <div>
                   <h1 className="text-4xl font-bold">LETS CONNECT</h1>
-                  <form onSubmit={null} className="mt-4">
-                    <input
-                      type="text"
-                      name="name"
-                      value={null}
-                      placeholder="Name"
-                      className="w-full mb-4 border-b border-gray-300 focus:outline-none focus:border-blue-500 placeholder-gray-500 py-2 px-4 rounded-md transition-all duration-300 bg-gradient-to-r from-teal-400 to-blue-500"
-                      onChange={null}
-                    />
-
-                    <br />
-
-                    <input
-                      type="email"
-                      name="email"
-                      placeholder="Email"
-                      value={null}
-                      className="w-full mb-4 border-b border-gray-300 focus:outline-none focus:border-blue-500 placeholder-gray-500 py-2 px-4 rounded-md transition-all duration-300 bg-gradient-to-r from-teal-400 to-blue-500"
-                      onChange={null}
-                    />
-
-                    <br />
-
-                    <input
-                      type="text"
-                      name="contactNumber"
-                      value={null}
-                      placeholder="Mobile Number"
-                      className="w-full mb-4 border-b border-gray-300 focus:outline-none focus:border-blue-500 placeholder-gray-500 py-2 px-4 rounded-md transition-all duration-300 bg-gradient-to-r from-teal-400 to-blue-500"
-                      onChange={null}
-                    />
-
-                    <br />
-
-                    <textarea
-                      name="message"
-                      value={null}
-                      placeholder="Message"
-                      onChange={null}
-                      className="w-full mb-8 border-b border-gray-300 focus:outline-none focus:border-blue-500 placeholder-gray-500 py-2 px-4 rounded-md transition-all duration-300 bg-gradient-to-r from-teal-400 to-blue-500"
-                    />
-
-                    <br />
-                    <button
-                      type="submit"
-                      // className="py-2 px-6 hover:text-white hover:bg-black"
-                      // style={{ border: "1px solid black" }}
-                      className="w-full rounded-full border-b border-gray-300 focus:outline-none focus:border-blue-500 placeholder-gray-500 py-2 px-4 transition-all duration-300 bg-gradient-to-r from-lime-300 to-green-400"
-                    >
-                      Submit
-                    </button>
-                  </form>
+                  <LetsConnectForm />
                 </div>
               </div>
 

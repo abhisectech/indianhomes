@@ -230,95 +230,123 @@ const TruncatedText = () => {
     <div className=" text-center">
       <div className={` ${showFullText ? 'my-8' : 'my-2'}`}>
         {showFullText ? (
-          <p className=" mb-2">
-            Design Indian Homes is India&#39;s top Interior, Architectural &
-            Modular Interior Brand serving across Delhi, Gurgaon, Noida & NCR.
-            It is the most sought out by Homemakers, Architects, Interior
-            Designers, Developers & just anyone who needs an Affordable Interior
-            Makeover, Renovation Services, Architectural Services, Modular
-            Kitchen, Wardrobe, Vanities, TV Units, Living works, Bathroom Or
-            Just a peaceful Turnkey Work by Our Team. We are serving End to End
-            Interiors & Modular Interiors across Delhi, Gurgaon, Noida,
-            Faridabad & across NCR.
-            <br /> Our Brand Design Indian Homes was established in 2007, we are
-            a professional team of certified architects, interior remodelers,
-            and also happen to be Largest manufacturers of Modular Kitchens,
+          <div className="mb-6 text-left sm:mx-12 mx-4">
+            <div className="mb-2 text-left">
+              <p>
+                <span className="text-4xl font-bold">D</span>esign Indian Homes
+                is India&apos;s top Interior, Architectural & Modular Interior
+                Brand serving across Delhi, Gurgaon, Noida & NCR. It is the most
+                sought out by Homemakers, Architects, Interior Designers,
+                Developers & just anyone who needs an Affordable Interior
+                Makeover, Renovation Services, Architectural Services, Modular
+                Kitchen, Wardrobe, Vanities, TV Units, Living works, Bathroom Or
+                Just a peaceful Turnkey Work by Our Team. We are serving End to
+                End Interiors & Modular Interiors across Delhi, Gurgaon, Noida,
+                Faridabad & across NCR.
+              </p>
+            </div>
+            Our Brand Design Indian Homes was established in 2007, we are a
+            professional team of certified architects, interior remodelers, and
+            also happen to be Largest manufacturers of Modular Kitchens,
             Wardrobes, Tv units, Crockery units, Bookshelves, and just anything
-            residential or commercial. We are delivering affordable top quality
+            residential or commercial. We are delivering affordable top-quality
             Interiors, Architectural Solutions, Modular Kitchens, Wardrobes, Tv
-            Units, Bookshelves, Shoeracks, Crockery Units etc & executing end to
-            end projects for our Clients. We are the Largest Manufacturers of
+            Units, Bookshelves, Shoeracks, Crockery Units, etc & executing end
+            to end projects for our Clients. We are the Largest Manufacturers of
             Modular Kitchens, Wardrobes & TV Units across New Delhi - Gurgaon -
-            Noida NCR, we have multiple modular manufacturing facilities across
+            Noida NCR; we have multiple modular manufacturing facilities across
             North India and are associated with more than 900+ Architects,
             Interior Designers, developers and Builders along with our thousands
-            of direct clients across New delhi - NCR. <br />
-            We have over 5000+ interior designs, and can cater to any custom
+            of direct clients across New Delhi - NCR. <br />
+            We have over 5000+ interior designs and can cater to any custom
             requirements for our clients and associates. Delivering the most
-            Affordable Luxury is our Principle and we work with utmost integrity
-            and complete transparency.
-            <br />
+            Affordable Luxury is our Principle, and we work with utmost
+            integrity and complete transparency. <br />
             Due to the Goodwill built by the brand and faith of our clients, we
             are the most referred to modular interior Brand in Delhi - Gurgaon -
             Noida and across India. All our interior designs, architectural
             concepts, modular kitchen designs, wardrobe designs, tv units
-            designs or any modular kitchens are planned to perfection as per the
-            design requirements. We create smooth, crisp and meticulous designs
-            for your residence & also are top modular kitchen & modular wardrobe
-            manufacturers with a precision timing in delivery, extensive
-            warranty and a life long relation with our Brand.
-            <br />
+            designs, or any modular kitchens are planned to perfection as per
+            the design requirements. We create smooth, crisp, and meticulous
+            designs for your residence & also are top modular kitchen & modular
+            wardrobe manufacturers with a precision timing in delivery,
+            extensive warranty and a lifelong relation with our Brand. <br />
             Our Modular Interior brand is also the top Modular brand in Delhi -
-            NCR India, and we are honoured with the prestigious award of the Top
-            Modular brand in India by the Timber Wood Society of India.
-            <br />
+            NCR India, and we are honored with the prestigious award of the Top
+            Modular brand in India by the Timber Wood Society of India. <br />
             This is all due to the Hard work put in by our architectural
             designers, our installers, our supervisors, our management and our
-            entire Team which works tirelessly 24/7 in delivering top notch
-            modular kitchen designs to our clients across New Delhi - India.
+            entire Team which works tirelessly 24/7 in delivering top-notch
+            modular kitchen designs to our clients across New Delhi - India.{' '}
             <br />
-            We have the largest Modular Interior facilities and are serving
-            extensively with most affordable solutions for the following
-            services : -
-            <br /> <br />
-            Modular Kitchens * Wardrobes * TV Units * Vanities <br />* Crockery
-            Units * Shoe Racks * Bookshelves * Partitions <br />* Studies & Bar
-            Units * Mandir Units * End To End Interiors * Complete Structures{' '}
-            <br />* Luxury Interiors & Residences * Luxury Kitchens And
-            Wardrobes * Italian - German - Swedish - Danish - Spanish Modular
-            Kitchens & Wardrobes
-            <br />
+            <div className="my-8 text-left">
+              <p className="mb-2">
+                We have the largest Modular Interior facilities and are serving
+                extensively with the most affordable solutions for the following
+                services:
+              </p>
+
+              <ul className="list-disc pl-6 mb-4">
+                <li>Modular Kitchens</li>
+                <li>Wardrobes</li>
+                <li>TV Units</li>
+                <li>Vanities</li>
+              </ul>
+
+              <ul className="list-disc pl-6 mb-4">
+                <li>Crockery Units</li>
+                <li>Shoe Racks</li>
+                <li>Bookshelves</li>
+                <li>Partitions</li>
+              </ul>
+
+              <ul className="list-disc pl-6 mb-4">
+                <li>Studies & Bar Units</li>
+                <li>Mandir Units</li>
+                <li>End To End Interiors</li>
+                <li>Complete Structures</li>
+              </ul>
+
+              <ul className="list-disc pl-6 mb-4">
+                <li>Luxury Interiors & Residences</li>
+                <li>Luxury Kitchens And Wardrobes</li>
+                <li>
+                  Italian - German - Swedish - Danish - Spanish Modular Kitchens
+                  & Wardrobes
+                </li>
+              </ul>
+            </div>
             <br />
             We assure you 100% Guaranteed Quotes across New Delhi - NCR for any
             type of Interior Works, Architectural Works, renovation works,
-            Modular Kitchens, Wardrobes, TV units or just any Modular Works,
-            custom interior works or architectural consultancy works. We have
+            Modular Kitchens, Wardrobes, TV units, or just any Modular Works,
+            custom interior works, or architectural consultancy works. We have
             the most affordable modular interiors and serve all clients with
             perfect understanding of the requirements. <br />
             We also assure you to bring us any quotes and assure you flat 7%
-            less on any offerings by any vendor across New Delhi - NCR.
-            <br />
+            less on any offerings by any vendor across New Delhi - NCR. <br />
             Connect with the Largest Interior, Architectural, Modular Kitchens &
-            Wardrobes Brand Across New Delhi - NCR - India.
-            <br />
+            Wardrobes Brand Across New Delhi - NCR - India. <br />
             We are the Top Awarded Largest manufacturers for Modular Kitchens &
             Wardrobes across Delhi - NCR & have been rated as the TOP Interior &
             Architectural Brand by The Architectural Congress India and Real
-            Wood Societies since 2016.
-            <br />
-          </p>
+            Wood Societies since 2016. <br />
+          </div>
         ) : (
-          <p className=" mb-2">
-            Design Indian Homes is India&#39;s top Interior, Architectural &
-            Modular Interior Brand serving across Delhi, Gurgaon, Noida & NCR.
-            It is the most sought out by Homemakers, Architects, Interior
-            Designers, Developers & just anyone who needs an Affordable Interior
-            Makeover, Renovation Services, Architectural Services, Modular
-            Kitchen, Wardrobe, Vanities, TV Units, Living works, Bathroom Or
-            Just a peaceful Turnkey Work by Our Team. We are serving End to End
-            Interiors & Modular Interiors across Delhi, Gurgaon, Noida,
-            Faridabad & across NCR.
-          </p>
+          <div className="mb-2 text-left sm:mx-12 mx-4">
+            <p className="text-left">
+              <span className="text-4xl font-bold">D</span>esign Indian Homes is
+              India&apos;s top Interior, Architectural & Modular Interior Brand
+              serving across Delhi, Gurgaon, Noida & NCR. It is the most sought
+              out by Homemakers, Architects, Interior Designers, Developers &
+              just anyone who needs an Affordable Interior Makeover, Renovation
+              Services, Architectural Services, Modular Kitchen, Wardrobe,
+              Vanities, TV Units, Living works, Bathroom Or Just a peaceful
+              Turnkey Work by Our Team. We are serving End to End Interiors &
+              Modular Interiors across Delhi, Gurgaon, Noida, Faridabad & across
+              NCR.
+            </p>
+          </div>
         )}
       </div>
 
@@ -506,7 +534,7 @@ const Collection = () => {
 
   const imagesVariants = {
     initial: {
-      y: 50,
+      y: 30,
       x: 0,
       opacity: 0,
     },
@@ -515,8 +543,8 @@ const Collection = () => {
       x: 0,
       opacity: 1,
       transition: {
-        duration: 1,
-        staggerChildren: 0.2,
+        duration: 0.5,
+        staggerChildren: 0.1,
       },
     },
   }
@@ -533,9 +561,9 @@ const Collection = () => {
   return (
     <>
       <div id="fry">
-        <div style={containerStyle} className="sm:mt-8">
+        <div style={containerStyle} className="mt-8">
           <div style={textContainerStyle}>
-            <h3 className="sm:text-3xl text-xl font-bold">
+            <h3 className="sm:text-4xl text-xl font-bold">
               INDIA’S NO.1 INTERIOR & ARCHITECTURAL BRAND
             </h3>
           </div>
@@ -593,16 +621,20 @@ const Collection = () => {
             loop
             autoPlay
             muted
-            src="/video/video-interior-designer-company-in-delhi-gurgaon-noida-india.mp4"
+            playsInline
             width={1600}
             height={550}
-            playsInline
             className="rounded-xl shadow-md mx-auto sm:w-[90%]"
-            style={{}}
             variants={videoVariants}
             initial="initial"
             whileInView="animate"
-          />
+          >
+            <source
+              src="/video/video-interior-designer-company-in-delhi-gurgaon-noida-india.mp4"
+              type="video/mp4"
+            />
+            Your browser does not support the video tag.
+          </motion.video>
         </div>
         <div className="callout">
           <h3 className="bg-transparent text-sm md:text-4xl">
@@ -615,7 +647,7 @@ const Collection = () => {
         </div>
       </section>
 
-      <div className="mb-12">
+      <div className="my-12">
         <TruncatedText />
       </div>
 
@@ -627,9 +659,12 @@ const Collection = () => {
           </h3>
         </div>
       </Marquee>
-      <div className="w-full overflow-hidden mx-auto text-center" ref={aniRef}>
+      <div
+        className="w-full overflow-hidden mx-auto text-center my-8"
+        ref={aniRef}
+      >
         <motion.h2
-          className="md:text-[72px] text-xl  text-center uppercase sm:my-8 mt-8 whitespace-nowrap"
+          className="md:text-[76px] text-xl  text-center uppercase sm:my-8 mt-8 whitespace-nowrap"
           style={
             isLargeScreen
               ? {
@@ -676,7 +711,7 @@ const Collection = () => {
           </span>
         </motion.h2>
         <motion.h2
-          className="md:text-[72px] text-xl  text-center uppercase pr-2 sm:my-8 mb-8 whitespace-nowrap"
+          className="md:text-[76px] text-xl  text-center uppercase pr-2 sm:my-8 mb-8 whitespace-nowrap"
           style={
             isLargeScreen
               ? {
@@ -786,13 +821,13 @@ const Collection = () => {
               </Link>
 
               <section class="bordered bordersec"></section>
-              <div className="main-hero">
+              {/* <div className="main-hero">
                 <div className="cover">
                   <div className="box ai"></div>
                   <div className="box bi"></div>
                 </div>
-              </div>
-              <div className="flex justify-center items-center sm:my-8">
+              </div> */}
+              <div className="flex justify-center items-center sm:my-16 my-8">
                 <div style={containerStyle}>
                   <div
                     style={textContainerStyle}
@@ -815,7 +850,6 @@ const Collection = () => {
                 autoPlay
                 muted
                 controls={isPlaying}
-                src="/video/dkivid.mp4"
                 width={1500}
                 height={550}
                 playsInline
@@ -824,7 +858,10 @@ const Collection = () => {
                 variants={videoVariants}
                 initial="initial"
                 whileInView="animate"
-              />
+              >
+                <source src="/video/dkivid.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </motion.video>
               {/* 
             <video loop autoPlay controls={isPlaying} src="video/vid21.mp4" alt="" height={10} width={1500}
               className="rounded shadow-md"
@@ -931,101 +968,94 @@ const Collection = () => {
           </div>
         </section>
         {/* before and after */}
+
         <CarouselBeforeAfter />
         {/* ------------ */}
       </div>
 
-      <div className="containr">
-        <h1>Why Design Indian Homes?</h1>
-        <div id="content">
-          <div className="item">
+      <div className="container mx-auto sm:my-16 my-8 bg-[#d8f1c7] p-8">
+        <h1 className="text-3xl font-bold sm:mb-16 mb-8 text-center">
+          Why Design Indian Homes?
+        </h1>
+        <div id="" className="grid grid-cols-2 lg:grid-cols-4 gap-4 gap-y-8">
+          <div className="flex flex-col items-center text-center">
             <Image
               width={100}
               height={100}
               src="/images/icon/icons8-on-time-delivery-53.png"
             />
-
             <p>On time Delivery</p>
           </div>
 
-          <div className="item">
+          <div className="flex flex-col items-center text-center">
             <Image
               width={100}
               height={100}
               src="/images/icon/icons8-home-50.png"
             />
-
             <p>1609+ Happy Homes</p>
           </div>
-          <div className="item">
+
+          <div className="flex flex-col items-center text-center">
             <Image
               width={100}
               height={100}
               src="/images/icon/icons8-structure-26.png"
             />
-
             <p>81+ Inhouse Architects & Interior Pro</p>
           </div>
-          <div className="item">
+
+          <div className="flex flex-col items-center text-center">
             <Image
               width={100}
               height={100}
               src="/images/icon/icons8-construction-building-96.png"
             />
-
             <p>End To End Interiors & Structure Building</p>
           </div>
-          <div className="item">
+
+          <div className="flex flex-col items-center text-center">
             <Image
               width={100}
               height={100}
               src="/images/icon/icons8-warranty-64.png"
             />
-
             <p>Warranty Direct from Source</p>
           </div>
-          <div className="item">
+
+          <div className="flex flex-col items-center text-center">
             <Image
               width={100}
               height={100}
               src="/images/icon/icons8-engineer-50.png"
             />
-
             <p>Professional Personnel</p>
           </div>
-          <div className="item">
+
+          <div className="flex flex-col items-center text-center">
             <Image
               width={100}
               height={100}
               src="/images/icon/icons8-construction-building-96.png"
             />
-
-            <p />
             <p>In-House Modular Manufacturing</p>
           </div>
 
-          <div className="item">
+          <div className="flex flex-col items-center text-center">
             <Image
               width={100}
               height={100}
               src="/images/icon/icons8-check-50.png"
             />
-
-            <p />
             <p>Multiple Quality Checks</p>
           </div>
         </div>
       </div>
 
-      <section class="bordered bordersec"></section>
-      <div className="main-hero">
-        <div className="cover">
-          <div className="box ai"></div>
-          <div className="box bi"></div>
-        </div>
-      </div>
+      <section class="bordered bordersec pt-16"></section>
+
       {/* ------------------------------------------------ */}
-      <div className="z-10 text-center text-2xl sm:text-4xl sm:py-12 py-8 font-bold">
+      <div className="z-10 text-center text-2xl sm:text-4xl sm:py-16 py-12 font-bold">
         {/* <h1 className="sm:-mb-16">Connect With Us</h1> */}
         <div className="flex justify-center items-center sm:my-8">
           <div style={containerStyle}>
@@ -1081,59 +1111,58 @@ const Collection = () => {
           whileInView="animate"
         >
           <motion.div className="card" variants={imagesVariants}>
-            <div className="grin">
-              <article className="mainz ">
-                <h2>Connect on</h2>
-                <h1>Whatsapp</h1>
-              </article>
-              <section className="sidez">
-                <Image
-                  src="https://www.tanishq.co.in/on/demandware.static/-/Library-Sites-TanishqSharedLibrary/default/dw9fa2f775//images/home/whatsapp-icon.svg"
-                  width={0}
-                  height={0}
-                />
-              </section>
-            </div>
+            <a
+              href="https://wa.me/9899264978"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div className="grin">
+                <article className="mainz">
+                  <h2>Connect on</h2>
+                  <h1>Whatsapp</h1>
+                </article>
+                <section className="sidez">
+                  <Image src="/images/whatsapp-icon.svg" width={0} height={0} />
+                </section>
+              </div>
+            </a>
           </motion.div>
 
           <motion.div className="card" variants={imagesVariants}>
-            <div className="grin">
-              <article className="mainz ">
-                <h2>Book An</h2>
-                <h1>Appointment</h1>
-              </article>
-              <section className="sidez">
-                <Image
-                  src="https://www.tanishq.co.in/on/demandware.static/-/Library-Sites-TanishqSharedLibrary/default/dwac5fb555//images/home/marker-icon.svg"
-                  width={0}
-                  height={0}
-                />
-              </section>
-            </div>
+            <Link href="/book-visit">
+              <div className="grin">
+                <article className="mainz ">
+                  <h2>Book An</h2>
+                  <h1>Appointment</h1>
+                </article>
+                <section className="sidez">
+                  <Image src="/images/marker-icon.svg" width={0} height={0} />
+                </section>
+              </div>
+            </Link>
           </motion.div>
 
           <motion.div className="card" variants={imagesVariants}>
-            <div className="grin">
-              <article className="mainz ">
-                <h2>Schedule A</h2>
-                <h1>Video Call</h1>
-              </article>
-              <section className="sidez">
-                <Image
-                  src="https://www.tanishq.co.in/on/demandware.static/-/Library-Sites-TanishqSharedLibrary/default/dw153e7692//images/home/video-icon.svg"
-                  width={0}
-                  height={0}
-                />
-              </section>
-            </div>
+            <Link href="/schedule-videocall">
+              <div className="grin">
+                <article className="mainz ">
+                  <h2>Schedule A</h2>
+                  <h1>Video Call</h1>
+                </article>
+                <section className="sidez">
+                  <Image src="/images/video-icon.svg" width={0} height={0} />
+                </section>
+              </div>
+            </Link>
           </motion.div>
         </motion.section>
       </div>
       {/* ------------------------------------------ */}
 
-      <div className="mt-16">
+      <div className="mt-24">
+        <hr className="border-t-[1px] border-red-500 w-full mb-20 my-24" />
         {/* <h1>Best Trending Kitchens</h1> */}
-        <div className="flex justify-center items-center sm:my-8">
+        <div className="flex justify-center items-center my-8">
           <div style={containerStyle}>
             <div style={textContainerStyle} className="flex justify-center ">
               <h1 className="sm:text-4xl text-xl font-bold text-center">
@@ -1175,9 +1204,10 @@ const Collection = () => {
         </div>
       </div>
 
-      <div className="mt-16">
+      <div className="mt-24">
         {/* <h1>Best Trending Wardrobes</h1> */}
-        <div className="flex justify-center items-center sm:my-8">
+        <hr className="border-t-[1px] border-red-500 w-full mb-20 my-24" />
+        <div className="flex justify-center items-center my-8">
           <div style={containerStyle}>
             <div style={textContainerStyle} className="flex justify-center ">
               <h1 className="sm:text-4xl text-xl font-bold text-center">
@@ -1219,9 +1249,10 @@ const Collection = () => {
         </div>
       </div>
 
-      <div className=" mt-16">
+      <div className=" mt-24">
         {/* <h1>Best Trending Interiors</h1> */}
-        <div className="flex justify-center items-center sm:my-8">
+        <hr className="border-t-[1px] border-red-500 w-full mb-20 my-24" />
+        <div className="flex justify-center items-center my-8">
           <div style={containerStyle}>
             <div style={textContainerStyle} className="flex justify-center ">
               <h1 className="sm:text-4xl text-xl font-bold text-center">
@@ -1264,9 +1295,11 @@ const Collection = () => {
         </div>
       </div>
 
-      <div className=" mt-16">
+      <div className=" mt-24">
         {/* <h1>Best Trending Structures</h1> */}
-        <div className="flex justify-center items-center sm:my-8">
+        <hr className="border-t-[1px] border-red-500 w-full mb-20 my-24" />
+
+        <div className="flex justify-center items-center my-8">
           <div style={containerStyle}>
             <div style={textContainerStyle} className="flex justify-center ">
               <h1 className="sm:text-4xl text-xl font-bold text-center">
@@ -1381,16 +1414,16 @@ const Collection = () => {
       </div>
 
       <section class="bordered bordersec"></section>
-      <div className="main-hero">
+      {/* <div className="main-hero">
         <div className="cover">
           <div className="box ai"></div>
           <div className="box bi"></div>
         </div>
-      </div>
+      </div> */}
 
       <div className="">
         {/* <h1>Brands you will find in our products</h1> */}
-        <div className="flex justify-center items-center sm:my-8">
+        <div className="flex justify-center items-center sm:my-8 sm:mb-24 mb-20">
           <div style={containerStyle} className="mt-16">
             <div style={textContainerStyle} className="flex justify-center ">
               <h1 className="sm:text-4xl text-xl font-bold text-center">

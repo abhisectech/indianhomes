@@ -147,6 +147,60 @@ app.post('/upload-project', upload.single('file'), async (req, res) => {
   }
 })
 
+
+
+app.post('/upload-postfooter-form', upload.single('file'), async (req, res) => {
+  try {
+    const { body, file } = req
+
+    if (!file) {
+      return res.status(400).send('No file uploaded.')
+    }
+
+    console.log('Form data received:', body)
+    console.log('File received:', file)
+
+    // Send email
+    const mailOptions = {
+      from: 'official@designindianhomes.com',
+      to: 'abhisec_tech@proton.me',
+      subject: 'Form Data and File Attachment',
+      text: 'Attached is the file and form data you requested.',
+      attachments: [
+        {
+          filename: file.originalname,
+          path: file.path,
+        },
+      ],
+      html: `<p><strong>Name:</strong> ${body.name}</p>
+             <p><strong>Email:</strong> ${body.email}</p>
+            
+             <p><strong>Number:</strong> ${body.number}</p>
+             
+             <p><strong>Message:</strong> ${
+               body.qualification ? body.message : 'Not Provided'
+             }</p>
+           
+             <p><strong>Attached File:</strong> ${file.originalname}</p>`,
+    }
+
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error('Email sending failed:', error)
+        res.status(500).send('Internal Server Error')
+      } else {
+        console.log('Email sent:', info.response)
+        res
+          .status(200)
+          .send('Form data and file uploaded, and email sent successfully!')
+      }
+    })
+  } catch (error) {
+    console.error('Error during file upload:', error)
+    res.status(500).send('Internal Server Error')
+  }
+})
+
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`)
 })

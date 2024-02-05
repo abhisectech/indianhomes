@@ -124,7 +124,7 @@ const AccordionSection = () => {
       {/* <h2 className="text-3xl mb-4">
         FAQs About <span className="font-extrabold">Design Indian Homes</span>
       </h2> */}
-      <div className="flex justify-center items-center sm:my-8">
+      <div className="flex justify-center items-center sm:my-24 my-8">
         <div style={containerStyle}>
           <div style={textContainerStyle} className="flex justify-center ">
             <h1 className="sm:text-4xl text-xl font-bold text-center">

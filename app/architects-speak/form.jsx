@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 
 import MaxWidthWrapper from '../../components/MaxWidthWrapper'
+
 const FileUploadForm = () => {
   const [selectedFile, setSelectedFile] = useState(null)
   const [formData, setFormData] = useState({
@@ -86,8 +87,8 @@ const FileUploadForm = () => {
                     type="text"
                     id="name"
                     name="name"
-                    className="form-input bg-white focus:outline-none focus:shadow-outline border border-gray-300 py-2 px-4 rounded-md block w-full appearance-none leading-5 transition duration-150 ease-in-out"
                     onChange={handleChange}
+                    className="form-input bg-white focus:outline-none focus:shadow-outline border border-gray-300 py-2 px-4 rounded-md block w-full appearance-none leading-5 transition duration-150 ease-in-out"
                   />
                 </div>
                 <div className="mb-4">
@@ -102,8 +103,8 @@ const FileUploadForm = () => {
                     type="text"
                     id="address"
                     name="address"
-                    className="form-input bg-white focus:outline-none focus:shadow-outline border border-gray-300 py-2 px-4 rounded-md block w-full appearance-none leading-5 transition duration-150 ease-in-out"
                     onChange={handleChange}
+                    className="form-input bg-white focus:outline-none focus:shadow-outline border border-gray-300 py-2 px-4 rounded-md block w-full appearance-none leading-5 transition duration-150 ease-in-out"
                   />
                 </div>
                 <div className="mb-4">
@@ -118,8 +119,8 @@ const FileUploadForm = () => {
                     type="email"
                     id="email"
                     name="email"
-                    className="form-input bg-white focus:outline-none focus:shadow-outline border border-gray-300 py-2 px-4 rounded-md block w-full appearance-none leading-5 transition duration-150 ease-in-out"
                     onChange={handleChange}
+                    className="form-input bg-white focus:outline-none focus:shadow-outline border border-gray-300 py-2 px-4 rounded-md block w-full appearance-none leading-5 transition duration-150 ease-in-out"
                   />
                 </div>
               </div>
@@ -138,8 +139,8 @@ const FileUploadForm = () => {
                     type="tel"
                     id="number"
                     name="number"
-                    className="form-input bg-white focus:outline-none focus:shadow-outline border border-gray-300 py-2 px-4 rounded-md block w-full appearance-none leading-5 transition duration-150 ease-in-out"
                     onChange={handleChange}
+                    className="form-input bg-white focus:outline-none focus:shadow-outline border border-gray-300 py-2 px-4 rounded-md block w-full appearance-none leading-5 transition duration-150 ease-in-out"
                   />
                 </div>
 
