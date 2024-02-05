@@ -137,6 +137,7 @@ const ImageGrid = () => {
   return (
     <>
       <div className="py-2 mb-12 sm:mt-28 mt-16 flex flex-col items-center justify-center text-center">
+        <hr className="border-t-[1px] border-red-500 w-full mb-8 my-16" />
         <motion.div
           variants={textVariant}
           initial="initial"
@@ -149,11 +150,12 @@ const ImageGrid = () => {
             >
               End To End Structural
             </motion.h2> */}
+
           <motion.div
             variants={textVariant}
-            className="flex justify-center items-center sm:my-8"
+            className="flex justify-center items-center sm:my-24 my-8"
           >
-            <div style={containerStyle} className="mb-4">
+            <div style={containerStyle} className="mb-2">
               <div style={textContainerStyle} className="flex justify-center ">
                 <h1 className="sm:text-4xl text-xl font-bold text-center">
                   Top Picks For You

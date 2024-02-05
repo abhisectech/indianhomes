@@ -1423,7 +1423,7 @@ const Collection = () => {
 
       <div className="">
         {/* <h1>Brands you will find in our products</h1> */}
-        <div className="flex justify-center items-center sm:my-8 sm:mb-24">
+        <div className="flex justify-center items-center sm:my-8 sm:mb-24 mb-20">
           <div style={containerStyle} className="mt-16">
             <div style={textContainerStyle} className="flex justify-center ">
               <h1 className="sm:text-4xl text-xl font-bold text-center">
