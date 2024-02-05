@@ -561,7 +561,7 @@ const Collection = () => {
   return (
     <>
       <div id="fry">
-        <div style={containerStyle} className="sm:mt-8">
+        <div style={containerStyle} className="mt-8">
           <div style={textContainerStyle}>
             <h3 className="sm:text-4xl text-xl font-bold">
               INDIA’S NO.1 INTERIOR & ARCHITECTURAL BRAND
@@ -1160,8 +1160,9 @@ const Collection = () => {
       {/* ------------------------------------------ */}
 
       <div className="mt-24">
+        <hr className="border-t-[1px] border-red-500 w-full mb-20 my-24" />
         {/* <h1>Best Trending Kitchens</h1> */}
-        <div className="flex justify-center items-center sm:my-8">
+        <div className="flex justify-center items-center my-8">
           <div style={containerStyle}>
             <div style={textContainerStyle} className="flex justify-center ">
               <h1 className="sm:text-4xl text-xl font-bold text-center">
@@ -1205,7 +1206,8 @@ const Collection = () => {
 
       <div className="mt-24">
         {/* <h1>Best Trending Wardrobes</h1> */}
-        <div className="flex justify-center items-center sm:my-8">
+        <hr className="border-t-[1px] border-red-500 w-full mb-20 my-24" />
+        <div className="flex justify-center items-center my-8">
           <div style={containerStyle}>
             <div style={textContainerStyle} className="flex justify-center ">
               <h1 className="sm:text-4xl text-xl font-bold text-center">
@@ -1249,7 +1251,8 @@ const Collection = () => {
 
       <div className=" mt-24">
         {/* <h1>Best Trending Interiors</h1> */}
-        <div className="flex justify-center items-center sm:my-8">
+        <hr className="border-t-[1px] border-red-500 w-full mb-20 my-24" />
+        <div className="flex justify-center items-center my-8">
           <div style={containerStyle}>
             <div style={textContainerStyle} className="flex justify-center ">
               <h1 className="sm:text-4xl text-xl font-bold text-center">
@@ -1294,7 +1297,9 @@ const Collection = () => {
 
       <div className=" mt-24">
         {/* <h1>Best Trending Structures</h1> */}
-        <div className="flex justify-center items-center sm:my-8">
+        <hr className="border-t-[1px] border-red-500 w-full mb-20 my-24" />
+
+        <div className="flex justify-center items-center my-8">
           <div style={containerStyle}>
             <div style={textContainerStyle} className="flex justify-center ">
               <h1 className="sm:text-4xl text-xl font-bold text-center">

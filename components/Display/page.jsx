@@ -29,20 +29,13 @@ const Carousel = () => {
     // Add more image URLs as needed
   ]
   return (
-    <Slider
-      {...settings}
-      className="mx-auto w-full sm:w-[400px] h-[360px] rounded-lg overflow-hidden"
-    >
+    <Slider {...settings} className="mx-auto w-full sm:w-[400px] rounded-lg   ">
       {images.map((image, index) => (
         <div
           key={index}
-          className="outline-none focus:outline-none rounded-lg w-full sm:w-[400px] h-[360px]"
+          className="outline-none focus:outline-none rounded-lg "
         >
-          <img
-            src={image}
-            alt={`Slide ${index + 1}`}
-            className="w-full h-auto rounded-lg"
-          />
+          <img src={image} alt={`Slide ${index + 1}`} className="rounded-lg" />
         </div>
       ))}
     </Slider>
@@ -151,6 +144,7 @@ const Display = () => {
               alt=""
               width={600}
               height={600}
+              className="rounded shadow-md"
             />
           </motion.div>
           {/* 2 */}
@@ -164,6 +158,8 @@ const Display = () => {
               alt=""
               width={600}
               height={600}
+              playsInline
+              className="rounded shadow-md"
             />
           </motion.div>
           {/* 3 */}
@@ -176,6 +172,9 @@ const Display = () => {
               alt=""
               width={600}
               height={600}
+              playsInline
+              className="rounded shadow-md"
+              muted
             />
           </motion.div>
           {/* 4 */}
