@@ -2049,18 +2049,18 @@ const Header = () => {
           className="fixed bottom-16 right-4 flex flex-col items-center mb-4"
           style={{ zIndex: '800' }}
         >
-          <div className="bg-green-600 rounded-full p-4 mb-4">
+          <div className="bg-green-600 w-[52px] h-[52px] rounded-full mb-4 flex justify-center items-center">
             <FontAwesomeIcon
               icon={faWhatsapp}
               size="2x"
-              className="text-white"
+              className="text-white w-8 h-8"
             />
           </div>
-          <div className="bg-purple-600 rounded-full p-4">
+          <div className="bg-purple-600  w-[52px] h-[52px] rounded-full mb-4 flex justify-center items-center">
             <FontAwesomeIcon
               icon={faInstagram}
               size="2x"
-              className="text-white"
+              className="text-white w-8 h-8"
             />
           </div>
         </div>
@@ -2125,10 +2125,7 @@ const Header = () => {
           />
         </div>
         <div>
-          <Link
-            href="/GetQuote"
-            className="bg-black text-white py-6 px-6 m-0"
-          >
+          <Link href="/GetQuote" className="bg-black text-white py-6 px-6 m-0">
             Get Estimate
           </Link>
         </div>
