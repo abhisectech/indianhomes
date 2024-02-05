@@ -44,27 +44,30 @@ const LocationsTabs = () => {
   )
 
   return (
-    <div className="container mx-auto mt-8 p-0">
-      <Tabs
-        value={value}
-        onChange={handleChange}
-        variant="fullWidth"
-        scrollButtons="auto" // Add this to make tabs span the full width
-        className="text-center whitespace-nowrap" // Add this to center the text in tabs
-      >
-        <StyledTab
-          label="LOCATION - WARDROBE DESIGNS"
-          className="sm:text-xl text-sm font-[500] my-2"
-        />
-        <StyledTab
-          label="LOCATION - WARDROBE DESIGNS"
-          className="sm:text-xl text-sm font-[500] my-2"
-        />
-        <StyledTab
-          label="LOCATION - WARDROBE DESIGNS"
-          className="sm:text-xl text-sm font-[500] my-2"
-        />
-      </Tabs>
+    <div className="container mx-auto mt-8 p-0 ">
+      <div className="flex justify-center">
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          variant="scrollable"
+          scrollButtons="auto"
+          className="text-center  w-fit" // Add this to center the text in tabs
+        >
+          <StyledTab
+            label="WARDROBE DESIGNS"
+            className="sm:text-xl text-xs font-[500] my-2"
+          />
+          <StyledTab
+            label="KITCHEN DESIGNS"
+            className="sm:text-xl text-xs font-[500] my-2"
+          />
+          <StyledTab
+            label="INTERIOR DESIGNS"
+            className="sm:text-xl text-xs font-[500] my-2"
+          />
+        </Tabs>
+      </div>
+      <h2 className="mt-4 text-lg font-bold">LOCATIONS -</h2>
       <Box width="100%" className="mt-2">
         {value === 0 && <ParagraphTab text={paragraphs[0]} />}
         {value === 1 && <ParagraphTab text={paragraphs[1]} />}
@@ -220,7 +223,7 @@ const DesignIdeasDropdownContainer = () => {
           label: 'Kitchen Renovation ',
           url: '/modular-kitchen-renovation-services',
         },
-        { label: 'Get Estimate ', url: '/modular-kitchen-price-estimator' },
+        { label: 'Get Estimate ', url: '/GetQuotes' },
       ],
     },
     {

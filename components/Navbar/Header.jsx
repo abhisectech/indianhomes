@@ -967,7 +967,7 @@ const Header = () => {
                 <Link href="/modular-kitchen-price-estimator">
                   <h3
                     className="text-base font-extrabold text-white bg-black absolute py-1 px-2 ml-2"
-                    onMouseOver={() => handleMouseOverImage('renovationss')}
+                    onMouseOver={() => handleMouseOverImage('renovations')}
                   >
                     Get Estimate
                   </h3>
@@ -2014,10 +2014,7 @@ const Header = () => {
                     className="text-sm font-bold"
                     onMouseOver={() => handleMouseOver('More')}
                   >
-                     <Link href="#">
-                    {' '}
-                    More
-                  </Link>
+                    <Link href="#"> More</Link>
                   </p>
                 </div>
                 <Link href="/GetQuote">
@@ -2122,15 +2119,18 @@ const Header = () => {
               width: '90px',
               height: '80',
               marginLeft: '10px',
-              marginTop: '10px',
+              marginTop: '20px',
+              marginBottom: '20px',
             }}
           />
         </div>
         <div>
-          <button className="bg-black text-white py-5 px-6 m-0 ">
-            {' '}
+          <Link
+            href="/GetQuote"
+            className="bg-black text-white py-6 px-6 m-0"
+          >
             Get Estimate
-          </button>
+          </Link>
         </div>
       </div>
       {/* Mobile Header */}

@@ -621,16 +621,20 @@ const Collection = () => {
             loop
             autoPlay
             muted
-            src="/video/video-interior-designer-company-in-delhi-gurgaon-noida-india.mp4"
+            playsInline
             width={1600}
             height={550}
-            playsInline
             className="rounded-xl shadow-md mx-auto sm:w-[90%]"
-            style={{}}
             variants={videoVariants}
             initial="initial"
             whileInView="animate"
-          />
+          >
+            <source
+              src="/video/video-interior-designer-company-in-delhi-gurgaon-noida-india.mp4"
+              type="video/mp4"
+            />
+            Your browser does not support the video tag.
+          </motion.video>
         </div>
         <div className="callout">
           <h3 className="bg-transparent text-sm md:text-4xl">
@@ -846,7 +850,6 @@ const Collection = () => {
                 autoPlay
                 muted
                 controls={isPlaying}
-                src="/video/dkivid.mp4"
                 width={1500}
                 height={550}
                 playsInline
@@ -855,7 +858,10 @@ const Collection = () => {
                 variants={videoVariants}
                 initial="initial"
                 whileInView="animate"
-              />
+              >
+                <source src="/video/dkivid.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </motion.video>
               {/* 
             <video loop autoPlay controls={isPlaying} src="video/vid21.mp4" alt="" height={10} width={1500}
               className="rounded shadow-md"
@@ -1153,7 +1159,7 @@ const Collection = () => {
       </div>
       {/* ------------------------------------------ */}
 
-      <div className="mt-16">
+      <div className="mt-24">
         {/* <h1>Best Trending Kitchens</h1> */}
         <div className="flex justify-center items-center sm:my-8">
           <div style={containerStyle}>
@@ -1197,7 +1203,7 @@ const Collection = () => {
         </div>
       </div>
 
-      <div className="mt-16">
+      <div className="mt-24">
         {/* <h1>Best Trending Wardrobes</h1> */}
         <div className="flex justify-center items-center sm:my-8">
           <div style={containerStyle}>
@@ -1241,7 +1247,7 @@ const Collection = () => {
         </div>
       </div>
 
-      <div className=" mt-16">
+      <div className=" mt-24">
         {/* <h1>Best Trending Interiors</h1> */}
         <div className="flex justify-center items-center sm:my-8">
           <div style={containerStyle}>
@@ -1286,7 +1292,7 @@ const Collection = () => {
         </div>
       </div>
 
-      <div className=" mt-16">
+      <div className=" mt-24">
         {/* <h1>Best Trending Structures</h1> */}
         <div className="flex justify-center items-center sm:my-8">
           <div style={containerStyle}>

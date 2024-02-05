@@ -24,7 +24,7 @@ const Carousel = () => {
   const images = [
     '/images/52.png',
     '/images/74.png',
-    '/images/12.png',
+    '/images/kitchen1.jpg',
     '/images/50.png',
     // Add more image URLs as needed
   ]

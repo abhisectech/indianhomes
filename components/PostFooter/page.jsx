@@ -367,7 +367,7 @@ const PostFooter = () => {
                 loop
                 autoPlay
                 controls={isPlaying}
-                src="/video/fry.mp4"
+                src="/video/reel1.mp4"
                 playsInline
                 muted
                 className="rounded shadow-md 
@@ -407,7 +407,7 @@ const PostFooter = () => {
                 loop
                 autoPlay
                 controls={isPlaying}
-                src="/video/fr.mp4"
+                src="/video/reel2.mp4"
                 playsInline
                 muted
                 className="rounded shadow-md"
