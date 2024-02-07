@@ -28,4 +28,7 @@ export const setSpaceAreas = (areas) => {
     };
   };
   
-  
+export const updateSpaceData = (spaceData) => ({
+  type: 'UPDATE_SPACE_DATA',
+  payload: spaceData,
+})

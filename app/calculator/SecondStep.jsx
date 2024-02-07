@@ -1,14 +1,19 @@
 // 'use client'
-import React from 'react';
-import IncrementalButton from './IncDecButton';
-import { useDispatch, useSelector } from 'react-redux';
-import { incrementSpace, decrementSpace, setSpaceCounts, setSpaceAreas } from '@/components/redux/actions/secondStepActions';
+import React from 'react'
+import IncrementalButton from './IncDecButton'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  incrementSpace,
+  decrementSpace,
+  setSpaceCounts,
+  setSpaceAreas,
+} from '@/components/redux/actions/secondStepActions'
 
 const SecondStepSection = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   // Assuming initialState is also in the secondStepReducer
-  const spaceCounts = useSelector((state) => state.space);
+  const spaceCounts = useSelector((state) => state.space)
 
   const spaces = [
     {
@@ -86,78 +91,78 @@ const SecondStepSection = () => {
 
   // Function to handle incrementing the count for a space
   const handleIncrement = (spaceName) => {
-    dispatch(incrementSpace(spaceName));
+    dispatch(incrementSpace(spaceName))
   }
 
   // Function to handle decrementing the count for a space
   const handleDecrement = (spaceName) => {
-    dispatch(decrementSpace(spaceName));
+    dispatch(decrementSpace(spaceName))
   }
   const updateSpaceCounts = (counts) => {
-    dispatch(setSpaceCounts(counts));
-  };
-// Rendered Spaces
-const renderedSpaces = spaces.map((space) => {
-  const defaultCount = spaceCounts[space.name] || 0;
+    dispatch(setSpaceCounts(counts))
+  }
+  // Rendered Spaces
+  const renderedSpaces = spaces.map((space) => {
+    const defaultCount = spaceCounts[space.name] || 0
 
-  if (defaultCount > 0) {
-    return (
-      <div
-        key={space.name}
-        className="flex items-center justify-between h-20 mb-4 bg-white rounded-lg p-2 mx-4"
-      >
-        <div className="flex items-center">
-          <img src={space.img} alt={space.name} className="h-12 w-16 mr-4" />
-          <div>
-            <h3 className="text-sm font-bold">{space.name}</h3>
-            <p className="text-xxs sm:text-xs text-gray-600">{space.desc}</p>
+    if (defaultCount > 0) {
+      return (
+        <div
+          key={space.name}
+          className="flex items-center justify-between h-20 mb-4 bg-white rounded-lg p-2 mx-4"
+        >
+          <div className="flex items-center">
+            <img src={space.img} alt={space.name} className="h-12 w-16 mr-4" />
+            <div>
+              <h3 className="text-sm font-bold">{space.name}</h3>
+              <p className="text-xxs sm:text-xs text-gray-600">{space.desc}</p>
+            </div>
           </div>
+          <IncrementalButton
+            count={defaultCount}
+            onIncrement={() => handleIncrement(space.name)}
+            onDecrement={() => handleDecrement(space.name)}
+          />
         </div>
-        <IncrementalButton
-          count={defaultCount}
-          onIncrement={() => handleIncrement(space.name)}
-          onDecrement={() => handleDecrement(space.name)}
-        />
-      </div>
-    );
+      )
+    }
+
+    return null // If the default count is 0, don't render the space
+  })
+
+  // Unrendered Spaces
+  const unrenderedSpaces = spaces
+    .filter((space) => !(spaceCounts[space.name] || 0))
+    .map((space) => (
+      <button
+        key={space.name}
+        onClick={() => handleIncrement(space.name)}
+        className="bg-blue-500 text-sm text-white px-4 py-2 rounded-md hover:bg-blue-700 m-2"
+      >
+        {space.name}
+      </button>
+    ))
+
+  // Submit Function
+  const handleSubmit = () => {
+    // Perform any actions needed with the captured values
+    Object.entries(spaceCounts)
+      .filter(([spaceName, count]) => count > 0)
+      .forEach(([spaceName, count]) => {
+        console.log(`${spaceName} Count:`, count)
+      })
   }
 
-  return null; // If the default count is 0, don't render the space
-});
-
-// Unrendered Spaces
-const unrenderedSpaces = spaces
-  .filter((space) => !(spaceCounts[space.name] || 0))
-  .map((space) => (
-    <button
-      key={space.name}
-      onClick={() => handleIncrement(space.name)}
-      className="bg-blue-500 text-sm text-white px-4 py-2 rounded-md hover:bg-blue-700 m-2"
-    >
-      {space.name}
-    </button>
-  ));
-
-// Submit Function
-const handleSubmit = () => {
-  // Perform any actions needed with the captured values
-  Object.entries(spaceCounts)
-    .filter(([spaceName, count]) => count > 0)
-    .forEach(([spaceName, count]) => {
-      console.log(`${spaceName} Count:`, count);
-    });
-};
-
-return (
-  <div>
-    <h2 className="text-xl font-bold mb-4 mx-4">Add or Remove Spaces</h2>
-
-    {renderedSpaces}
-
-    <h2 className="text-xl font-bold mt-8 mx-4">Add more spaces</h2>
-    {unrenderedSpaces}
-
+  return (
     <div>
+      <h2 className="text-xl font-bold mb-4 mx-4">Add or Remove Spaces</h2>
+
+      {renderedSpaces}
+
+      <h2 className="text-xl font-bold mt-8 mx-4">Add more spaces</h2>
+      {unrenderedSpaces}
+
+      {/* <div>
       <button
         type="button"
         onClick={handleSubmit}
@@ -165,9 +170,9 @@ return (
       >
         Submit
       </button>
+    </div> */}
     </div>
-  </div>
-);
-};
+  )
+}
 
-export default SecondStepSection;
+export default SecondStepSection

@@ -1,56 +1,89 @@
-"use client";
-import React, { useState, useEffect } from 'react';
-import Modal from 'react-modal';
-import { Pencil } from 'lucide-react';
-import Link from 'next/link';
-import { useDispatch, useSelector } from 'react-redux';
-import { setSpaceAreas } from '@/components/redux/actions/secondStepActions';
-import { useRouter } from 'next/navigation';
+'use client'
+import React, { useState, useEffect } from 'react'
+import Modal from 'react-modal'
+import { Pencil } from 'lucide-react'
+import Link from 'next/link'
+import { useDispatch, useSelector } from 'react-redux'
+// import { updateSpaceData } from '@/components/redux/actions/secondStepActions'
+import { updateSpaceData } from '../../components/redux/actions/secondStepActions'
+import { useRouter } from 'next/navigation'
 
 const ThirdStep = (props) => {
- 
-  const dispatch = useDispatch();
-  const spaceCounts = useSelector((state) => state.space);
-  const [areas, setAreas] = useState({});
-  const [editModalOpen, setEditModalOpen] = useState(false);
-  const [editSpaceName, setEditSpaceName] = useState('');
-  const [length, setLength] = useState('');
-  const [width, setWidth] = useState('');
+  const dispatch = useDispatch()
+  const spaceCounts = useSelector((state) => state.space)
+  const [area, setArea] = useState('')
+  const [editModalOpen, setEditModalOpen] = useState(false)
+  const [editSpaceName, setEditSpaceName] = useState('')
+  const [length, setLength] = useState('')
+  const [width, setWidth] = useState('')
+  // console.log(areas)
+
+  const [spaceData, setSpaceData] = useState([])
+
+  useEffect(() => {
+    // Initialize spaceData based on spaceCounts
+    const initialSpaceData = Object.entries(spaceCounts).flatMap(
+      ([spaceName, count]) => {
+        if (count > 0) {
+          return Array.from({ length: count }, (_, index) => ({
+            name: `${spaceName} ${index + 1}`,
+            area: 192, // Set initial area as 192, you can adjust this as needed
+          }))
+        } else {
+          return []
+        }
+      }
+    )
+
+    setSpaceData(initialSpaceData)
+  }, [spaceCounts])
+
+  console.log(spaceData)
 
   const handleEditArea = (spaceName) => {
-    setEditSpaceName(spaceName);
-    setEditModalOpen(true);
-  };
-
-  const handleAreaChange = (spaceName, value) => {
-    setAreas((prevAreas) => ({
-      ...prevAreas,
-      [spaceName]: value,
-    }));
-  };
+    setEditSpaceName(spaceName)
+    setEditModalOpen(true)
+  }
 
   const handleSave = () => {
-    // Calculate the area based on length and width
-    const calculatedArea = length && width ? length * width : '';
-    dispatch(setSpaceAreas({ [editSpaceName]: calculatedArea || '' }));
-    // Set the area to the state
-    setAreas((prevAreas) => ({
-      ...prevAreas,
-      [editSpaceName]: calculatedArea || '',
-    }));
-
+    console.log(editSpaceName, length, width, area)
+    if (length && width) {
+      // Calculate the area
+      const calculatedArea = length * width
+      // Update the area directly in spaceData if the space name matches the editSpaceName
+      setSpaceData((prevSpaceData) =>
+        prevSpaceData.map((space) =>
+          space.name === editSpaceName
+            ? { ...space, area: calculatedArea }
+            : space
+        )
+      )
+      setLength('')
+      setWidth('')
+    } else if (area) {
+      // Update the area directly in spaceData using the provided value
+      const intArea = parseInt(area, 10)
+      // Update the area directly in spaceData using the provided value
+      setSpaceData((prevSpaceData) =>
+        prevSpaceData.map((space) =>
+          space.name === editSpaceName ? { ...space, area: intArea } : space
+        )
+      )
+      setArea('')
+    }
+    console.log(spaceData)
     // Close the modal
-    setEditModalOpen(false);
-  };
+    setEditModalOpen(false)
+  }
 
   const handleSubmit = () => {
-    console.log('Entered Areas:', areas);
-    console.log('Redux Areas:', spaceCounts);
-  };
-  
+    // console.log('Entered Areas:', areas)
+    console.log('Redux Areas:', spaceCounts)
+  }
+
   useEffect(() => {
-    console.log('Redux Areas:', spaceCounts);
-  }, [spaceCounts]);
+    console.log('Redux Areas:', spaceCounts)
+  }, [spaceCounts])
 
   const customStyles = {
     content: {
@@ -64,28 +97,36 @@ const ThirdStep = (props) => {
     overlay: {
       background: 'rgba(0, 0, 0, 0.5)', // Add a semi-transparent overlay
     },
-  };
+  }
 
   // Add a media query to adjust maxWidth for smaller screens
-  const smallerScreensMediaQuery = '@media (max-width: 768px)';
+  const smallerScreensMediaQuery = '@media (max-width: 768px)'
 
   customStyles.content = {
     ...customStyles.content,
     [smallerScreensMediaQuery]: {
       maxWidth: '100%',
     },
-  };
+  }
 
-  const router = useRouter(); // Add this line to use the useRouter hook
+  const router = useRouter() // Add this line to use the useRouter hook
 
   // ... other code
 
   const handlePlanClick = (spaceName) => {
-    // Pass the selected space to the parent component
-    props.onPlanClick(spaceName);
-    router.push(`/calculator/image-maps/`);
-  };
+    // Encode the space name to make it URL-friendly
+    const encodedSpaceName = encodeURIComponent(spaceName)
 
+    // Pass the selected space to the parent component
+    props.onPlanClick(spaceName)
+
+    // Construct the URL with the encoded space name
+    // router.push(`/calculator/image-maps/${encodedSpaceName}`)
+  }
+
+useEffect(() => {
+  dispatch(updateSpaceData(spaceData))
+}, [dispatch, spaceData])
 
   return (
     <div>
@@ -93,53 +134,53 @@ const ThirdStep = (props) => {
       <p className="text-xs mb-4 mx-4 text-gray-700">
         Customise each space as per your choice
       </p>
-      {Object.entries(spaceCounts).map(([spaceName, count]) => (
-        <div key={spaceName} className="mx-4 mb-4">
-          {[...Array(count)].map((_, index) => (
-            <div
-              key={`${spaceName}-${index + 1}`}
-              className={`flex items-center justify-between h-20 bg-white rounded-lg p-2 ${
-                index + 1 !== count ? 'mb-4' : '' // Add margin except for the last section
-              }`}
-            >
-              <div className="flex items-center">
-                {/* Adjust the image source based on your requirements */}
-                <img
-                  src="/images/bed-square.svg"
-                  alt={spaceName}
-                  className="h-12 w-8 mr-4"
-                />
-                <div>
-                  <h3 className="text-sm font-bold">{`${spaceName} ${
-                    index + 1
-                  }`}</h3>
-                  <div className="flex items-center gap-2">
-                    <p className="text-xxs sm:text-xs text-gray-600">
-                      {areas[spaceName]
-                        ? `${areas[spaceName]} SqFt.`
-                        : `192 SqFt.`}
-                    </p>
-                    <div>
-                      <button
-                        onClick={() => handleEditArea(spaceName)}
-                        className="text-blue-500 hover:text-blue-700"
-                      >
-                        <Pencil size={10} color="#4b5563" strokeWidth={2} />
-                      </button>
-                    </div>
+      {spaceData.map((space, index) => (
+        <div key={`${space.name}-${index + 1}`} className="mx-4 mb-4">
+          <div
+            className={`flex items-center justify-between h-20 bg-white rounded-lg p-2`}
+          >
+            <div className="flex items-center">
+              {/* Adjust the image source based on your requirements */}
+              <img
+                src="/images/bed-square.svg"
+                alt={space.name}
+                className="h-12 w-8 mr-4"
+              />
+              <div>
+                <h3 className="text-sm font-bold">{space.name}</h3>
+                <div className="flex items-center gap-2">
+                  <p className="text-xxs sm:text-xs text-gray-600">
+                    {space.area}
+                  </p>
+                  <div>
+                    <button
+                      onClick={() => handleEditArea(space.name)}
+                      className="text-blue-500 hover:text-blue-700"
+                    >
+                      <Pencil size={10} color="#4b5563" strokeWidth={2} />
+                    </button>
                   </div>
                 </div>
               </div>
-              {/* plan */}
-              <div className="m-4">
-                  <button className="text-xxs border-gray-300 border-2 rounded py-1 px-2 hover:bg-green-500 hover:text-white"
-                   onClick={() => handlePlanClick(spaceName)}>
-                    PLAN
-                  </button>
-               
-              </div>
             </div>
-          ))}
+            {/* plan */}
+            <div className="m-4">
+              {
+                <button
+                  className="text-xxs border-gray-300 border-2 rounded py-1 px-2 hover:bg-green-500 hover:text-white"
+                  onClick={() => handlePlanClick(space.name)}
+                >
+                  <Link
+                    href={`/calculator/image-maps/${encodeURIComponent(
+                      space.name
+                    )}`}
+                  >
+                    PLAN
+                  </Link>
+                </button>
+              }
+            </div>
+          </div>
         </div>
       ))}
 
@@ -210,8 +251,8 @@ const ThirdStep = (props) => {
           <input
             type="text"
             id="areaInput"
-            value={areas[editSpaceName] || ''}
-            onChange={(e) => handleAreaChange(editSpaceName, e.target.value)}
+            value={area}
+            onChange={(e) => setArea(e.target.value)}
             placeholder="Enter area..."
             className="border-2 border-blue-500 rounded-md p-2 w-full mb-4"
           />
@@ -226,7 +267,7 @@ const ThirdStep = (props) => {
           </button>
         </div>
       </Modal>
-      <div>
+      {/* <div>
         <button
           type="button"
           onClick={handleSubmit}
@@ -234,9 +275,9 @@ const ThirdStep = (props) => {
         >
           Submit
         </button>
-      </div>
+      </div> */}
     </div>
-  );
-};
+  )
+}
 
-export default ThirdStep;
+export default ThirdStep

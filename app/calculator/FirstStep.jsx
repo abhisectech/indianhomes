@@ -245,13 +245,13 @@ const FirstStepSection = () => {
         </div>
 
         {/* Button to submit the form */}
-        <button
-          type="button"
+        {/* <button */}
+          {/* type="button"
           onClick={handleFormSubmit}
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mt-4"
         >
           Submit
-        </button>
+        </button> */}
       </form>
     </div>
     </Provider>
