@@ -2,28 +2,11 @@
 
 import React, { useState, useEffect } from 'react'
 import { ArrowLeft } from 'lucide-react'
-const SvgMap = ({data, name}) => {
-  const [selectedPolygon, setSelectedPolygon] = useState([])
-  const [selectedPackage, setSelectedPackage] = useState('ultraLuxury'); // Default to premium
-  const [spaceSquareFootage, setSpaceSquareFootage] = useState({}); // New state for square footage
- const [updatedData, setUpdatedData] = useState(data)
-
- const [roomPrice, setRoomPrice] = useState(0)
- // let roomPrice = 0
- console.log('roomPrice: ', roomPrice)
- const updateData = () => {
-   setUpdatedData((prevData) =>
-     prevData.map((item) =>
-       item.name === name
-         ? { ...item, selectedPolygon, selectedPackage, roomPrice }
-         : item
-     )
-   )
- }
- useEffect(() => {
-   updateData()
- }, [selectedPolygon, selectedPackage, roomPrice])
-
+import { useDispatch, useSelector } from 'react-redux'
+import { updateSpaceData } from '../../../components/redux/actions/secondStepActions'
+import { useRouter } from 'next/navigation'
+const SvgMap = ({ data, name }) => {
+  const router = useRouter()
   const pricing = {
     premium: {
       barUnit: { pricePerSqFt: 1250 },
@@ -55,19 +38,43 @@ const SvgMap = ({data, name}) => {
       diningTableSet: { price: 150000 },
       flooring: { pricePerSqFt: 499 },
     },
-  };
+  }
 
   const initialSquareFootage = {
-    'falseCeiling': 185,
-    'electrical': 13000,
-    'flooring': 498,
-    'upvcWindow': 1100,
-    'walls': 65,
-    'crockeryUnit': 50,
-    'diningTableSet': 85000,
-    'barUnit': 1450,
-  };
-  const [editableSquareFootage, setEditableSquareFootage] = useState(initialSquareFootage);
+    falseCeiling: 185,
+    electrical: 13000,
+    flooring: 498,
+    upvcWindow: 1100,
+    walls: 65,
+    crockeryUnit: 50,
+    diningTableSet: 85000,
+    barUnit: 1450,
+  }
+  console.log('data: ', data)
+  console.log('name: ', name)
+  const [selectedPolygon, setSelectedPolygon] = useState([])
+  const [selectedPackage, setSelectedPackage] = useState('premium') // Default to premium
+  const [spaceSquareFootage, setSpaceSquareFootage] = useState({}) // New state for square footage
+
+  const [updatedData, setUpdatedData] = useState(data)
+  const [roomPrice, setRoomPrice] = useState(0)
+  // let roomPrice = 0
+  console.log('roomPrice: ', roomPrice)
+  const updateData = () => {
+    setUpdatedData((prevData) =>
+      prevData.map((item) =>
+        item.name === name
+          ? { ...item, selectedPolygon, selectedPackage, roomPrice }
+          : item
+      )
+    )
+  }
+  useEffect(() => {
+    updateData()
+  }, [selectedPolygon, selectedPackage, roomPrice])
+
+  const [editableSquareFootage, setEditableSquareFootage] =
+    useState(initialSquareFootage)
 
   const handlePolygonClick = (polygonId) => {
     const isSelected = selectedPolygon.includes(polygonId)
@@ -105,14 +112,6 @@ const SvgMap = ({data, name}) => {
     updateData()
   }
 
-  const handleSquareFootageChange = (polygonId, value) => {
-    setSpaceSquareFootage((prevSquareFootage) => ({
-      ...prevSquareFootage,
-      [polygonId]: parseFloat(value) || 0,
-    }));
-    updateData()
-  };
-
   const calculateSpacePrice = (polygonId, selectedPackage) => {
     const component = pricing[selectedPackage]?.[polygonId]
     if (!component) return 0 // Return 0 if the component doesn't exist
@@ -128,81 +127,155 @@ const SvgMap = ({data, name}) => {
     }
   }
 
-   const handleEditSquareFootage = (polygonId) => {
-     const newSquareFootage = prompt(
-       `Enter new square footage for ${polygonId}:`,
-       editableSquareFootage[polygonId]
-     )
+  const handleEditSquareFootage = (polygonId) => {
+    const newSquareFootage = prompt(
+      `Enter new square footage for ${polygonId}:`,
+      editableSquareFootage[polygonId]
+    )
 
-     if (!isNaN(newSquareFootage) && newSquareFootage !== null) {
-       const updatedSquareFootage = {
-         ...editableSquareFootage,
-         [polygonId]: parseFloat(newSquareFootage),
-       }
-       setEditableSquareFootage(updatedSquareFootage)
+    if (!isNaN(newSquareFootage) && newSquareFootage !== null) {
+      const updatedSquareFootage = {
+        ...editableSquareFootage,
+        [polygonId]: parseFloat(newSquareFootage),
+      }
+      setEditableSquareFootage(updatedSquareFootage)
 
-       // Recalculate room price
-       const priceOfSelectedPolygon = calculateSpacePrice(
-         polygonId,
-         selectedPackage
-       )
-       const updatedRoomPrice =
-         parseFloat(roomPrice) - parseFloat(priceOfSelectedPolygon) // subtract old price
-       setRoomPrice(
-         updatedRoomPrice +
-           parseFloat(newSquareFootage) *
-             parseFloat(pricing[selectedPackage][polygonId].pricePerSqFt)
-       ) // add new price
-       updateData() // Update the data after room price is updated
-     }
-   }
+      // Recalculate room price
+      const priceOfSelectedPolygon = calculateSpacePrice(
+        polygonId,
+        selectedPackage
+      )
+      const updatedRoomPrice =
+        parseFloat(roomPrice) - parseFloat(priceOfSelectedPolygon) // subtract old price
+      setRoomPrice(
+        updatedRoomPrice +
+          parseFloat(newSquareFootage) *
+            parseFloat(pricing[selectedPackage][polygonId].pricePerSqFt)
+      ) // add new price
+      updateData() // Update the data after room price is updated
+    }
+  }
+  const handleSquareFootageChange = (polygonId, value) => {
+    setSpaceSquareFootage((prevSquareFootage) => ({
+      ...prevSquareFootage,
+      [polygonId]: parseFloat(value) || 0,
+    }))
+    updateData()
+  }
 
   const handleTabChange = (selectedTab) => {
-    setSelectedPackage(selectedTab);
+    setSelectedPackage(selectedTab)
     updateData()
-  };
-
+  }
   const renderTab = (tabName) => {
-    const isActive = selectedPackage === tabName;
+    const isActive = selectedPackage === tabName
 
     return (
       <button
         key={tabName}
         onClick={() => handleTabChange(tabName)}
-        className={`border px-4 py-3 text-base focus:outline-none rounded-lg ${isActive ? 'bg-green-500 text-white' : 'bg-white text-black'
-          }`}
+        className={`border px-4 py-3 text-base focus:outline-none rounded-lg ${
+          isActive ? 'bg-green-500 text-white' : 'bg-white text-black'
+        } ${
+          isActive
+            ? 'hover:bg-green-600 hover:text-white'
+            : 'hover:bg-gray-200 hover:text-black'
+        }`}
       >
         {tabName}
       </button>
-    );
-  };
+    )
+  }
 
-    console.log('updatedData: ', updatedData)
+  console.log('updatedData: ', updatedData)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(updateSpaceData(updatedData))
+  }, [dispatch, updatedData])
+
+  const spaceData = useSelector((state) => state.secondStep.spaceData)
+  console.log('Space Data from redux:', spaceData)
+
+  const handleSave = () => {
+    // Retrieve existing spaceData from localStorage
+    const localStorageSpaceData = localStorage.getItem('spaceData')
+
+    // Check if there is existing spaceData in localStorage
+    if (localStorageSpaceData) {
+      // Parse the existing spaceData
+      const parsedSpaceData = JSON.parse(localStorageSpaceData)
+
+      // Find the index of the item with the same name as the current page
+      const index = parsedSpaceData.findIndex((item) => item.name === name)
+
+      // If an item with the same name exists, update its data
+      if (index !== -1) {
+        parsedSpaceData[index] = {
+          ...parsedSpaceData[index],
+          selectedPolygon,
+          selectedPackage,
+          roomPrice,
+        }
+
+        // Update the localStorage with the updated spaceData
+        localStorage.setItem('spaceData', JSON.stringify(parsedSpaceData))
+        alert('Space data updated successfully!')
+      } else {
+        // If no item with the same name exists, show an alert
+        alert(`No data found for ${name} in localStorage`)
+      }
+    } else {
+      // If no spaceData exists in localStorage, set it with the current data
+      localStorage.setItem('spaceData', JSON.stringify(spaceData))
+      alert('Space data saved successfully!')
+    }
+    router.push('/calculator?step=2')
+  }
+
   return (
     <>
-      <div className="bg-white p-4 flex items-center w-full rounded-t-lg shadow-lg">
+      {/* <div className="bg-white p-4 flex items-center w-full rounded-t-lg shadow-lg">
         <button className="inline-flex items-center mr-4">
           <ArrowLeft className="w-6 h-6" />
         </button>
         <h3 className="inline text-lg">{name}</h3>
-      </div>
+      </div> */}
       <div className="p-4 m-4 bg-blue-500 flex justify-between rounded-lg shadow-lg text-white">
         <div>
           <p className="text-xs">Room budget</p>
           <h3>₹{roomPrice}</h3>
+          <p className="text-xxs">
+            *All prices are inclusive of material and labour charges
+          </p>
         </div>
-        <div className="text-right">
+        {/* <div className="text-right">
           <p className="text-xs">Total budget</p>
           <h3>₹44,765</h3>
           <p className="text-xxs">
             *All prices are inclusive of material and labour charges
           </p>
-        </div>
+        </div> */}
       </div>
       <div className="m-4">
-        <p>Tap the desired components and add to your project&apos;s scope</p>
+        <p>
+          First select your Package then Tap the desired components and add to
+          your project&apos;s scope
+        </p>
       </div>
       <div>
+        <div className="flex justify-center sm:text-3xl text-xl font-bold mt-8">
+          <h2>Select Your Packages</h2>
+        </div>
+        <div className="flex sm:flex-row flex-col sm:gap-12 gap-4 justify-center my-4 mb-8  bg-white px-8 py-4">
+          {renderTab('premium')}
+          {renderTab('luxury')}
+          {renderTab('ultraLuxury')}
+        </div>
+
+        <div className="flex justify-center sm:text-3xl text-xl font-bold my-4">
+          <h2>Select Your Components</h2>
+        </div>
         <svg
           width="100%"
           height="100%"
@@ -511,16 +584,7 @@ const SvgMap = ({data, name}) => {
 
           {/* -------------------------------------- */}
         </svg>
-        <div className="flex justify-center text-3xl font-bold mt-4">
-          <h2>Select Your Packages</h2>
-        </div>
-        <div style={{ position: 'relative' }}>
-          <div className="flex gap-32 justify-center mt-4">
-            {renderTab('premium')}
-            {renderTab('luxury')}
-            {renderTab('ultraLuxury')}
-          </div>
-        </div>
+
         <div className="mt-8">
           {selectedPolygon.map((polygon) => (
             <div
@@ -579,7 +643,10 @@ const SvgMap = ({data, name}) => {
         </p>
       </div>
       <div className="bg-white flex justify-center py-4 sm:px-12 w-full rounded-b-lg shadow-lg">
-        <button className="text-lg shadow-md hover:shadow-xl bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+        <button
+          onClick={handleSave}
+          className="text-lg shadow-md hover:shadow-xl bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+        >
           Save
         </button>
       </div>

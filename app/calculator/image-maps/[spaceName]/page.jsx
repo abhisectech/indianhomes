@@ -2,8 +2,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
-
-// import { usePathname } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import BedroomImage from '../BedroomImage'
 import LivingandDiningImage from '../LivingandDiningImage'
 import KitchenImage from '../KitchenImage'
@@ -20,8 +19,26 @@ import MaxWidthWrapper from '../../../../components/MaxWidthWrapper'
 import { ArrowLeft } from 'lucide-react'
 const Page = ({ params }) => {
   // console.log(params.spaceName)
+  const [spaceDataFromLocalStorage, setSpaceDataFromLocalStorage] =
+    useState(null)
+  const spaceDataFromRedux = useSelector((state) => state.secondStep.spaceData)
 
-  const spaceData = useSelector((state) => state.secondStep.spaceData)
+  useEffect(() => {
+    const spaceData = localStorage.getItem('spaceData')
+    if (spaceData) {
+      // If spaceData exists in localStorage, parse and set it
+      setSpaceDataFromLocalStorage(JSON.parse(spaceData))
+    }
+  }, [])
+
+  const getSpaceData = () => {
+    return spaceDataFromLocalStorage || spaceDataFromRedux
+  }
+
+  const spaceData = getSpaceData()
+
+  console.log('spaceDataFromLocalStorage:', spaceDataFromLocalStorage)
+  console.log('spaceDataFromRedux:', spaceDataFromRedux)
   console.log('Space Data:', spaceData)
 
   const encodedSpaceName = params.spaceName
@@ -70,17 +87,24 @@ const Page = ({ params }) => {
   const handleSpaceClick = (selectedSpace) => {
     setSelectedSpace(selectedSpace)
   }
+
+  // handling back navigations
+  const router = useRouter()
+
   return (
     <>
       <MaxWidthWrapper>
-        <div className="border-2 border-blue-500 rounded-lg bg-slate-200 shadow-lg p-0">
-          {/* <div className="bg-white p-4 flex items-center w-full rounded-t-lg shadow-lg">
-            <button className="inline-flex items-center mr-4">
+        <div className="border-2 border-blue-500 rounded-lg bg-slate-200 shadow-lg p-0 my-4">
+          <div className="bg-white p-4 flex items-center w-full rounded-t-lg shadow-lg">
+            <button
+              onClick={() => router.push('/calculator?step=2')}
+              className="inline-flex items-center mr-4"
+            >
               <ArrowLeft className="w-6 h-6" />
             </button>
-            <h3 className="inline text-lg">{name}</h3>
+            <h3 className="inline text-lg">{spaceName}</h3>
           </div>
-          <div className="p-4 m-4 bg-blue-500 flex justify-between rounded-lg shadow-lg text-white">
+          {/* <div className="p-4 m-4 bg-blue-500 flex justify-between rounded-lg shadow-lg text-white">
             <div>
               <p className="text-xs">Room budget</p>
               <h3>₹0</h3>
@@ -92,8 +116,8 @@ const Page = ({ params }) => {
                 *All prices are inclusive of material and labour charges
               </p>
             </div>
-          </div>
-          <div className="m-4">
+          </div> */}
+          {/* <div className="m-4">
             <p>
               Tap the desired components and add to your project&apos;s scope
             </p>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   Accordion,
   AccordionDetails,
@@ -7,81 +7,135 @@ import {
 } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { Download } from 'lucide-react'
-const YourAccordion = () => {
-  const accordionData = [
-    {
-      title: 'Living and Dining 1',
-      imageSrc: '/images/bed-square.svg', // Adjust the image source
-      area: '140 SqFt.',
-      sections: [
-        {
-          heading: 'False Ceiling',
-          area: '140 SqFt.',
-          desc: 'Gypsum board ceiling with heavy duty channel Boards (USG Boral) | Wires (KEI or similar) | Lights (Orient or similar)',
-        },
-        {
-          heading: 'Wall',
-          area: '343 SqFt.',
-          desc: 'Premium Emulsion with basic putty repairing and one highlight wall Paint (Asian Paints or similar)',
-        },
-      ],
-    },
-    {
-      title: 'Passage 1',
-      imageSrc: '/images/bed-square.svg', // Adjust the image source
-      area: '140 SqFt.',
-      sections: [
-        {
-          heading: 'False Ceiling',
-          area: '140 SqFt.',
-          desc: 'Gypsum board ceiling with heavy duty channel Boards (USG Boral) | Wires (KEI or similar) | Lights (Orient or similar)',
-        },
-        {
-          heading: 'Wall',
-          area: '343 SqFt.',
-          desc: 'Premium Emulsion with basic putty repairing and one highlight wall Paint (Asian Paints or similar)',
-        },
-      ],
-    },
-    
-    // Add more data for additional accordions
-  ]
+import jsPDF from 'jspdf'
+import 'jspdf-autotable'
 
-  return (
-    <div>
-      {accordionData.map((accordion, index) => (
-        <Accordion key={index} className="mb-4">
-          <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-            <img
-              src={accordion.imageSrc}
-              alt={`Accordion ${index + 1}`}
-              className="h-6 mr-4 self-center"
-            />
-            <div>
-              <h6 className="text-lg font-bold">{accordion.title}</h6>
-              <p className="text-gray-400 text-xs">{accordion.area}</p>
-            </div>
-          </AccordionSummary>
-          <AccordionDetails className="shadow-lg">
-            <div className="flex flex-col space-y-4 sm:mx-10">
-              {accordion.sections.map((section, sectionIndex) => (
-                <div
-                  key={sectionIndex}
-                  className="border-b-[1px] border-b-gray-300"
-                >
-                  <h6 className="font-semibold text-lg">{section.heading}</h6>
-                  <p className="text-gray-400 text-xs mb-2">{section.area}</p>
-                  <p className="text-gray-600 text-xs mb-2">{section.desc}</p>
-                </div>
-              ))}
-            </div>
-          </AccordionDetails>
-        </Accordion>
-      ))}
-    </div>
-  )
-}
 const FourthStep = () => {
+  const [spaceData, setSpaceData] = useState([])
+  const [firstStepData, setFirstStepData] = useState([])
+  const [totalRoomPrice, setTotalRoomPrice] = useState(0)
+
+  // Fetch spaceData and firstStepData from localStorage on component mount
+  useEffect(() => {
+    const localStorageSpaceData = localStorage.getItem('spaceData')
+    const localStorageFirstStepData = localStorage.getItem('firstStepData')
+
+    if (localStorageSpaceData && localStorageFirstStepData) {
+      const parsedSpaceData = JSON.parse(localStorageSpaceData)
+      const parsedFirstStepData = JSON.parse(localStorageFirstStepData)
+
+      setSpaceData(parsedSpaceData)
+      setFirstStepData(parsedFirstStepData)
+
+      const total = parsedSpaceData.reduce(
+        (acc, room) => acc + (room.roomPrice || 0),
+        0
+      )
+      setTotalRoomPrice(total)
+    }
+  }, [])
+
+  // Function to generate and download PDF
+
+  const handleDownloadPDF = () => {
+    const doc = new jsPDF()
+
+    // Add company logo
+    const companyLogo = '/logo.png'
+    doc.addImage(companyLogo, 'PNG', 10, 10, 25, 25)
+
+    // Add company name
+    const companyName = 'Design Indian Homes'
+    doc.setFontSize(32)
+    doc.setTextColor(40, 40, 150) // Set color to dark blue
+    doc.setFont('helvetica', 'bold')
+    doc.text(companyName, 50, 30)
+
+    doc.setDrawColor(0) // Reset draw color to black
+
+    // Add Your Details section
+    const yourDetailsData = Object.entries(firstStepData)
+      .filter(([key]) => key !== 'selectedOptionSet4')
+      .map(([key, value]) => ({
+        Label:
+          key === 'selectedOptionSet1'
+            ? 'House Type'
+            : key === 'selectedOptionSet2'
+            ? 'Number of Bedrooms'
+            : key === 'selectedOptionSet3'
+            ? 'New or Renovation'
+            : key === 'textInput'
+            ? 'City'
+            : key.replace(/([A-Z])/g, ' $1').trim(),
+        Value: value,
+      }))
+
+    const yourDetailsColumns = [
+      { header: 'Label', dataKey: 'Label' },
+      { header: 'Value', dataKey: 'Value' },
+    ]
+
+    doc.setFontSize(16)
+    doc.setTextColor(100) // Set text color to gray
+    doc.text('Your Details-', 10, 70)
+    doc.autoTable({
+      startY: 80,
+      body: yourDetailsData,
+      columns: yourDetailsColumns,
+      theme: 'grid', // Use grid theme for a stylish look
+    })
+
+    // Add Your Requirements section
+    const yPosition = doc.autoTable.previous.finalY + 10
+    doc.setFontSize(16)
+    doc.setTextColor(100) // Set text color to gray
+    doc.text('Your Requirements-', 10, yPosition)
+
+    const requirementsColumns = [
+      { header: 'Rooms', dataKey: 'Rooms' },
+      { header: 'Area', dataKey: 'Area' },
+      { header: 'Package', dataKey: 'Package' },
+      { header: 'Room Price Estimation', dataKey: 'Room Price Estimation' },
+      { header: 'Selected Features', dataKey: 'Selected Features' },
+    ]
+
+    const spaceDataFormatted = spaceData.map((room, index) => ({
+      Rooms: room.name,
+      Area: room.area,
+      Package: room.selectedPackage || '-',
+      'Room Price Estimation': room.roomPrice ? `Rs. ${room.roomPrice}` : '-',
+      'Selected Features': room.selectedPolygon
+        ? room.selectedPolygon
+            .map(
+              (feature) => feature.charAt(0).toUpperCase() + feature.slice(1)
+            )
+            .join(', ')
+        : '-',
+    }))
+    doc.autoTable({
+      startY: yPosition + 10,
+      body: spaceDataFormatted,
+      columns: requirementsColumns,
+      theme: 'grid', // Use grid theme for a stylish look
+    })
+
+    // Add horizontal line
+    const hrPosition = doc.autoTable.previous.finalY + 10
+    doc.setDrawColor(150) // Set draw color to light gray
+    doc.line(10, hrPosition, 200, hrPosition)
+
+    // Add Total Price Estimate
+    const totalPricePosition = hrPosition + 20
+    doc.setFont('helvetica', 'bold')
+    doc.setTextColor(40, 40, 150) // Set text color to dark blue
+    doc.text('Total Price Estimate', 10, totalPricePosition)
+    doc.setTextColor(0) // Reset text color to black
+    doc.text(`Rs. ${totalRoomPrice}`, 100, totalPricePosition)
+
+    // Save the PDF
+    doc.save('Project_Scope.pdf')
+  }
+
   return (
     <div>
       <div className="p-4 mx-4 bg-blue-500 flex justify-between rounded-lg shadow-lg text-white">
@@ -89,7 +143,7 @@ const FourthStep = () => {
           <p className="sm:text-lg">Estimated budget</p>
         </div>
         <div className="text-right">
-          <h3 className="text-lg">₹44,765</h3>
+          <h3 className="text-lg">₹{totalRoomPrice}</h3>
           <p className="text-xxs">
             *All prices are inclusive of material and labour charges
           </p>
@@ -97,11 +151,63 @@ const FourthStep = () => {
       </div>
       <h2 className="text-xl font-bold m-4">Selected components</h2>
       <div className="rounded-xl sm:m-4">
-        <YourAccordion />
+        {spaceData.map((room, index) => (
+          <Accordion key={index} className="mb-4">
+            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+              <img
+                src="/images/bed-square.svg"
+                alt={`Accordion ${index + 1}`}
+                className="h-6 mr-4 self-center"
+              />
+              <div>
+                <h6 className="text-lg font-bold">{room.name}</h6>
+                <p className="text-gray-400 text-xs">{room.area} SqFt.</p>
+              </div>
+            </AccordionSummary>
+            <AccordionDetails className="shadow-lg">
+              <div className="flex flex-col space-y-4 sm:mx-10">
+                {room.selectedPolygon &&
+                  room.selectedPackage &&
+                  room.roomPrice && (
+                    <>
+                      <div className="border-b-[1px] border-b-gray-300">
+                        <h6 className="font-semibold text-lg">
+                          Selected Package
+                        </h6>
+                        <p className="text-gray-400 text-xs capitalize">
+                          {room.selectedPackage}
+                        </p>
+                      </div>
+                      <div className="border-b-[1px] border-b-gray-300">
+                        <h6 className="font-semibold text-lg">
+                          Room Price Estimate
+                        </h6>
+                        <p className="text-gray-400 text-xs">
+                          ₹{room.roomPrice}
+                        </p>
+                      </div>
+                      <div className="border-b-[1px] border-b-gray-300">
+                        <h6 className="font-semibold text-lg">
+                          Selected Features
+                        </h6>
+                        <ul>
+                          {room.selectedPolygon.map((polygon, index) => (
+                            <li key={index}>
+                              <p className="capitalize">{polygon}</p>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </>
+                  )}
+              </div>
+            </AccordionDetails>
+          </Accordion>
+        ))}
       </div>
       <h2 className="text-xl font-bold m-4">Documents</h2>
       <div>
-        <div className="bg-white rounded-lg flex justify-between p-4 m-4">
+        {/* <div className="bg-white rounded-lg flex justify-between p-4 m-4">
           <p>Project Budget</p>
           <button className="flex items-center text-blue-500">
             <span className="mr-2">
@@ -109,10 +215,13 @@ const FourthStep = () => {
             </span>
             Download
           </button>
-        </div>
+        </div> */}
         <div className="bg-white rounded-lg flex justify-between p-4 m-4">
           <p>Project Scope</p>
-          <button className="flex items-center text-blue-500">
+          <button
+            onClick={handleDownloadPDF}
+            className="flex items-center text-blue-500"
+          >
             <span className="mr-2">
               <Download className="h-4 w-4" />
             </span>

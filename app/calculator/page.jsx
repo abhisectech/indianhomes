@@ -1,5 +1,6 @@
 'use client'
 import React, { useState } from 'react'
+import { useSearchParams } from 'next/navigation'
 import {
   Stepper,
   Step,
@@ -17,15 +18,21 @@ import { useSpaceContext } from '../SpaceContext'
 const steps = ['Property Details', 'Select Spaces', 'Plan Spaces', 'Finalise']
 
 const YourStepperComponent = () => {
+  // handle back nav
+  const searchParams = useSearchParams()
+  const stepFromUrl = searchParams.get('step')
+  console.log('stepFromUrl', stepFromUrl)
+  const initialActiveStep = stepFromUrl ? parseInt(stepFromUrl) : 0
+  console.log('initialActiveStep', initialActiveStep)
 
-  const [selectedSpace, setSelectedSpace] = useState(''); // Add initial state as needed
+  const [selectedSpace, setSelectedSpace] = useState('') // Add initial state as needed
 
   const handlePlanClick = (spaceName) => {
-    setSelectedSpace(spaceName);
-  };
+    setSelectedSpace(spaceName)
+  }
 
-  const [activeStep, setActiveStep] = useState(0)
-   const { spaceCounts, setSpaceCounts } = useSpaceContext()
+  const [activeStep, setActiveStep] = useState(initialActiveStep)
+  const { spaceCounts, setSpaceCounts } = useSpaceContext()
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1)
@@ -38,9 +45,7 @@ const YourStepperComponent = () => {
   const handleStepClick = (step) => {
     setActiveStep(step)
   }
-  const handleOpenWhatsApp = ()=>{
-    
-  }
+  const handleOpenWhatsApp = () => {}
   //   const handleTextInputChange = (event) => {
   //     const { value } = event.target
   //     setSelectedOptions((prevSelectedOptions) => ({
@@ -58,22 +63,22 @@ const YourStepperComponent = () => {
     switch (step) {
       case 0:
         return (
-          <FirstStep id='property-details'/>
+          <FirstStep id="property-details" />
           // handleButtonClick={handleButtonClick}
           // handleTextInputChange={handleTextInputChange}
         )
       case 1:
         return (
           <SecondStep
-          id='select-spaces'
+            id="select-spaces"
             spaceCounts={spaceCounts}
             setSpaceCounts={setSpaceCounts}
           />
         )
       case 2:
-        return <ThirdStep id='plan-spaces' onPlanClick={handlePlanClick} />
+        return <ThirdStep id="plan-spaces" onPlanClick={handlePlanClick} />
       case 3:
-        return <FourthStep id='finalise'/>
+        return <FourthStep id="finalise" />
       default:
         return null
     }
