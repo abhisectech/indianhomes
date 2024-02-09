@@ -16,9 +16,24 @@ const ThirdStep = (props) => {
   const [editSpaceName, setEditSpaceName] = useState('')
   const [length, setLength] = useState('')
   const [width, setWidth] = useState('')
-  // console.log(areas)
-
   const [spaceData, setSpaceData] = useState([])
+  const [spaceDataFromLs, setSpaceDataFromLs] = useState([])
+  const [totalRoomPrice, setTotalRoomPrice] = useState(0)
+
+  // Fetch spaceData and firstStepData from localStorage on component mount
+  useEffect(() => {
+    const localStorageSpaceData = localStorage.getItem('spaceData')
+
+    if (localStorageSpaceData) {
+      const parsedSpaceData = JSON.parse(localStorageSpaceData)
+      setSpaceDataFromLs(parsedSpaceData)
+      const total = parsedSpaceData.reduce(
+        (acc, room) => acc + (room.roomPrice || 0),
+        0
+      )
+      setTotalRoomPrice(total)
+    }
+  }, [])
 
   useEffect(() => {
     // Initialize spaceData based on spaceCounts
@@ -124,65 +139,85 @@ const ThirdStep = (props) => {
     // router.push(`/calculator/image-maps/${encodedSpaceName}`)
   }
 
-useEffect(() => {
-  dispatch(updateSpaceData(spaceData))
-}, [dispatch, spaceData])
+  useEffect(() => {
+    dispatch(updateSpaceData(spaceData))
+  }, [dispatch, spaceData])
 
   return (
     <div>
+      <div className="p-4 m-4 bg-blue-500 flex justify-between rounded-lg shadow-lg text-white">
+        <div>
+          <p className="text-xs">Total budget</p>
+          <h3>₹{totalRoomPrice}</h3>
+          <p className="text-xxs">
+            *All prices are inclusive of material and labour charges
+          </p>
+        </div>
+      </div>
       <h2 className="text-xl font-bold mx-4">Plan your spaces</h2>
       <p className="text-xs mb-4 mx-4 text-gray-700">
         Customise each space as per your choice
       </p>
-      {spaceData.map((space, index) => (
-        <div key={`${space.name}-${index + 1}`} className="mx-4 mb-4">
-          <div
-            className={`flex items-center justify-between h-20 bg-white rounded-lg p-2`}
-          >
-            <div className="flex items-center">
-              {/* Adjust the image source based on your requirements */}
-              <img
-                src="/images/bed-square.svg"
-                alt={space.name}
-                className="h-12 w-8 mr-4"
-              />
-              <div>
-                <h3 className="text-sm font-bold">{space.name}</h3>
-                <div className="flex items-center gap-2">
-                  <p className="text-xxs sm:text-xs text-gray-600">
-                    {space.area}
-                  </p>
-                  <div>
-                    <button
-                      onClick={() => handleEditArea(space.name)}
-                      className="text-blue-500 hover:text-blue-700"
-                    >
-                      <Pencil size={10} color="#4b5563" strokeWidth={2} />
-                    </button>
+      {spaceData.map((space, index) => {
+       const hasSelectedPolygon = spaceDataFromLs.some(
+         (item) =>
+           item.name === space.name &&
+           item.selectedPolygon &&
+           item.selectedPolygon.length > 0
+       )
+
+        return (
+          <div key={`${space.name}-${index + 1}`} className="mx-4 mb-4">
+            <div
+              className={`flex items-center justify-between h-20 bg-white rounded-lg p-2`}
+            >
+              <div className="flex items-center">
+                {/* Adjust the image source based on your requirements */}
+                <img
+                  src="/images/bed-square.svg"
+                  alt={space.name}
+                  className="h-12 w-8 mr-4"
+                />
+                <div>
+                  <h3 className="text-sm font-bold">{space.name}</h3>
+                  <div className="flex items-center gap-2">
+                    <p className="text-xxs sm:text-xs text-gray-600">
+                      {space.area}
+                    </p>
+                    <div>
+                      <button
+                        onClick={() => handleEditArea(space.name)}
+                        className="text-blue-500 hover:text-blue-700"
+                      >
+                        <Pencil size={10} color="#4b5563" strokeWidth={2} />
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            {/* plan */}
-            <div className="m-4">
-              {
-                <button
-                  className="text-xxs border-gray-300 border-2 rounded py-1 px-2 hover:bg-green-500 hover:text-white"
-                  onClick={() => handlePlanClick(space.name)}
-                >
-                  <Link
-                    href={`/calculator/image-maps/${encodeURIComponent(
-                      space.name
-                    )}`}
+              {/* plan */}
+              <div className="m-4">
+                {
+                  <button
+                    className={`text-xxs border-gray-300 border-2 rounded py-1 px-2 hover:bg-green-500 hover:text-white ${
+                      hasSelectedPolygon ? 'bg-blue-500 text-white' : ''
+                    }`}
+                    onClick={() => handlePlanClick(space.name)}
                   >
-                    PLAN
-                  </Link>
-                </button>
-              }
+                    <Link
+                      href={`/calculator/image-maps/${encodeURIComponent(
+                        space.name
+                      )}`}
+                    >
+                      PLAN
+                    </Link>
+                  </button>
+                }
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        )
+      })}
 
       {/* Modal for editing spaceName */}
       <Modal

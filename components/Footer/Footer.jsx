@@ -619,7 +619,7 @@ export class Footer extends Component {
                   <h1 className="text-4xl font-bold ">THE BRAND</h1>
                   <ul className="text-lg font-bold mt-4">
                     <li className="mb-2">
-                      <Link href="/home-renovation-services-in-delhi-gurgaon-noida-india">
+                      <Link href="/home-renovation-services">
                         Renovation
                       </Link>
                     </li>
@@ -665,7 +665,7 @@ export class Footer extends Component {
                     <Link href="/join-us">
                       <li className="mb-2"> JOIN AS-A DESIGNER</li>
                     </Link>
-                    <Link href="">
+                    <Link href="#">
                       <li className="mb-2">
                         FOR - ARCHITECTS & <br /> INTERIOR DESIGNERS
                       </li>

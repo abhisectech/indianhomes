@@ -39,7 +39,7 @@ const nextConfig = {
       },
       {
         source: '/collaborate-with-architects-interior-designers',
-        destination: '/',
+        destination: '/join-us',
       },
       //modular design ideas
       {
@@ -398,11 +398,11 @@ const nextConfig = {
       },
       {
         source: '/home-renovation-services',
-        destination: '/',
+        destination: '/home-renovation-service',
       },
       {
         source: '/virtual-interior-designing-meeting',
-        destination: '/',
+        destination: '/schedule-videocall',
       },
       {
         source: '/about-best-interior-designers-architects',
@@ -418,7 +418,7 @@ const nextConfig = {
       },
       {
         source: '/interior-designing-estimates-pricing',
-        destination: '/',
+        destination: '/GetQuote',
       },
       {
         source: '/customer-reviews-interior-designs',
@@ -426,7 +426,7 @@ const nextConfig = {
       },
       {
         source: '/interior-designing-plans-for-residences',
-        destination: '/',
+        destination: '/offers',
       },
       {
         source: '/why-choose-the-best-interior-designers',
@@ -438,7 +438,7 @@ const nextConfig = {
       },
       {
         source: '/book-with-top-interior-designers-architects',
-        destination: '/',
+        destination: '/book-visit',
       },
       {
         source: '/refer-and-get-rewards-interior-designers',
@@ -446,11 +446,11 @@ const nextConfig = {
       },
       {
         source: '/interior-designing-estimates-pricing',
-        destination: '/',
+        destination: '/GetQuote',
       },
       {
         source: '/contact-top-interior-designers-architects',
-        destination: '/',
+        destination: '/architects-speak',
       },
       {
         source: '/foyer-area-designs',

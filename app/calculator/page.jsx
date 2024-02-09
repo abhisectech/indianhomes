@@ -46,20 +46,11 @@ const YourStepperComponent = () => {
   const handleStepClick = (step) => {
     setActiveStep(step)
   }
-  const handleOpenWhatsApp = () => {}
-  //   const handleTextInputChange = (event) => {
-  //     const { value } = event.target
-  //     setSelectedOptions((prevSelectedOptions) => ({
-  //       ...prevSelectedOptions,
-  //       textInput: value,
-  //     }))
-  //   }
-  //   const handleButtonClick = (option, optionSet) => {
-  //     setSelectedOptions((prevSelectedOptions) => ({
-  //       ...prevSelectedOptions,
-  //       [optionSet]: option,
-  //     }))
-  //   }
+  const handleOpenWhatsApp = () => {
+    const whatsappNumber = '1234567890' // Replace with the full phone number in international format
+    const whatsappUrl = `https://wa.me/${whatsappNumber}`
+    window.open(whatsappUrl, '_blank')
+  }
   const renderStepContent = (step) => {
     switch (step) {
       case 0:

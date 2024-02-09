@@ -1637,7 +1637,7 @@ const Header = () => {
         <div class>
           <ul className="text-sm 	font-bold pr-12">
             <h3 className="text-lg">
-              <Link href="/home-renovation-services-in-delhi-gurgaon-noida-india">
+              <Link href="/home-renovation-services">
                 Renovation
               </Link>
             </h3>

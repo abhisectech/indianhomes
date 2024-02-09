@@ -641,7 +641,10 @@ const Collection = () => {
             Looking for Interiors or Modular Works
           </h3>
           <br />
-          <a className=" button hover:bg-white" href="/collections/all">
+          <a
+            className=" button hover:bg-white"
+            href="/book-a-interior-design-visit"
+          >
             Connect with us
           </a>
         </div>
