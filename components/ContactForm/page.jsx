@@ -29,9 +29,9 @@ const ContactFormSection = () => {
   }
   return (
     <section className="py-12 bg-gray-100 md:px-28">
-      <div className="container mx-auto flex items-center w-2/3">
+      <div className="container mx-auto flex sm:flex-row flex-col items-center w-2/3">
         {/* Left Image */}
-        <div className="w-1/3 pr-8">
+        <div className="sm:w-1/3 w-full sm:pr-8 p-2 ">
           <img
             src="/images/contact-form.avif" // Replace with the path to your image
             alt="Contact Form"
@@ -40,7 +40,11 @@ const ContactFormSection = () => {
         </div>
 
         {/* Right Form */}
-        <form method="post" onSubmit={handleSubmit} className="w-2/3 pl-8">
+        <form
+          method="post"
+          onSubmit={handleSubmit}
+          className="sm:w-2/3 w-full  sm:pl-8 p-2"
+        >
           <div className="">
             <h2 className="text-3xl font-bold mb-6 uppercase">Contact Us</h2>
 
