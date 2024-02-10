@@ -2017,7 +2017,7 @@ const Header = () => {
                     <Link href="#"> More</Link>
                   </p>
                 </div>
-                <Link href="/GetQuote">
+                <Link href="/interior-designing-estimates-pricing">
                   {' '}
                   <button className="bg-yellow-400 hover:bg-yellow-500 hover:text-white text-sm py-2 px-2 rounded-full -mt-4 center mb-1">
                     Get Quotes
@@ -2125,7 +2125,7 @@ const Header = () => {
           />
         </div>
         <div>
-          <Link href="/GetQuote" className="bg-black text-white py-6 px-6 m-0">
+          <Link href="/interior-designing-estimates-pricing" className="bg-black text-white py-6 px-6 m-0">
             Get Estimate
           </Link>
         </div>
