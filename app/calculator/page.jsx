@@ -79,9 +79,17 @@ const YourStepperComponent = () => {
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <MaxWidthWrapper>
-        <Container className="border-2 border-blue-500 rounded-lg bg-slate-200 shadow-lg p-0">
+        <Container
+          style={{
+            border: '2px solid #3b82f6', // border-2 border-blue-500
+            borderRadius: '0.5rem', // rounded-lg
+            backgroundColor: '#c0d8fa', // bg-slate-200
+            boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)', // shadow-lg
+            padding: '0', // p-0
+          }}
+        >
           {/* Stepper component */}
-          <div className="bg-white py-4 sm:px-12 w-full rounded-t-lg shadow-lg">
+          <div className="bg-white py-4 w-full rounded-t-lg shadow-lg">
             <Stepper activeStep={activeStep} alternativeLabel>
               {steps.map((label, index) => (
                 <Step key={label}>
@@ -119,7 +127,16 @@ const YourStepperComponent = () => {
                         ? handleOpenWhatsApp
                         : handleNext
                     }
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+                    style={{
+                      backgroundColor: '#3b82f6', // bg-blue-500
+                      ':hover': {
+                        backgroundColor: '#2563eb', // hover:bg-blue-700
+                      },
+                      color: '#fff', // text-white
+                      fontWeight: 'bold', // font-bold
+                      padding: '0.5rem 1rem', // py-2 px-4
+                      borderRadius: '9999px', // rounded-full
+                    }}
                   >
                     {activeStep === steps.length - 1
                       ? 'Chat on WhatsApp'

@@ -840,10 +840,6 @@ const SvgMap = ({ data, name }) => {
             </div>
           ))}
         </div>
-        <div>
-          Selected Polygon:{' '}
-          {selectedPolygon.map((polygon) => `${polygon},`) || 'None'}
-        </div>
       </div>
       <div className="m-4">
         <p className="text-blue-500 text-xs">Disclaimer:</p>
