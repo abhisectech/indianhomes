@@ -2,80 +2,98 @@ import React from 'react'
 import MaxWidthWrapper from '../MaxWidthWrapper'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-
+import Link from 'next/link'
 const ImageGrid = () => {
   const imageList = [
     {
       src: '/images/top-picks/bathroom renovation.jpg',
       text: 'Bathroom Renovation',
+      slug: '/bathroom-renovation-services',
     },
     {
       src: '/images/top-picks/bedroomrenovation.jpg',
       text: 'Bedroom Renovation',
+      slug: '/bedroom-renovation-services',
     },
     {
       src: '/images/top-picks/beds.jpg',
       text: 'Beds',
+      slug: '//beds-designs',
     },
     {
       src: '/images/top-picks/door.jpg',
       text: 'Doors',
+      slug: '/wood-door-designs',
     },
     {
       src: '/images/top-picks/electric.jpg',
       text: 'Electric',
+      slug: '/electric-works-interiors',
     },
     {
       src: '/images/top-picks/exterior cladding.jpg',
       text: 'Exterior Cladding',
+      slug: '/exterior-cladding-designs',
     },
     {
       src: '/images/top-picks/glass partition.jpg',
       text: 'Glass Partitions',
+      slug: '/glass-partition-designs',
     },
     {
       src: '/images/top-picks/Interior Lightening.jpg',
       text: 'Interior Lightening',
+      slug: '/kitchen-lightening-designs',
     },
     {
       src: '/images/top-picks/kitchen renovation.jpg',
       text: 'Kitchen Renovation',
+      slug: '/modular-kitchen-renovation-services',
     },
     {
       src: '/images/top-picks/plumbing.jpg',
       text: 'Plumbing',
+      slug: '/plumbing-works-interiors',
     },
     {
       src: '/images/top-picks/pop.jpg',
       text: 'Pop',
+      slug: '/bathroom-renovation-services',
     },
     {
       src: '/images/top-picks/sofa.jpg',
       text: 'Sofa',
+      slug: '/sofa-designs',
     },
     {
       src: '/images/top-picks/tiling.jpg',
       text: 'Tiling',
+      slug: '/tiling-designs',
     },
     {
       src: '/images/top-picks/upvc window.jpg',
       text: 'UPVC Windows',
+      slug: '/upvc-windows-designs',
     },
     {
       src: '/images/top-picks/Vertical Garden.jpg',
       text: 'Vertical Gardens',
+      slug: '/vertical-gardens-designs',
     },
     {
       src: '/images/top-picks/wall pannaling.jpg',
       text: 'Wall Panneling',
+      slug: '/wall-panelling',
     },
     {
       src: '/images/top-picks/wooden flooring.jpg',
       text: 'Wooden Flooring',
+      slug: '/bathroom-renovation-services',
     },
     {
       src: '/images/top-picks/wooden polishing.jpg',
       text: 'Wooden Polishing',
+      slug: '/wooden-flooring-designs',
     },
 
     // Add more images as needed
@@ -196,14 +214,16 @@ const ImageGrid = () => {
                     />
                     <p className="text-sm mt-2">{item.text}</p>
                   </div> */}
-                <div className="mb-4 sm:w-[200px] w-[150px]">
-                  <img
-                    src={item.src}
-                    alt={item.text}
-                    className="w-full object-cover mr-4"
-                  />
-                  <p className="text-sm mt-2">{item.text}</p>
-                </div>
+                <Link href={item.slug}>
+                  <div className="mb-4 sm:w-[200px] w-[150px]">
+                    <img
+                      src={item.src}
+                      alt={item.text}
+                      className="w-full object-cover mr-4"
+                    />
+                    <p className="text-sm mt-2">{item.text}</p>
+                  </div>
+                </Link>
               </motion.div>
             ))}
           </motion.div>

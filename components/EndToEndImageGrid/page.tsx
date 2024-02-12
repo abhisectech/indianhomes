@@ -1,6 +1,7 @@
 import React from 'react'
 import MaxWidthWrapper from '../MaxWidthWrapper'
 import Image from 'next/image'
+import Link from 'next/link'
 import { motion } from 'framer-motion'
 
 const EndToEndImageGrid = () => {
@@ -8,58 +9,72 @@ const EndToEndImageGrid = () => {
     {
       src: '/images/end/banquet renovation.jpg',
       text: 'Banquets Renovation',
+      slug: '/banquet-renovation-services',
     },
     {
       src: '/images/end/bathroom renovation1.jpg',
       text: 'Bathroom Renovation',
+      slug: '/bathroom-renovation-services',
     },
     {
       src: '/images/end/Bedroom Renovation.jpg',
       text: 'Bedroom Renovation',
+      slug: '/bedroom-renovation-services',
     },
     {
       src: '/images/end/Farmhouse Renovation.jpg',
       text: 'Farmhouse Renovation',
+      slug: '/farmhouse-renovation-services',
     },
     {
       src: '/images/end/GYM & SPA renovation.jpg',
       text: 'GYM & SPA Renovation',
+      slug: '/gym-spa-renovation-services',
     },
     {
       src: '/images/end/Hotel Renovation.jpg',
       text: 'Hotel Renovation',
+      slug: '/hotel-renovation-services',
     },
     {
       src: '/images/end/Interior Renovation.jpg',
       text: 'Interior Renovation',
+      slug: '/interior-renovation-services',
     },
     {
       src: '/images/end/Living Room Renovation.jpg',
       text: 'Living Room Renovation',
+      slug: '/living-room-renovation-services',
     },
     {
       src: '/images/end/Lounge Renovation.jpg',
       text: 'Lounge Renovation',
+      slug: '/lounge-renovation-services',
     },
     {
       src: '/images/end/mandir renovation.jpg',
       text: 'Mandir Room Renovation',
+      slug: '/mandir-renovation-services',
     },
     {
       src: '/images/end/SPA renovation.jpg',
       text: 'Kitchen & Wardrobe Renovation',
+      slug: '/gym-spa-renovation-services',
     },
     {
       src: '/images/end/Structural Renovation.jpg',
       text: 'Structural Renovation',
+      slug: '/structural-renovation-services',
     },
     {
       src: '/images/end/terrace renovation.jpg',
       text: 'Terrace Renovation',
+      slug: '/terrace-renovation-services',
     },
     {
       src: '/images/end/Villa renovation.jpg',
       text: 'Villa Renovation',
+      slug: '/villa-renovation-services',
     },
 
     // Add more images as needed
@@ -178,14 +193,16 @@ const EndToEndImageGrid = () => {
                     />
                     <p className="text-sm mt-2">{item.text}</p>
                   </div> */}
-                <div className="mb-4 sm:w-[200px] w-[150px]">
-                  <img
-                    src={item.src}
-                    alt={item.text}
-                    className="w-full object-cover mr-4"
-                  />
-                  <p className="text-sm mt-2">{item.text}</p>
-                </div>
+                <Link href={item.slug}>
+                  <div className="mb-4 sm:w-[200px] w-[150px]">
+                    <img
+                      src={item.src}
+                      alt={item.text}
+                      className="w-full object-cover mr-4"
+                    />
+                    <p className="text-sm mt-2">{item.text}</p>
+                  </div>
+                </Link>
               </motion.div>
             ))}
           </motion.div>
