@@ -97,8 +97,9 @@ const DesignDropdown = ({
           {heading}
         </span>
         <svg
-          className={`ml-2 h-4 w-4 inline-block transform ${isOpen ? 'rotate-180' : ''
-            }`}
+          className={`ml-2 h-4 w-4 inline-block transform ${
+            isOpen ? 'rotate-180' : ''
+          }`}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -406,10 +407,18 @@ export class Footer extends Component {
         <div className="gradient">
           <div className="mt-22 container">
             {/* <WaveGradient /> */}
-            <div className="flex items-center justify-center h-96 bg-cover rounded-lg" style={{ backgroundImage: "url('https://ik.imagekit.io/hlsvvxksxg/spacejoy-9M66C_w_ToM-unsplash.jpg?updatedAt=1707545903911')", backgroundSize: 'fit', backgroundRepeat: 'no-repeat' }}>
+            <div
+              className="flex items-center justify-center h-96 bg-cover rounded-lg"
+              style={{
+                backgroundImage:
+                  "url('https://ik.imagekit.io/hlsvvxksxg/spacejoy-9M66C_w_ToM-unsplash.jpg?updatedAt=1707545903911')",
+                backgroundSize: 'fit',
+                backgroundRepeat: 'no-repeat',
+              }}
+            >
               <div className="relative z-10">
-                <Link href='/calculator'>
-                  <h1 className='text-4xl md:text-8xl font-bold text-center bg-white bg-opacity-30 p-4 rounded-full'>
+                <Link href="/calculator">
+                  <h1 className="text-4xl md:text-8xl font-bold text-center bg-white bg-opacity-30 p-4 rounded-full">
                     Get Your Estimate Free
                   </h1>
                 </Link>
@@ -628,9 +637,7 @@ export class Footer extends Component {
                   <h1 className="text-4xl font-bold ">THE BRAND</h1>
                   <ul className="text-lg font-bold mt-4">
                     <li className="mb-2">
-                      <Link href="/home-renovation-services">
-                        Renovation
-                      </Link>
+                      <Link href="/home-renovation-services">Renovation</Link>
                     </li>
                     <Link href="/virtual-interior-designing-meeting">
                       <li className="mb-2">Book a Virtual Meeting</li>
@@ -638,9 +645,9 @@ export class Footer extends Component {
                     <Link href="/about-best-interior-designers-architects">
                       <li> About Us</li>
                     </Link>
-                    <Link href="/largest-interior-designing-brand">
+                    {/* <Link href="/largest-interior-designing-brand">
                       <li className="mb-2">The Team</li>
-                    </Link>
+                    </Link> */}
                     <Link href="/collaborate-with-architects-interior-designers">
                       <li>Collaborate with Us</li>
                     </Link>
@@ -826,7 +833,7 @@ export class Footer extends Component {
             </p>
           </div>
         </div>
-      </div >
+      </div>
     )
   }
 }

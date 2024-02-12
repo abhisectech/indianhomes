@@ -3,14 +3,14 @@ import Header from '../../components/Navbar/Header'
 import Omsairam from '../../components/Navbar/Omsairam'
 import ContactForm from '../../components/ContactForm/page'
 import Footer from '../../components/Footer/Footer'
-import Form from './form'
+
 const FullWidthSection = () => {
   return (
     <section className="relative h-[200px] sm:h-[400px] bg-cover bg-center flex items-center justify-center mt-16 lg:mt-32 xl:mt-24">
       {/* Replace 'your-image.jpg' with the actual path to your background image */}
       <div className="absolute inset-0 bg-black opacity-50"></div>
       <div className="absolute z-10 text-white text-center">
-        <h1 className="sm:text-4xl text-2xl font-bold">SCHEDULE A VISIT</h1>
+        <h1 className="sm:text-4xl text-2xl font-bold">REFER & EARN</h1>
         {/* You can add more content or customize styling here */}
       </div>
       <div
@@ -66,15 +66,18 @@ const page = () => {
       <FullWidthSection />
       <div className="bg-amber-50 pt-8 sm:pt-16 pb-8 p-8s sm:p-16">
         <h1 className="sm:text-4xl text-2xl font-bold text-center mb-8">
-          SCHEDULE A VISIT WITH US ANYTIME
+          WE WILL REWARD YOU WHOLEHEARTEDLY
         </h1>
         <p className=" text-center mb-16">
-          At Design Indian Homes, we have made it a habit to deliver high
-          quality modular kitchens, wardrobes, vanities, tv units, interiors,
-          etc in Delhi, gurgaon, noida, faridabad and PAN India at the most
-          affordable quotes. By Our organized structure of working, we are Thus
-          trusted and tested by architects & interior designers across New Delhi
-          - NCR - Pan India. Give us a chance to serve you TODAY. !
+          At Design Indian Kitchen, we most graciously offer rewards to all our
+          interior designer, builder and architect partners. The Monetary value
+          per project can be discussed beforehand and we will surely offer the
+          best in the Industry, this shall be our assurance. All Our Partners
+          are closely working with us and are getting their projects timely
+          delivered with our efficient resource networking and well coordinated
+          manufacturing units across New Delhi - NCR. All Values of the Refer
+          and Earn can be once discussed, so feel free and Call us Today or
+          Whats up for All details. Happy Collaborating.
         </p>
       </div>
       <ScheduleChatSection />

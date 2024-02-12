@@ -35,7 +35,7 @@ const nextConfig = {
       },
       {
         source: '/refer-and-get-rewards-interior-designers',
-        destination: '/',
+        destination: '/refer-and-earn',
       },
       {
         source: '/collaborate-with-architects-interior-designers',
@@ -430,7 +430,7 @@ const nextConfig = {
       },
       {
         source: '/why-choose-the-best-interior-designers',
-        destination: '/',
+        destination: '/why-choose-us',
       },
       {
         source: '/join-the-largest-interior-designing-brand',
@@ -442,7 +442,7 @@ const nextConfig = {
       },
       {
         source: '/refer-and-get-rewards-interior-designers',
-        destination: '/',
+        destination: '/refer-and-earn',
       },
       {
         source: '/interior-designing-estimates-pricing',

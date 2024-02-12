@@ -1647,9 +1647,9 @@ const Header = () => {
             <Link href="/about-best-interior-designers-architects">
               <h3 className="text-lg"> About Us</h3>
             </Link>
-            <Link href="/largest-interior-designing-brand">
+            {/* <Link href="/largest-interior-designing-brand">
               <h3 className="text-lg">The Team</h3>
-            </Link>
+            </Link> */}
             <Link href="/collaborate-with-architects-interior-designers">
               <h3 className="text-lg">Collaborate with Us</h3>
             </Link>
@@ -3818,9 +3818,9 @@ const Header = () => {
                               {' '}
                               About Us
                             </h3>
-                            <h3 className="text-base font-bold bg-black text-white mt-2 text-center">
+                            {/* <h3 className="text-base font-bold bg-black text-white mt-2 text-center">
                               The Team
-                            </h3>
+                            </h3> */}
                             <h3 className="text-base font-bold bg-black text-white mt-2 text-center">
                               Collaborate with Us
                             </h3>

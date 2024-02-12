@@ -10,7 +10,12 @@ const FullWidthSection = () => {
       {/* Replace 'your-image.jpg' with the actual path to your background image */}
       <div className="absolute inset-0 bg-black opacity-50"></div>
       <div className="absolute z-10 text-white text-center">
-        <h1 className="sm:text-4xl text-2xl font-bold">SCHEDULE A VISIT</h1>
+        <h1 className="sm:text-3xl text-2xl font-bold">
+          India’s No.1 Modular Kitchen Wardrobe Brand
+        </h1>
+        <h1 className="sm:text-5xl text-2xl font-bold py-4 text-red-500">
+          CHOOSE WISELY
+        </h1>
         {/* You can add more content or customize styling here */}
       </div>
       <div
@@ -65,17 +70,21 @@ const page = () => {
       <Header />
       <FullWidthSection />
       <div className="bg-amber-50 pt-8 sm:pt-16 pb-8 p-8s sm:p-16">
-        <h1 className="sm:text-4xl text-2xl font-bold text-center mb-8">
-          SCHEDULE A VISIT WITH US ANYTIME
-        </h1>
-        <p className=" text-center mb-16">
-          At Design Indian Homes, we have made it a habit to deliver high
-          quality modular kitchens, wardrobes, vanities, tv units, interiors,
-          etc in Delhi, gurgaon, noida, faridabad and PAN India at the most
-          affordable quotes. By Our organized structure of working, we are Thus
-          trusted and tested by architects & interior designers across New Delhi
-          - NCR - Pan India. Give us a chance to serve you TODAY. !
+        <p className="text-2xl text-center mb-16">
+          Compare Quotes With us & We assure you 100% Guaranteed prices than any
+          vendor. With over 283+ architects, interior designers and builders
+          partnered with us, we assure you better quotes with better materials
+          than the rest.
         </p>
+      </div>
+      <Form />
+      <div className="my-12">
+        <h1 className="text-2xl sm:text-4xl text-center mb-8 font-bold text-red-500">
+          WHY US
+        </h1>
+        <div className="flex justify-center items-center">
+          <img src="/images/whyus-big.jpg" alt="" />
+        </div>
       </div>
       <ScheduleChatSection />
       <ContactForm />
