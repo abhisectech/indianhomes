@@ -406,7 +406,7 @@ const nextConfig = {
       },
       {
         source: '/about-best-interior-designers-architects',
-        destination: '/',
+        destination: '/about-us',
       },
       {
         source: '/largest-interior-designing-brand',
