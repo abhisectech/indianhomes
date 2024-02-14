@@ -47,7 +47,7 @@ const YourStepperComponent = () => {
     setActiveStep(step)
   }
   const handleOpenWhatsApp = () => {
-    const whatsappNumber = '1234567890' // Replace with the full phone number in international format
+    const whatsappNumber = '9899264978' // Replace with the full phone number in international format
     const whatsappUrl = `https://wa.me/${whatsappNumber}`
     window.open(whatsappUrl, '_blank')
   }
