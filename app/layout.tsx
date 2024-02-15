@@ -3,7 +3,6 @@
 import Head from 'next/head'
 import type { Metadata } from 'next'
 import { GlobalStyle } from '../components/GlobalStyles'
-
 import './globals.css'
 import ThemeSwitcher from './ThemeSwitcher'
 import Providers from './providers'
@@ -29,7 +28,7 @@ export default function RootLayout({
         <meta name="Publisher" content="www.designindianhomes.com" />
         <meta name="Distribution" content="Global" />
         <meta name="Rating" content="general" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="canonical" href="https://designindianhomes.com/" />
         <meta name="googlebot" content="index, follow" />
         <meta name="Yahoobot" content="index, follow" />
@@ -39,35 +38,37 @@ export default function RootLayout({
         <meta name="contactNumber" content="+91-98-99-26-49-78" />
         <meta name="dc.language" content="english" />
         <meta name="geo.region" content="IN-DL" />
-          <meta name="geo.placename" content="Delhi" />
-          <meta property="og:url" content="http://www.designindianhomes.com/" />
-          <meta property="og:title" content="Top Interior Designer & Architect - Delhi - Gurgaon - India" />
-          <meta property="og:description" content="Connect with the best interior and architect brand in Delhi, gurgaon, noida & India. we serve most affordable modular interiors with top quality materials." />
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" />
-          <link
-            href="https://fonts.googleapis.com/css2?family=BioRhyme:wght@200;300;400;500;600&display=swap"
-            rel="stylesheet"
-          />
+        <meta name="geo.placename" content="Delhi" />
+        <meta property="og:url" content="http://www.designindianhomes.com/" />
+        <meta property="og:title" content="Top Interior Designer & Architect - Delhi - Gurgaon - India" />
+        <meta property="og:description" content="Connect with the best interior and architect brand in Delhi, gurgaon, noida & India. we serve most affordable modular interiors with top quality materials." />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+          rel="preload"
+          href="https://fonts.googleapis.com/css2?family=BioRhyme:wght@200;300;400;500;600&display=swap"
+          as="style"
 
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Allura&display=swap"
-            rel="stylesheet"
-          />
+        />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Allura&display=swap"
+          rel="stylesheet"
+        />
 
       </Head>
       <body className="dark:text-white">
         <Provider store={store}>
-        <Providers>
-          <SpaceProvider>
-            <GlobalStyle />
-            <header className="dark:text-white"></header>
-            {/* <ThemeSwitcher /> */}
-            {children}
-          </SpaceProvider>
-        </Providers>
+          <Providers>
+            <SpaceProvider>
+              <GlobalStyle />
+              <header className="dark:text-white"></header>
+              {/* <ThemeSwitcher /> */}
+              {children}
+            </SpaceProvider>
+          </Providers>
         </Provider>
       </body>
     </html>

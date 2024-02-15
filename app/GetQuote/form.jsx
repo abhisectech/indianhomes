@@ -49,7 +49,7 @@ const FileUploadForm = () => {
 
     try {
       setBtnText('Uploading...')
-      const response = await fetch('http://localhost:3001/upload', {
+      const response = await fetch('https://m.designindianhomes.com/upload', {
         method: 'POST',
         body: formDataToSend,
       })

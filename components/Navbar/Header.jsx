@@ -1893,14 +1893,14 @@ const Header = () => {
                     style={{ width: '1.5rem', height: '1.5rem' }}
                   />
                 </a>
-                <a href="wa.me/+919899264978" target="_blank">
+                <a href="https://wa.me/+919899264978" target="_blank">
                   <SocialIcon
                     network="whatsapp"
                     style={{ width: '1.5rem', height: '1.5rem' }}
                   />
                 </a>
 
-                <ThemeSwitcher />
+                {/* <ThemeSwitcher /> */}
               </div>
             </div>
           </div>
@@ -2146,7 +2146,7 @@ const Header = () => {
                   <div className="flex" style={{ marginLeft: '-40px' }}>
                     <span className="">dark mode</span>
 
-                    <ThemeSwitcher />
+                    {/* <ThemeSwitcher /> */}
                   </div>
 
                   <button

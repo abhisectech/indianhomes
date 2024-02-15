@@ -1079,34 +1079,31 @@ const Collection = () => {
       <div className="section1 relative">
         {/*------------------------------------------ */}
         <div className="main1">
-          <img src="/images/left.gif" width={50} height={50} />
-          <svg
-            id="rotatingText1"
-            viewBox="0 0 200 200"
-            width={200}
-            height={200}
-          >
-            <defs>
-              <path
-                id="circle"
-                d="M 100, 100
-   m -75, 0
-   a 75, 75 0 1, 0 150, 0
-   a 75, 75 0 1, 0 -150, 0
-   "
-              ></path>
-            </defs>
-            <text width={400}>
-              <textPath
-                alignmentBaseline="top"
-                xlinkHref="#circle"
-                className="text"
-              >
-                The Best Home Interior Brand of India -
-              </textPath>
-            </text>
-          </svg>
-        </div>
+  <svg id="rotatingText1" viewBox="0 0 200 200" width={200} height={200}>
+    <defs>
+      <path
+        id="circle"
+        d="M 100, 100
+           m -75, 0
+           a 75, 75 0 1, 0 150, 0
+           a 75, 75 0 1, 0 -150, 0"
+      ></path>
+    </defs>
+    {/* Place the image at the center of the circle */}
+    <image href="/images/left.gif" width={50} height={50} x="75" y="75" />
+    <text width={400}>
+      <textPath
+        alignmentBaseline="top"
+        xlinkHref="#circle"
+        className="text"
+      >
+        The Best Home Interior Brand of India -
+      </textPath>
+    </text>
+  </svg>
+</div>
+
+
         {/* ------------------------------- */}
         <motion.section
           variants={imagesVariants}
@@ -1462,29 +1459,31 @@ const Collection = () => {
       </div>
 
       <div className="flex items-center justify-c">
-        <div className="w-1/6 main2">
-          <img src="/images/left.gif" width={50} height={50} />
-          <svg id="rotatingText" viewBox="0 0 200 200" width={200} height={200}>
-            <defs>
-              <path
-                id="circle"
-                d="M 100, 100
-            m -75, 0
-            a 75, 75 0 1, 0 150, 0
-            a 75, 75 0 1, 0 -150, 0"
-              ></path>
-            </defs>
-            <text width={400}>
-              <textPath
-                alignmentBaseline="top"
-                xlinkHref="#circle"
-                className="text"
-              >
-                No.1 Architectural Brand in India
-              </textPath>
-            </text>
-          </svg>
-        </div>
+      <div className="w-1/6 main2">
+  <svg id="rotatingText" viewBox="0 0 200 200" width={200} height={200}>
+    <defs>
+      <path
+        id="circle"
+        d="M 100, 100
+           m -75, 0
+           a 75, 75 0 1, 0 150, 0
+           a 75, 75 0 1, 0 -150, 0"
+      ></path>
+    </defs>
+    {/* Place the image at the center of the circle */}
+    <image href="/images/left.gif" width={50} height={50} x="75" y="75" />
+    <text width={400}>
+      <textPath
+        alignmentBaseline="top"
+        xlinkHref="#circle"
+        className="text"
+      >
+        No.1 Architectural Brand in India
+      </textPath>
+    </text>
+  </svg>
+</div>
+
         <div className="w-full">
           {/* <h1 className=" mr-[15%] text-center mx-auto">
             Our Corporate Presence

@@ -9,6 +9,13 @@
     line-height: 1rem; /* Equivalent to 16px */
   }
 }
+/* Contents of biorhyme.css */
+@font-face {
+  font-family: 'BioRhyme';
+  src: url('/fonts/biorhyme-regular.ttf') format('truetype');
+  /* Add other font variations if needed */
+}
+
 /* ----------------------------------- */
 
 /* this is for scrollbar just add sectiondemo class to the place */

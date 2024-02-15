@@ -4,9 +4,9 @@ import Marquee from "react-fast-marquee";
 const Omsairam = () => {
   return (
     <div className="bg-black font-bold text-white" style={{ zIndex: '10000', position: 'fixed', width: '100%', top: 0 }}>
-      <h1 className="text-center  text-white font-bold " style={{ fontSize: '8px' }}>ॐ साईं राम</h1>
+      <h1 className="text-center  text-white font-bold " style={{ fontSize: '8px' }}><a href="https://devotionalindia.com" target="_blank">ॐ साईं राम</a></h1>
       <Marquee
-        className='text-xs' direction="left" speed={50} style={{ width: "100%", whiteSpace: "nowrap", height: '20px' }}
+        className='text-xs' direction="left" speed={50} style={{ width: "100%", whiteSpace: "nowrap", height: '20px', backgroundColor: "black"}}
       >
         <div style={{ display: "inline-block" }}> 🙂 Largest Manufacturing Brand Across Noida - Delhi - NCR 🙂 Bring Us any Quote & Take Flat 7% Off.
           100% Guaranteed Quotes for all Modular Kitchens & Wardrobes.
