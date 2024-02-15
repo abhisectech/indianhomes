@@ -2,7 +2,7 @@
 import React from 'react'
 
 const ContactFormSection = () => {
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
     console.log('submit clicked')
 
@@ -14,21 +14,31 @@ const ContactFormSection = () => {
       message: document.getElementById('message').value,
       requirement: document.getElementById('requirement').value,
     }
-    const recipientEmail = 'saurabhbehal@gmail.com'
-    const emailData = `
-        Name: ${formData.name},
-        Email: ${formData.email},
-        Mobile: ${formData.phone},
-        Date: ${formData.date},
-        Message: ${formData.message},
-        Looking For: ${formData.requirement},
-    `
-    const mailtoLink = `mailto:${recipientEmail}?subject=New Design Session Enquiry&body=${encodeURIComponent(
-      emailData ?? null
-    )}`
-    // window.location.href = mailtoLink
-    window.open(mailtoLink, '_blank')
-  }
+    try {
+      setBtnText('Uploading...')
+      const response = await fetch('m.designindianhomes.com//upload-postfooter-form', {
+        method: 'POST',
+        body: formDataToSend,
+      })
+
+      if (response.ok) {
+        setBtnText('Done')
+        console.log('Form data and file uploaded successfully!')
+        console.log(
+          'Form Data to Send:',
+          Object.fromEntries(formDataToSend.entries())
+        )
+      } else {
+        setBtnText('Something Went Wrong')
+        console.error('Form data and file upload failed.')
+      }
+    } catch (error) {
+      setBtnText('Something Went Wrong')
+      console.error('Error during form data and file upload:', error)
+    }
+  };
+  
+
   return (
     <section className="py-12 bg-gray-100 md:px-28">
       <div className="container mx-auto flex items-center w-2/3">

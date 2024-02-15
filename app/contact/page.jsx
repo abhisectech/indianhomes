@@ -10,43 +10,64 @@ import {
 import Image from 'next/image'
 import Head from 'next/head'
 import Link from 'next/link'
-import React, { FormEvent } from 'react'
+import React, { FormEvent, useState } from 'react'
 import Header from '../../components/Navbar/Header'
 import Footer from '../../components/Footer/Footer'
 import emailjs from 'emailjs-com';
 import Omsairam from '../../components/Navbar/Omsairam'
 
 const TopFormSection = () => {
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    console.log('submit clicked')
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    number: '',
+    message: '',
+  })
+  const [btnText, setBtnText] = useState('Submit')
+  const handleChange = (event) => {
+    const { name, value } = event.target
 
-    const formData = {
-      name: (document.getElementById('name') as HTMLInputElement).value,
-      email: (document.getElementById('email') as HTMLInputElement).value,
-      phone: (document.getElementById('number') as HTMLInputElement).value,
-      message: (document.getElementById('message') as HTMLInputElement).value,
-    }
-
-    const recipientEmail = 'saurabhbehal@gmail.com'
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }))
+  }
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    console.log('Submitting form...');
   
-    const emailParams = {
-      from_name: formData.name,
-      reply_to: formData.email,
-      mobile_number: formData.phone,
-      message: formData.message,
-    };
-    const serviceId = 'service_lfo5kwt';
-    const templateId = 'template_66hmaeb';
-    const userId = 'mDNDZk1yoZjcCC39e';
-
+    const formDataToSend = new FormData();
+    for (const key in formData) {
+      formDataToSend.append(key, formData[key]);
+    }
+    
+  
     try {
-      const response = await emailjs.send(serviceId, templateId, emailParams, userId);
-      console.log('Email sent successfully:', response);
+      console.log('Form Data to Send:', Object.fromEntries(formDataToSend.entries()));
+      console.log('Uploading data...');
+      const response = await fetch('https://m.designindianhomes.com/submitForm', {
+        method: 'POST',
+        body: formDataToSend,
+      });
+  
+      console.log('Response status:', response.status);
+      console.log('Response headers:', response.headers);
+      console.log('Response body:', await response.text());
+  
+      if (response.ok) {
+        console.log('Form data submitted successfully!');
+        console.log('Form Data to Send:', Object.fromEntries(formDataToSend.entries()));
+        setBtnText('Done');
+      } else {
+        console.error('Form data submission failed. Response:', response);
+        setBtnText('Something Went Wrong');
+      }
     } catch (error) {
-      console.error('Error sending email:', error);
+      console.error('Error during form data submission:', error);
+      setBtnText('Something Went Wrong');
     }
   };
+  
 
   return (
     
@@ -118,6 +139,7 @@ const TopFormSection = () => {
             type="text"
             id="name"
             name="name"
+            onChange={handleChange}
             className="mt-1 p-2 border-2 rounded-full w-full"
           />
           <label
@@ -130,6 +152,7 @@ const TopFormSection = () => {
             type="email"
             id="email"
             name="email"
+            onChange={handleChange}
             className="mt-1 p-2 border-2 rounded-full w-full"
           />
           <label
@@ -142,6 +165,7 @@ const TopFormSection = () => {
             type="tel"
             id="number"
             name="number"
+            onChange={handleChange}
             className="mt-1 p-2 border-2 rounded-full w-full"
           />
           <label
@@ -153,6 +177,7 @@ const TopFormSection = () => {
           <textarea
             id="message"
             name="message"
+            onChange={handleChange}
             className="mt-1 p-2 border-2 rounded-full w-full text-sm"
           ></textarea>
 
@@ -162,7 +187,7 @@ const TopFormSection = () => {
             type="submit"
             className="bg-gray-900 text-white py-2 px-4 mt-4 rounded-full w-full hover:bg-gray-700 hover:shadow"
           >
-            Submit
+            {btnText}
           </button>
         </form>
       </div>

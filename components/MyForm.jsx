@@ -1,73 +1,85 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react'
 import { ChevronRight } from 'lucide-react';
-import emailjs from 'emailjs-com';
 import Typed from 'typed.js'
-interface MyFormProps {}
 
-const MyForm: React.FC<MyFormProps> = () => {
-  const el = React.useRef(null);
 
-  React.useEffect(() => {
-    const typed = new Typed(el.current, {
-      strings: [
-        'kitchen?',
-        'bedroom?',
-        'bathroom?',
-        'guest room?',
-        'living room?',
-      ],
-      typeSpeed: 100,
-      loop: true,
-      loopCount: Infinity,
-    });
+const MyForm = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    number: '',
+    pincode: '',
+    agree: '',
+  })
+  const [btnText, setBtnText] = useState('Book free site Visit')
+  const handleChange = (event) => {
+    const { name, value } = event.target
 
-    return () => {
-      // Destroy Typed instance during cleanup to stop animation
-      typed.destroy();
-    };
-  }, []);
-
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }))
+  }
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log('submit clicked');
-
-    const formData = {
-      name: (document.getElementById('fullName') as HTMLInputElement).value,
-      email: (document.getElementById('email') as HTMLInputElement).value,
-      phone: (document.getElementById('mobileNumber') as HTMLInputElement)
-        .value,
-      pincode: (document.getElementById('pincode') as HTMLInputElement).value,
-      agreeToUpdates: (document.getElementById('agree') as HTMLInputElement)
-        .checked,
-    };
-
-    const emailParams = {
-      from_name: formData.name,
-      reply_to: formData.email,
-      mobile_number: formData.phone,
-      pincode: formData.pincode,
-      agree_to_updates: formData.agreeToUpdates ? 'Yes' : 'No',
-    };
-
-    const serviceId = 'service_lfo5kwt';
-    const templateId = 'template_ef96whn';
-    const userId = 'mDNDZk1yoZjcCC39e';
-
+    console.log('Submitting form...');
+  
+    const formDataToSend = new FormData();
+    for (const key in formData) {
+      formDataToSend.append(key, formData[key]);
+    }
+    
+  
     try {
-      const response = await emailjs.send(serviceId, templateId, emailParams, userId);
-      console.log('Email sent successfully:', response);
+      console.log('Form Data to Send:', Object.fromEntries(formDataToSend.entries()));
+      console.log('Uploading data...');
+      const response = await fetch('https://m.designindianhomes.com/submitForm', {
+        method: 'POST',
+        body: formDataToSend,
+      });
+  
+      console.log('Response status:', response.status);
+      console.log('Response headers:', response.headers);
+      console.log('Response body:', await response.text());
+  
+      if (response.ok) {
+        console.log('Form data submitted successfully!');
+        console.log('Form Data to Send:', Object.fromEntries(formDataToSend.entries()));
+        setBtnText('Done');
+      } else {
+        console.error('Form data submission failed. Response:', response);
+        setBtnText('Something Went Wrong');
+      }
     } catch (error) {
-      console.error('Error sending email:', error);
+      console.error('Error during form data submission:', error);
+      setBtnText('Something Went Wrong');
     }
   };
+
+  // React.useEffect(() => {
+  //   const typed = new Typed(el.current, {
+  //     strings: [
+  //       'kitchen?',
+  //       'bedroom?',
+  //       'bathroom?',
+  //       'guest room?',
+  //       'living room?',
+  //     ],
+  //     typeSpeed: 100,
+  //     loop: true,
+  //     loopCount: Infinity,
+  //   });
+  // });
+
+
   return (
     <div className="flex flex-col sm:flex-row lg:mx-16">
       {/* Left side with heading and paragraph */}
       <div className="sm:w-1/2 p-4">
         <h1 className="text-2xl sm:text-4xl font-bold mb-4 text-white">
           Looking for expert guidance to design your <br />
-          <span ref={el} className="text-yellow-300" />
+          <span  className="text-yellow-300" />
         </h1>
         <p className="text-gray-900 text-sm">
           Leave your information and we will call you to book your preferred
@@ -91,8 +103,9 @@ const MyForm: React.FC<MyFormProps> = () => {
             </label>
             <input
               type="text"
-              id="fullName"
-              name="fullName"
+              id="name"
+              name="name"
+              onChange={handleChange}
               className="mt-1 p-2 w-full bg-transparent border-b border-gray-500 focus:outline-none focus:border-blue-500"
               required
             />
@@ -109,6 +122,7 @@ const MyForm: React.FC<MyFormProps> = () => {
               type="email"
               id="email"
               name="email"
+              onChange={handleChange}
               className="mt-1 p-2 w-full bg-transparent border-b border-gray-500 focus:outline-none focus:border-blue-500"
               required
             />
@@ -123,8 +137,9 @@ const MyForm: React.FC<MyFormProps> = () => {
             </label>
             <input
               type="tel"
-              id="mobileNumber"
-              name="mobileNumber"
+              id="number"
+              onChange={handleChange}
+              name="number"
               className="mt-1 p-2 w-full bg-transparent border-b border-gray-500 focus:outline-none focus:border-blue-500"
               required
             />
@@ -141,6 +156,7 @@ const MyForm: React.FC<MyFormProps> = () => {
               type="text"
               id="pincode"
               name="pincode"
+              onChange={handleChange}
               className="mt-1 p-2 w-full bg-transparent border-b border-gray-500 focus:outline-none focus:border-blue-500"
               required
             />
@@ -148,7 +164,7 @@ const MyForm: React.FC<MyFormProps> = () => {
 
           <div className="mb-4">
             <label htmlFor="agree" className="flex items-center">
-              <input type="checkbox" id="agree" name="agree" className="mr-2" />
+              <input type="checkbox" id="agree" name="agree" className="mr-2" onChange={handleChange} />
               <span className="text-sm text-gray-900">
                 Yes, I would like to receive important updates and notifications
                 on WhatsApp
@@ -159,7 +175,7 @@ const MyForm: React.FC<MyFormProps> = () => {
             type="submit"
             className="mt-8 bg-green-400 hover:bg-green-600 text-lg py-3 px-6 mb-12 rounded-full hover:text-white flex justify-center items-center "
           >
-            Book Free Site Visit <ChevronRight className="ml-2" />
+            {btnText} <ChevronRight className="ml-2" />
           </button>
         </form>
       </div>

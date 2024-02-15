@@ -10,7 +10,6 @@ const FileUploadForm = () => {
     address: '',
     email: '',
     number: '',
-
     date: '',
     FloorPlan: '',
     purpose: '',
@@ -49,7 +48,7 @@ const FileUploadForm = () => {
 
     try {
       setBtnText('Uploading...')
-      const response = await fetch('https://m.designindianhomes.com/upload', {
+      const response = await fetch('https://m.designindianhomes.com/submitForm', {
         method: 'POST',
         body: formDataToSend,
       })

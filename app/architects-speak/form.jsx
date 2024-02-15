@@ -14,12 +14,7 @@ const FileUploadForm = () => {
   })
   const [btnText, setBtnText] = useState('Submit')
 
-  //   const handleFileChange = (event) => {
-  //     setFormData({
-  //       ...formData,
-  //       file: event.target.files[0],
-  //     })
-  //   }
+ 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0])
   }
@@ -45,7 +40,7 @@ const FileUploadForm = () => {
 
     try {
       setBtnText('Uploading...')
-      const response = await fetch('m.designindianhomes.com/upload-project', {
+      const response = await fetch('https://m.designindianhomes.com/submitForm', {
         method: 'POST',
         body: formDataToSend,
       })

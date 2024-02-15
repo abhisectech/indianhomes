@@ -1,32 +1,64 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
 
 const ContactFormSection = () => {
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    console.log('submit clicked')
 
-    const formData = {
-      name: document.getElementById('name').value,
-      email: document.getElementById('email').value,
-      phone: document.getElementById('number').value,
-      message: document.getElementById('message').value,
-      requirement: document.getElementById('requirement').value,
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    number: '',
+    message: '',
+    requirement: '',
+  })
+  const [btnText, setBtnText] = useState('Submit')
+
+    const handleChange = (event) => {
+      const { name, value } = event.target
+  
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }))
     }
-    const recipientEmail = 'saurabhbehal@gmail.com'
-    const emailData = `
-        Name: ${formData.name},
-        Email: ${formData.email},
-        Mobile: ${formData.phone},
-        Message: ${formData.message},
-        Looking For: ${formData.requirement},
-    `
-    const mailtoLink = `mailto:${recipientEmail}?subject=New Design Session Enquiry&body=${encodeURIComponent(
-      emailData ?? null
-    )}`
-    // window.location.href = mailtoLink
-    window.open(mailtoLink, '_blank')
-  }
+
+    const handleSubmit = async (event) => {
+      event.preventDefault();
+      console.log('Submitting form...');
+    
+      const formDataToSend = new FormData();
+      for (const key in formData) {
+        formDataToSend.append(key, formData[key]);
+      }
+      
+    
+      try {
+        console.log('Form Data to Send:', Object.fromEntries(formDataToSend.entries()));
+        console.log('Uploading data...');
+        const response = await fetch('https://m.designindianhomes.com/submitForm', {
+          method: 'POST',
+          body: formDataToSend,
+        });
+    
+        console.log('Response status:', response.status);
+        console.log('Response headers:', response.headers);
+        console.log('Response body:', await response.text());
+    
+        if (response.ok) {
+          console.log('Form data submitted successfully!');
+          console.log('Form Data to Send:', Object.fromEntries(formDataToSend.entries()));
+          setBtnText('Done');
+        } else {
+          console.error('Form data submission failed. Response:', response);
+          setBtnText('Something Went Wrong');
+        }
+      } catch (error) {
+        console.error('Error during form data submission:', error);
+        setBtnText('Something Went Wrong');
+      }
+    };
+    
+    
+    
   return (
     <section className="py-12 bg-gray-100 md:px-28">
       <div className="container mx-auto flex sm:flex-row flex-col items-center w-2/3">
@@ -58,6 +90,8 @@ const ContactFormSection = () => {
                 <input
                   type="text"
                   id="name"
+                  name='name'
+                  onChange={handleChange}
                   className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
                 />
               </div>
@@ -68,6 +102,8 @@ const ContactFormSection = () => {
                 <input
                   id="number"
                   type="text"
+                  name='number'
+                  onChange={handleChange}
                   className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
                 />
               </div>
@@ -80,6 +116,8 @@ const ContactFormSection = () => {
                 <input
                   id="email"
                   type="email"
+                  name='email'
+                  onChange={handleChange}
                   className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
                 />
               </div>
@@ -89,6 +127,8 @@ const ContactFormSection = () => {
                 </label>
                 <select
                   id="requirement"
+                  name='requirement'
+                  onChange={handleChange}
                   className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
                 >
                   <option value="Planning">Kitchen Planning</option>
@@ -105,6 +145,8 @@ const ContactFormSection = () => {
               <textarea
                 rows="3"
                 id="message"
+                name='message'
+                onChange={handleChange}
                 className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
               ></textarea>
             </div>
@@ -113,7 +155,8 @@ const ContactFormSection = () => {
                 type="submit"
                 className="mt-4 px-6 py-3 bg-green-500 text-white w-full hover:bg-green-600 rounded-full focus:outline-none focus:ring focus:border-green-300"
               >
-                Submit
+               
+                {btnText}
               </button>
             </div>
 

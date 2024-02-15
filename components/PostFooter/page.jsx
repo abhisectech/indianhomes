@@ -3,31 +3,57 @@ import React, { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 
 const FirstForm = () => {
-  const handleFormSubmit = (event) => {
-    event.preventDefault()
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    number: '',
+    message: '',
+  })
+  const [btnText, setBtnText] = useState('Send Message')
+  const handleChange = (event) => {
+    const { name, value } = event.target
 
-    const formData = {
-      name: event.target.elements.name.value,
-      email: event.target.elements.email.value,
-      number: event.target.elements.number.value,
-      address: event.target.elements.address.value,
-    }
-
-    const recipientEmail = 'saurabhbehal@gmail.com'
-    const emailData = `
-        Name: ${formData.name},
-        Email: ${formData.email},
-        Mobile: ${formData.number},
-        Address: ${formData.address},
-     
-    `
-
-    const mailtoLink = `mailto:${recipientEmail}?subject=Booked a Design Visit&body=${encodeURIComponent(
-      emailData ?? null
-    )}`
-
-    window.open(mailtoLink, '_blank')
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }))
   }
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    console.log('Submitting form...');
+  
+    const formDataToSend = new FormData();
+    for (const key in formData) {
+      formDataToSend.append(key, formData[key]);
+    }
+    
+  
+    try {
+      console.log('Form Data to Send:', Object.fromEntries(formDataToSend.entries()));
+      console.log('Uploading data...');
+      const response = await fetch('https://m.designindianhomes.com/submitForm', {
+        method: 'POST',
+        body: formDataToSend,
+      });
+  
+      console.log('Response status:', response.status);
+      console.log('Response headers:', response.headers);
+      console.log('Response body:', await response.text());
+  
+      if (response.ok) {
+        console.log('Form data submitted successfully!');
+        console.log('Form Data to Send:', Object.fromEntries(formDataToSend.entries()));
+        setBtnText('Done');
+      } else {
+        console.error('Form data submission failed. Response:', response);
+        setBtnText('Something Went Wrong');
+      }
+    } catch (error) {
+      console.error('Error during form data submission:', error);
+      setBtnText('Something Went Wrong');
+    }
+  };
+  
 
   return (
     <div className="sm:p-4 pb-4 bg-white rounded-lg shadow-lg sm:w-1/3">
@@ -42,7 +68,7 @@ const FirstForm = () => {
           & GET GUARANTEED <br />
           AFFORDABE QUOTES BY US
         </h2>
-        <form onSubmit={handleFormSubmit}>
+        <form onSubmit={handleSubmit}>
           <div className="mt-8">
             <div>
               <span className="uppercase  text-sm text-gray-600 font-bold">
@@ -54,7 +80,7 @@ const FirstForm = () => {
                 type="text"
                 id="name"
                 name="name"
-                // onChange={handleChange}
+                onChange={handleChange}
               />
             </div>
             <div className="mt-8">
@@ -67,6 +93,7 @@ const FirstForm = () => {
                 type="email"
                 id="email"
                 name="email"
+                onChange={handleChange}
               />
             </div>
             <div className="mt-8">
@@ -79,6 +106,7 @@ const FirstForm = () => {
                 type="tel"
                 id="number"
                 name="number"
+                onChange={handleChange}
               />
             </div>
             <div className="mt-8">
@@ -90,6 +118,7 @@ const FirstForm = () => {
                 type="text"
                 id="address"
                 name="address"
+                onChange={handleChange}
                 className="w-full  border-b-2 border-b-gray-500 mt-2 p-3 focus:outline-none focus:shadow-outline"
               />
             </div>
@@ -98,7 +127,7 @@ const FirstForm = () => {
                 type="submit"
                 className="mt-2 uppercase text-sm font-bold tracking-wide bg-slate-950 text-gray-100 p-3 rounded-lg w-full focus:outline-none focus:shadow-outline"
               >
-                Send Message
+                {btnText}
               </button>
             </div>
           </div>
@@ -112,7 +141,6 @@ const SecondForm = () => {
   const [selectedFile, setSelectedFile] = useState(null)
   const [formData, setFormData] = useState({
     name: '',
-
     email: '',
     number: '',
     message: '',
@@ -144,7 +172,7 @@ const SecondForm = () => {
     try {
       setBtnText('Uploading...')
       const response = await fetch(
-        'http://localhost:3001/upload-postfooter-form',
+        'https://m.designindianhomes.com/submitForm',
         {
           method: 'POST',
           body: formDataToSend,

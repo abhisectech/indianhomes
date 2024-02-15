@@ -31,6 +31,6 @@
     "app/page.jsx",
     "components/DarkMode/page.tsx",
     "components/Stepper/page.jsx"
-, "components/FAQ/page.jsx"  ],
+, "components/FAQ/page.jsx", "app/contact/page.jsx", "components/MyForm.jsx"  ],
   "exclude": ["node_modules"]
 }
