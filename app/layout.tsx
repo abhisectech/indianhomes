@@ -59,12 +59,12 @@ export default function RootLayout({
         />
 
       </Head>
-      <body className="dark:text-white">
+      <body>
         <Provider store={store}>
           <Providers>
             <SpaceProvider>
               <GlobalStyle />
-              <header className="dark:text-white"></header>
+              <header></header>
               {/* <ThemeSwitcher /> */}
               {children}
             </SpaceProvider>
