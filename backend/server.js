@@ -23,12 +23,12 @@ const upload = multer({ storage })
 
 // Nodemailer configuration
 const transporter = nodemailer.createTransport({
-  host: 'smtp.hostinger.com',
+  host: 'srv474936.hstgr.cloud',
   port: 465,
   secure: true, // Use SSL
   auth: {
-    user: 'official@designindianhomes.com',
-    pass: 'Sairam151615$',
+    user: 'mail@designindianhomes.com',
+    pass: 'Loginamd@321',
   },
 })
 
@@ -45,10 +45,10 @@ app.post('/upload', upload.single('file'), async (req, res) => {
 
     // Send email
     const mailOptions = {
-      from: 'official@designindianhomes.com',
-      to: 'abhisec_tech@proton.me',
-      subject: 'Form Data and File Attachment',
-      text: 'Attached is the file and form data you requested.',
+      from: 'mail@designindianhomes.com',
+      to: 'saurabhbehal@gmail.com',
+      subject: 'Design Indian Homes Enquiry',
+      text: 'New Enquiry from Design Indian homes',
       attachments: [
         {
           filename: file.originalname,
