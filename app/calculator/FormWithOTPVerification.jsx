@@ -1,19 +1,30 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 
 const FormWithOTPVerification = ({ handleDownloadPDF }) => {
   const [mobileNumber, setMobileNumber] = useState('')
   const [otpSent, setOtpSent] = useState(false)
-  const [otp, setOtp] = useState('')
+  const [otp, setOtp] = useState(['', '', '', ''])
   const [otpVerified, setOtpVerified] = useState(false)
 
+  const inputRefs = useRef(Array.from({ length: 4 }, () => React.createRef()))
+  // console.log('inputRefs', inputRefs)
+  
   const handleOTPInputChange = (index, value) => {
     // Update the character at the specified index
     setOtp((prevOtp) => {
-      const updatedOTP =
-        prevOtp.substr(0, index) + value + prevOtp.substr(index + 1)
-      console.log(updatedOTP) // Log the updated OTP
-      return updatedOTP
+      // console.log('prevOtp', prevOtp)
+
+      const newOtp = [...prevOtp]
+      newOtp[index] = value
+      // console.log('newOtp', newOtp)
+      console.log('Current OTP:', newOtp.join(''))
+      return newOtp
     })
+
+    // Move to the next input box if available
+    if (value && index < 3) {
+      inputRefs.current[index + 1].current.focus()
+    }
   }
 
   const handleSendOTP = () => {
@@ -100,15 +111,17 @@ const FormWithOTPVerification = ({ handleDownloadPDF }) => {
             <div className="flex flex-col">
               {!otpVerified ? (
                 <>
-                  <hr className="border-t-2 my
-                  -4" />
+                  <hr
+                    className="border-t-2 my
+                  -4"
+                  />
                   <div className="flex justify-center">
                     {[...Array(4)].map((_, index) => (
                       <input
                         key={index}
                         type="text"
                         maxLength="1"
-                        value={otp[index] || ''}
+                        value={otp[index]}
                         onChange={(e) =>
                           handleOTPInputChange(index, e.target.value)
                         }
@@ -116,6 +129,7 @@ const FormWithOTPVerification = ({ handleDownloadPDF }) => {
                         style={{
                           width: '3rem',
                         }}
+                        ref={inputRefs.current[index]}
                       />
                     ))}
                   </div>

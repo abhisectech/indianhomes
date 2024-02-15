@@ -53,10 +53,19 @@ const SvgMap = ({ data, name }) => {
   const [selectedPolygon, setSelectedPolygon] = useState([])
   const [selectedPackage, setSelectedPackage] = useState('premium') // Default to premium
   const [spaceSquareFootage, setSpaceSquareFootage] = useState({}) // New state for square footage
-  
+
   const [updatedData, setUpdatedData] = useState(data)
   const [roomPrice, setRoomPrice] = useState(0)
-  // let roomPrice = 0
+
+  // to reset the selectedPolygon and roomPrice to back to inital state when package is changed
+  useEffect(() => {
+    // Reset selectedPolygon to an empty array
+    setSelectedPolygon([])
+
+    // Reset roomPrice to 0
+    setRoomPrice(0)
+  }, [selectedPackage])
+
   console.log('roomPrice: ', roomPrice)
   const updateData = () => {
     setUpdatedData((prevData) =>

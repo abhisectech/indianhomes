@@ -159,13 +159,15 @@ const ThirdStep = (props) => {
         Customise each space as per your choice
       </p>
       {spaceData.map((space, index) => {
-       const hasSelectedPolygon = spaceDataFromLs.some(
-         (item) =>
-           item.name === space.name &&
-           item.selectedPolygon &&
-           item.selectedPolygon.length > 0
-       )
-
+        const hasSelectedPolygon = spaceDataFromLs.some(
+          (item) =>
+            item.name === space.name &&
+            item.selectedPolygon &&
+            item.selectedPolygon.length > 0
+        )
+        const roomPrice = spaceDataFromLs.find(
+          (item) => item.name === space.name && item.roomPrice
+        )
         return (
           <div key={`${space.name}-${index + 1}`} className="mx-4 mb-4">
             <div
@@ -192,11 +194,29 @@ const ThirdStep = (props) => {
                         <Pencil size={10} color="#4b5563" strokeWidth={2} />
                       </button>
                     </div>
+                    <div className="ml-4 sm:hidden flex justify-center items-center">
+                      <p className="text-xxs sm:text-xs text-gray-600 text-center">
+                        {roomPrice ? `Room Price: ₹${roomPrice.roomPrice}` : ''}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
               {/* plan */}
-              <div className="m-4">
+              <div className="m-4 flex">
+                {roomPrice ? (
+                  <div className="mx-0 sm:mx-8 hidden sm:flex justify-center items-center">
+                    <p className=" text-sm text-gray-700 text-center">
+                      Room Price:{' '}
+                      <span className="font-semibold">
+                        {' '}
+                        {` ₹${roomPrice.roomPrice}`}
+                      </span>
+                    </p>
+                  </div>
+                ) : (
+                  ''
+                )}
                 {
                   <button
                     className={`text-xxs border-gray-300 border-2 rounded py-1 px-2 hover:bg-green-500 hover:text-white ${
